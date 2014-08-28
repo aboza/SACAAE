@@ -71,8 +71,6 @@ namespace SACAAE.Controllers
                 repositorio.Actualizar(profesor);
                 TempData[TempDataMessageKey] = "Profesor editado correctamente.";
             }
-
-
             return RedirectToAction("Index");
         }
 

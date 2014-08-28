@@ -15,16 +15,22 @@ namespace SACAAE.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Ajuste
+public partial class Aula
 {
 
-    public int IDConfig { get; set; }
+    public int ID { get; set; }
 
-    public int IDPeriodoActual { get; set; }
+    public string Codigo { get; set; }
+
+    public int Espacio { get; set; }
+
+    public bool Activa { get; set; }
+
+    public int SedeID { get; set; }
 
 
 
-    public virtual Periodo Periodo { get; set; }
+    public virtual Sede Sede { get; set; }
 
 }
 

@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AulaController.cs" />
     <Compile Include="Controllers\ComisionController.cs" />
     <Compile Include="Controllers\ComisionProfesorController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
@@ -209,6 +210,9 @@
     </Compile>
     <Compile Include="Helpers\ProveedorMembersia.cs" />
     <Compile Include="Models\Ajuste.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Aula.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comisione.cs">
@@ -241,6 +245,7 @@
     <Compile Include="Models\Proyecto.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RepositorioAulas.cs" />
     <Compile Include="Models\RepositorioComision.cs" />
     <Compile Include="Models\RepositorioComisionesProfesor.cs" />
     <Compile Include="Models\RepositorioCursoProfesor.cs" />
@@ -485,6 +490,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Periodo\AgregarPeriodo.cshtml" />
     <Content Include="Views\Plans\CrearPlan.cshtml" />
+    <Content Include="Views\Aula\CrearAula.cshtml" />
+    <Content Include="Views\Aula\Index.cshtml" />
+    <Content Include="Views\Aula\EliminarAula.cshtml" />
+    <Content Include="Views\Aula\ModificarAula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

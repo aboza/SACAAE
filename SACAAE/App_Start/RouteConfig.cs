@@ -98,8 +98,16 @@ namespace SACAAE
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional });
+
+            /*rutas Alexis 2014 S2*/
+            routes.MapRoute(
+               "aulasXSede",
+               "Courses/Aulas/List/{idSede}",
+               new { Controller = "Aulas", action = "ListarAulasXSede" });
+            /*Fin rutas Alexis 2014 S2*/
+
+
         }
     }
 }

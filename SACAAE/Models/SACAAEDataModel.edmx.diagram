@@ -50,6 +50,8 @@
         <AssociationConnector Association="SACAAEModel.FK_Ajustes_Periodo" />
         <EntityTypeShape EntityType="SACAAEModel.Dia" Width="1.5" PointX="5.3005802562928661" PointY="18.77865528444697" />
         <AssociationConnector Association="SACAAEModel.FK_Dia_Horario_Horario_Id" />
+        <EntityTypeShape EntityType="SACAAEModel.Aula" Width="1.5" PointX="3.375" PointY="25.25" />
+        <AssociationConnector Association="SACAAEModel.FK_Aulas_Sedes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

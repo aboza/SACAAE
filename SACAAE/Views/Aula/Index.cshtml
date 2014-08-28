@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SACAAE.Models.Aula>
+
+@{
+    ViewBag.Title = "Aulas";
+    Layout = "~/Views/Shared/Privado.cshtml";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("/Groups/Sedes/List", function (data) {
+                var items = "";
+                $.each(data, function (i, sede) {
+                    items += "<option value='" + sede.Value + "'>" + sede.Text + "</option>";
+                });
+                $("#selectSede").html(items);
+            });
+        });
+    </script>
+
+}
+
+
+<div class="row">
+    <h2>Aulas</h2>
+    <div class="span12">
+        @if (TempData.ContainsKey("MessageError"))
+        {
+            <p class="text-danger">@TempData["MessageError"].ToString()</p>
+        }
+        @if (TempData.ContainsKey("MessageSuccess"))
+        {
+            <p class="text-success">@TempData["MessageSuccess"].ToString()</p>
+        }
+        <p>
+            @Html.ActionLink("Agregar Nuevo", "CrearAula")
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <label>Sede</label>
+        <br />
+        <select id="selectSede" name="selectSede"></select>
+        <br />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span12">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Código</th>
+                <th>Capacidad</th>
+                <th>Activa</th>
+                <th>Sede</th>
+                <th>Acciones</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Espacio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Activa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sede.Nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "ModificarAula", new { id = item.ID }) |
+                        @Html.ActionLink("Eliminar", "EliminarAula", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

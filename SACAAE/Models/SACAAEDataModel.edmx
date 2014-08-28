@@ -4,142 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SACAAEModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SACAAEModelStoreContainer">
-          <EntitySet Name="Ajustes" EntityType="SACAAEModel.Store.Ajustes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Comisiones" EntityType="SACAAEModel.Store.Comisiones" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ComisionesXProfesor" EntityType="SACAAEModel.Store.ComisionesXProfesor" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Cursos" EntityType="SACAAEModel.Store.Cursos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CursosXGrupo" EntityType="SACAAEModel.Store.CursosXGrupo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Detalle_Curso" EntityType="SACAAEModel.Store.Detalle_Curso" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Dia" EntityType="SACAAEModel.Store.Dia" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Estado" EntityType="SACAAEModel.Store.Estado" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Grupo" EntityType="SACAAEModel.Store.Grupo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Horario" EntityType="SACAAEModel.Store.Horario" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Modalidades" EntityType="SACAAEModel.Store.Modalidades" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Periodos" EntityType="SACAAEModel.Store.Periodos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PlanesDeEstudio" EntityType="SACAAEModel.Store.PlanesDeEstudio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PlanesDeEstudioXSede" EntityType="SACAAEModel.Store.PlanesDeEstudioXSede" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Profesores" EntityType="SACAAEModel.Store.Profesores" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProfesoresXCurso" EntityType="SACAAEModel.Store.ProfesoresXCurso" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Proyectos" EntityType="SACAAEModel.Store.Proyectos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProyectosXProfesor" EntityType="SACAAEModel.Store.ProyectosXProfesor" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Sedes" EntityType="SACAAEModel.Store.Sedes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuario" EntityType="SACAAEModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Ajustes_Periodo" Association="SACAAEModel.Store.FK_Ajustes_Periodo">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="Ajustes" EntitySet="Ajustes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="SACAAEModel.Store.FK_Comisiones_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Comisiones" EntitySet="Comisiones" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComisionesXProfesor_Comision_Comisiones_ID" Association="SACAAEModel.Store.FK_ComisionesXProfesor_Comision_Comisiones_ID">
-            <End Role="Comisiones" EntitySet="Comisiones" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComisionesXProfesor_Horario_Horario_Id" Association="SACAAEModel.Store.FK_ComisionesXProfesor_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComisionesXProfesor_Periodo_Periodos_ID" Association="SACAAEModel.Store.FK_ComisionesXProfesor_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.Store.FK_ComisionesXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CURSOS_PLAN_PLANES_ID" Association="SACAAEModel.Store.FK_CURSOS_PLAN_PLANES_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-            <End Role="Cursos" EntitySet="Cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="SACAAEModel.Store.FK_CursosXGrupo_Curso_Cursos_ID">
-            <End Role="Cursos" EntitySet="Cursos" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="SACAAEModel.Store.FK_CursosXGrupo_Grupo_Grupo_ID">
-            <End Role="Grupo" EntitySet="Grupo" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detalle Curso_Curso_CursosXGrupo_ID" Association="SACAAEModel.Store.FK_Detalle Curso_Curso_CursosXGrupo_ID">
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
-            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detalle Curso_Horario_Horario_Id" Association="SACAAEModel.Store.FK_Detalle Curso_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id" Association="SACAAEModel.Store.FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
-            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="SACAAEModel.Store.FK_Dia_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Dia" EntitySet="Dia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Grupo_Periodo_Periodos_ID" Association="SACAAEModel.Store.FK_Grupo_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="Grupo" EntitySet="Grupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" Association="SACAAEModel.Store.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
-            <End Role="Grupo" EntitySet="Grupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="SACAAEModel.Store.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-            <End Role="Modalidades" EntitySet="Modalidades" />
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="SACAAEModel.Store.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="SACAAEModel.Store.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-            <End Role="Sedes" EntitySet="Sedes" />
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="SACAAEModel.Store.FK_Profesores_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Profesores" EntitySet="Profesores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="SACAAEModel.Store.FK_ProfesoresXCurso_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proyectos_Estado_Estado_Id" Association="SACAAEModel.Store.FK_Proyectos_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Proyectos" EntitySet="Proyectos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectosXProfesor_Horario_Horario_Id" Association="SACAAEModel.Store.FK_ProyectosXProfesor_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectosXProfesor_Periodo_Periodos_ID" Association="SACAAEModel.Store.FK_ProyectosXProfesor_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.Store.FK_ProyectosXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID" Association="SACAAEModel.Store.FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-            <End Role="Proyectos" EntitySet="Proyectos" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="SACAAEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ajustes">
           <Key>
             <PropertyRef Name="IDConfig" />
           </Key>
-          <Property Name="IDConfig" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IDConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDPeriodoActual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Aulas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Espacio" Type="int" Nullable="false" />
+          <Property Name="Activa" Type="bit" Nullable="false" />
+          <Property Name="SedeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Inicio" Type="date" Nullable="false" />
           <Property Name="Fin" Type="date" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
@@ -148,7 +36,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Comision" Type="int" Nullable="false" />
           <Property Name="Profesor" Type="int" Nullable="false" />
           <Property Name="Periodo" Type="int" Nullable="false" />
@@ -158,9 +46,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="Codigo" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="HorasTeoricas" Type="int" Nullable="false" />
           <Property Name="Bloque" Type="int" Nullable="false" />
           <Property Name="Externo" Type="bit" Nullable="false" />
@@ -171,7 +59,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Curso" Type="int" Nullable="false" />
           <Property Name="Grupo" Type="int" Nullable="false" />
         </EntityType>
@@ -179,7 +67,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Curso" Type="int" Nullable="false" />
           <Property Name="Profesor" Type="int" Nullable="false" />
           <Property Name="Horario" Type="int" Nullable="false" />
@@ -190,8 +78,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Dia" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dia" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Horario" Type="int" Nullable="false" />
           <Property Name="Hora_Inicio" Type="int" />
           <Property Name="Hora_Fin" Type="int" />
@@ -200,14 +88,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="250" />
           <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
           <Property Name="Periodo" Type="int" Nullable="false" />
@@ -217,35 +105,35 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Modalidades">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Periodos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanesDeEstudio">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Modalidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanesDeEstudioXSede">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sede" Type="int" Nullable="false" />
           <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
         </EntityType>
@@ -253,8 +141,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Plaza" Type="varchar" MaxLength="250" />
           <Property Name="HorasEnPropiedad" Type="int" Nullable="false" />
           <Property Name="Link" Type="varchar" MaxLength="250" />
@@ -264,7 +152,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Profesor" Type="int" Nullable="false" />
           <Property Name="Horas" Type="int" />
         </EntityType>
@@ -272,8 +160,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Inicio" Type="datetime" />
           <Property Name="Fin" Type="datetime" />
           <Property Name="Estado" Type="int" Nullable="false" />
@@ -283,7 +171,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Proyecto" Type="int" Nullable="false" />
           <Property Name="Profesor" Type="int" Nullable="false" />
           <Property Name="Periodo" Type="int" Nullable="false" />
@@ -293,22 +181,22 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="ID_Usuario" />
           </Key>
-          <Property Name="ID_Usuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="NombreUsuario" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Contrasenia" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Correo" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasenia" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <Association Name="FK_Ajustes_Periodo">
-          <End Role="Periodos" Type="SACAAEModel.Store.Periodos" Multiplicity="1" />
-          <End Role="Ajustes" Type="SACAAEModel.Store.Ajustes" Multiplicity="*" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="Ajustes" Type="Self.Ajustes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -318,9 +206,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Aulas_Sedes">
+          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
+          <End Role="Aulas" Type="Self.Aulas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sedes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aulas">
+              <PropertyRef Name="SedeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comisiones_Estado_Estado_Id">
-          <End Role="Estado" Type="SACAAEModel.Store.Estado" Multiplicity="1" />
-          <End Role="Comisiones" Type="SACAAEModel.Store.Comisiones" Multiplicity="*" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -331,8 +231,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Comision_Comisiones_ID">
-          <End Role="Comisiones" Type="SACAAEModel.Store.Comisiones" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="SACAAEModel.Store.ComisionesXProfesor" Multiplicity="*" />
+          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comisiones">
               <PropertyRef Name="ID" />
@@ -343,8 +243,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Horario_Horario_Id">
-          <End Role="Horario" Type="SACAAEModel.Store.Horario" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="SACAAEModel.Store.ComisionesXProfesor" Multiplicity="*" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -355,8 +255,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="SACAAEModel.Store.Periodos" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="SACAAEModel.Store.ComisionesXProfesor" Multiplicity="*" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -367,8 +267,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="SACAAEModel.Store.Profesores" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="SACAAEModel.Store.ComisionesXProfesor" Multiplicity="*" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -379,8 +279,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CURSOS_PLAN_PLANES_ID">
-          <End Role="PlanesDeEstudio" Type="SACAAEModel.Store.PlanesDeEstudio" Multiplicity="1" />
-          <End Role="Cursos" Type="SACAAEModel.Store.Cursos" Multiplicity="*" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -391,8 +291,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
-          <End Role="Cursos" Type="SACAAEModel.Store.Cursos" Multiplicity="1" />
-          <End Role="CursosXGrupo" Type="SACAAEModel.Store.CursosXGrupo" Multiplicity="*" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="CursosXGrupo" Type="Self.CursosXGrupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cursos">
               <PropertyRef Name="ID" />
@@ -403,8 +303,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CursosXGrupo_Grupo_Grupo_ID">
-          <End Role="Grupo" Type="SACAAEModel.Store.Grupo" Multiplicity="1" />
-          <End Role="CursosXGrupo" Type="SACAAEModel.Store.CursosXGrupo" Multiplicity="*" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
+          <End Role="CursosXGrupo" Type="Self.CursosXGrupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Grupo">
               <PropertyRef Name="ID" />
@@ -415,8 +315,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Curso_CursosXGrupo_ID">
-          <End Role="CursosXGrupo" Type="SACAAEModel.Store.CursosXGrupo" Multiplicity="1" />
-          <End Role="Detalle_Curso" Type="SACAAEModel.Store.Detalle_Curso" Multiplicity="*" />
+          <End Role="CursosXGrupo" Type="Self.CursosXGrupo" Multiplicity="1" />
+          <End Role="Detalle_Curso" Type="Self.Detalle_Curso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CursosXGrupo">
               <PropertyRef Name="ID" />
@@ -427,8 +327,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Horario_Horario_Id">
-          <End Role="Horario" Type="SACAAEModel.Store.Horario" Multiplicity="1" />
-          <End Role="Detalle_Curso" Type="SACAAEModel.Store.Detalle_Curso" Multiplicity="*" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Detalle_Curso" Type="Self.Detalle_Curso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -439,8 +339,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-          <End Role="ProfesoresXCurso" Type="SACAAEModel.Store.ProfesoresXCurso" Multiplicity="1" />
-          <End Role="Detalle_Curso" Type="SACAAEModel.Store.Detalle_Curso" Multiplicity="*" />
+          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="1" />
+          <End Role="Detalle_Curso" Type="Self.Detalle_Curso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProfesoresXCurso">
               <PropertyRef Name="Id" />
@@ -451,8 +351,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dia_Horario_Horario_Id">
-          <End Role="Horario" Type="SACAAEModel.Store.Horario" Multiplicity="1" />
-          <End Role="Dia" Type="SACAAEModel.Store.Dia" Multiplicity="*" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Dia" Type="Self.Dia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -463,8 +363,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="SACAAEModel.Store.Periodos" Multiplicity="1" />
-          <End Role="Grupo" Type="SACAAEModel.Store.Grupo" Multiplicity="*" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -475,8 +375,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-          <End Role="PlanesDeEstudioXSede" Type="SACAAEModel.Store.PlanesDeEstudioXSede" Multiplicity="1" />
-          <End Role="Grupo" Type="SACAAEModel.Store.Grupo" Multiplicity="*" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudioXSede">
               <PropertyRef Name="ID" />
@@ -487,8 +387,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-          <End Role="Modalidades" Type="SACAAEModel.Store.Modalidades" Multiplicity="1" />
-          <End Role="PlanesDeEstudio" Type="SACAAEModel.Store.PlanesDeEstudio" Multiplicity="*" />
+          <End Role="Modalidades" Type="Self.Modalidades" Multiplicity="1" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Modalidades">
               <PropertyRef Name="ID" />
@@ -499,8 +399,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-          <End Role="PlanesDeEstudio" Type="SACAAEModel.Store.PlanesDeEstudio" Multiplicity="1" />
-          <End Role="PlanesDeEstudioXSede" Type="SACAAEModel.Store.PlanesDeEstudioXSede" Multiplicity="*" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -511,8 +411,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-          <End Role="Sedes" Type="SACAAEModel.Store.Sedes" Multiplicity="1" />
-          <End Role="PlanesDeEstudioXSede" Type="SACAAEModel.Store.PlanesDeEstudioXSede" Multiplicity="*" />
+          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sedes">
               <PropertyRef Name="ID" />
@@ -523,8 +423,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Profesores_Estado_Estado_Id">
-          <End Role="Estado" Type="SACAAEModel.Store.Estado" Multiplicity="1" />
-          <End Role="Profesores" Type="SACAAEModel.Store.Profesores" Multiplicity="*" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -535,8 +435,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProfesoresXCurso_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="SACAAEModel.Store.Profesores" Multiplicity="1" />
-          <End Role="ProfesoresXCurso" Type="SACAAEModel.Store.ProfesoresXCurso" Multiplicity="*" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -547,8 +447,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Proyectos_Estado_Estado_Id">
-          <End Role="Estado" Type="SACAAEModel.Store.Estado" Multiplicity="1" />
-          <End Role="Proyectos" Type="SACAAEModel.Store.Proyectos" Multiplicity="*" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -559,8 +459,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Horario_Horario_Id">
-          <End Role="Horario" Type="SACAAEModel.Store.Horario" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="SACAAEModel.Store.ProyectosXProfesor" Multiplicity="*" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -571,8 +471,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="SACAAEModel.Store.Periodos" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="SACAAEModel.Store.ProyectosXProfesor" Multiplicity="*" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -583,8 +483,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="SACAAEModel.Store.Profesores" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="SACAAEModel.Store.ProyectosXProfesor" Multiplicity="*" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -595,8 +495,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-          <End Role="Proyectos" Type="SACAAEModel.Store.Proyectos" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="SACAAEModel.Store.ProyectosXProfesor" Multiplicity="*" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proyectos">
               <PropertyRef Name="ID" />
@@ -606,6 +506,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="SACAAEModelStoreContainer">
+          <EntitySet Name="Ajustes" EntityType="Self.Ajustes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aulas" EntityType="Self.Aulas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComisionesXProfesor" EntityType="Self.ComisionesXProfesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CursosXGrupo" EntityType="Self.CursosXGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Curso" EntityType="Self.Detalle_Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dia" EntityType="Self.Dia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modalidades" EntityType="Self.Modalidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodos" EntityType="Self.Periodos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanesDeEstudio" EntityType="Self.PlanesDeEstudio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanesDeEstudioXSede" EntityType="Self.PlanesDeEstudioXSede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfesoresXCurso" EntityType="Self.ProfesoresXCurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProyectosXProfesor" EntityType="Self.ProyectosXProfesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sedes" EntityType="Self.Sedes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ajustes_Periodo" Association="Self.FK_Ajustes_Periodo">
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="Ajustes" EntitySet="Ajustes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aulas_Sedes" Association="Self.FK_Aulas_Sedes">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Aulas" EntitySet="Aulas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="Self.FK_Comisiones_Estado_Estado_Id">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Comisiones" EntitySet="Comisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComisionesXProfesor_Comision_Comisiones_ID" Association="Self.FK_ComisionesXProfesor_Comision_Comisiones_ID">
+            <End Role="Comisiones" EntitySet="Comisiones" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComisionesXProfesor_Horario_Horario_Id" Association="Self.FK_ComisionesXProfesor_Horario_Horario_Id">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComisionesXProfesor_Periodo_Periodos_ID" Association="Self.FK_ComisionesXProfesor_Periodo_Periodos_ID">
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="Self.FK_ComisionesXProfesor_Profesor_Profesores_ID">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURSOS_PLAN_PLANES_ID" Association="Self.FK_CURSOS_PLAN_PLANES_ID">
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+            <End Role="Cursos" EntitySet="Cursos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="Self.FK_CursosXGrupo_Curso_Cursos_ID">
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="Self.FK_CursosXGrupo_Grupo_Grupo_ID">
+            <End Role="Grupo" EntitySet="Grupo" />
+            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle Curso_Curso_CursosXGrupo_ID" Association="Self.FK_Detalle Curso_Curso_CursosXGrupo_ID">
+            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
+            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle Curso_Horario_Horario_Id" Association="Self.FK_Detalle Curso_Horario_Horario_Id">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id" Association="Self.FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
+            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
+            <End Role="Detalle_Curso" EntitySet="Detalle_Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="Self.FK_Dia_Horario_Horario_Id">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Dia" EntitySet="Dia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Periodo_Periodos_ID" Association="Self.FK_Grupo_Periodo_Periodos_ID">
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" Association="Self.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="Self.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
+            <End Role="Modalidades" EntitySet="Modalidades" />
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="Self.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="Self.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="Self.FK_Profesores_Estado_Estado_Id">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Profesores" EntitySet="Profesores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="Self.FK_ProfesoresXCurso_Profesor_Profesores_ID">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Estado_Estado_Id" Association="Self.FK_Proyectos_Estado_Estado_Id">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectosXProfesor_Horario_Horario_Id" Association="Self.FK_ProyectosXProfesor_Horario_Horario_Id">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectosXProfesor_Periodo_Periodos_ID" Association="Self.FK_ProyectosXProfesor_Periodo_Periodos_ID">
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="Self.FK_ProyectosXProfesor_Profesor_Profesores_ID">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID" Association="Self.FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -730,6 +757,11 @@
           <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="SACAAEModel.FK_Dia_Horario_Horario_Id">
             <End Role="Horario" EntitySet="Horarios" />
             <End Role="Dia" EntitySet="Dias" />
+          </AssociationSet>
+          <EntitySet Name="Aulas" EntityType="SACAAEModel.Aula" />
+          <AssociationSet Name="FK_Aulas_Sedes" Association="SACAAEModel.FK_Aulas_Sedes">
+            <End Role="Sede" EntitySet="Sedes" />
+            <End Role="Aula" EntitySet="Aulas" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Comisione">
@@ -931,6 +963,7 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PlanesDeEstudioXSedes" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_Sede_Sedes_ID" FromRole="Sede" ToRole="PlanesDeEstudioXSede" />
+          <NavigationProperty Name="Aulas" Relationship="SACAAEModel.FK_Aulas_Sedes" FromRole="Sede" ToRole="Aula" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -1261,6 +1294,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Aula">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Espacio" Type="Int32" Nullable="false" />
+          <Property Name="Activa" Type="Boolean" Nullable="false" />
+          <Property Name="SedeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sede" Relationship="SACAAEModel.FK_Aulas_Sedes" FromRole="Aula" ToRole="Sede" />
+        </EntityType>
+        <Association Name="FK_Aulas_Sedes">
+          <End Type="SACAAEModel.Sede" Role="Sede" Multiplicity="1" />
+          <End Type="SACAAEModel.Aula" Role="Aula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sede">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Aula">
+              <PropertyRef Name="SedeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1463,6 +1519,17 @@
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="Dia1" ColumnName="Dia" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aulas">
+            <EntityTypeMapping TypeName="SACAAEModel.Aula">
+              <MappingFragment StoreEntitySet="Aulas">
+                <ScalarProperty Name="SedeID" ColumnName="SedeID" />
+                <ScalarProperty Name="Activa" ColumnName="Activa" />
+                <ScalarProperty Name="Espacio" ColumnName="Espacio" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

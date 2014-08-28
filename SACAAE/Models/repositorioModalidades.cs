@@ -28,5 +28,12 @@ namespace SACAAE.Models
                    orderby Modalidades.Nombre
                    select Modalidades;
         }
+
+        public int idModalidad(string nombre)
+        {
+            return (from Modalidade in entidades.Modalidades
+                               where Modalidade.Nombre == nombre
+                               select Modalidade).FirstOrDefault().ID;
+        }
     }
 }

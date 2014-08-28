@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorariosController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
+    <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="Controllers\ProfesoresProyectosController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
@@ -483,6 +484,7 @@
     <Content Include="Views\Seleccionar\SeleccionarGrupo.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Periodo\AgregarPeriodo.cshtml" />
+    <Content Include="Views\Plans\CrearPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,11 +12,43 @@ namespace SACAAE.Models
         public IQueryable<PlanesDeEstudio> ObtenerTodosPlanesDeEstudio()
         {
             return from PlanesDeEstudio in entidades.PlanesDeEstudios
-                   orderby PlanesDeEstudio.Nombre
+                   orderby PlanesDeEstudio.ID
                    select PlanesDeEstudio;
         }
 
-        public int  IdPlanDeEstudio(String Nombre, string Modalidad)
+        public void agregarPlan(PlanesDeEstudio Plan)
+        {
+            entidades.PlanesDeEstudios.Add(Plan);
+            Save();
+        }
+
+        private void Save()
+        {
+            entidades.SaveChanges();
+        }
+        public PlanesDeEstudio existe(string nombre, int modalidad)
+        {
+            return (from PlanesDeEstudio in entidades.PlanesDeEstudios
+                    where PlanesDeEstudio.Nombre == nombre && PlanesDeEstudio.Modalidad== modalidad
+                    select PlanesDeEstudio).FirstOrDefault();
+        }
+        public int IdPlanDeEstudioPorIdModalidad(String Nombre, int IdModalidad)
+        {
+            IQueryable<PlanesDeEstudio> result = from PlanesDeEstudio in entidades.PlanesDeEstudios
+                   orderby PlanesDeEstudio.Nombre
+                   where PlanesDeEstudio.Nombre == Nombre && PlanesDeEstudio.Modalidad == IdModalidad
+                   select PlanesDeEstudio;
+            try
+            {
+                return result.FirstOrDefault().ID;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+        
+        public int IdPlanDeEstudio(String Nombre, string Modalidad)
         {
             int IdModalidad= (from Modalidade in entidades.Modalidades
                     where Modalidade.Nombre == Modalidad

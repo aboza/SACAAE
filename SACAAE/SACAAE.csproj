@@ -191,6 +191,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AulaController.cs" />
+    <Compile Include="Controllers\BloqueController.cs" />
+    <Compile Include="Controllers\BloqueXPlanController.cs" />
     <Compile Include="Controllers\ComisionController.cs" />
     <Compile Include="Controllers\ComisionProfesorController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
@@ -213,6 +215,9 @@
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Aula.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BloqueAcademico.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comisione.cs">
@@ -246,6 +251,7 @@
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositorioAulas.cs" />
+    <Compile Include="Models\RepositorioBloqueAcademico.cs" />
     <Compile Include="Models\RepositorioComision.cs" />
     <Compile Include="Models\RepositorioComisionesProfesor.cs" />
     <Compile Include="Models\RepositorioCursoProfesor.cs" />
@@ -494,9 +500,14 @@
     <Content Include="Views\Aula\Index.cshtml" />
     <Content Include="Views\Aula\EliminarAula.cshtml" />
     <Content Include="Views\Aula\ModificarAula.cshtml" />
+    <Content Include="Views\Bloque\CrearBloqueAcademico.cshtml" />
+    <Content Include="Views\Bloque\EliminarBloqueAcademico.cshtml" />
+    <Content Include="Views\Bloque\Index.cshtml" />
+    <Content Include="Views\Bloque\ModificarBloqueAcademico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BloqueXPlan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

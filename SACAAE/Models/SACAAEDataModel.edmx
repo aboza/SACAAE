@@ -22,6 +22,14 @@
           <Property Name="Activa" Type="bit" Nullable="false" />
           <Property Name="SedeID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BloqueAcademico">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="ID" />
@@ -509,6 +517,7 @@
         <EntityContainer Name="SACAAEModelStoreContainer">
           <EntitySet Name="Ajustes" EntityType="Self.Ajustes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Aulas" EntityType="Self.Aulas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BloqueAcademico" EntityType="Self.BloqueAcademico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComisionesXProfesor" EntityType="Self.ComisionesXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
@@ -763,6 +772,7 @@
             <End Role="Sede" EntitySet="Sedes" />
             <End Role="Aula" EntitySet="Aulas" />
           </AssociationSet>
+          <EntitySet Name="BloqueAcademicoes" EntityType="SACAAEModel.BloqueAcademico" />
         </EntityContainer>
         <EntityType Name="Comisione">
           <Key>
@@ -1317,6 +1327,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BloqueAcademico">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1529,6 +1547,15 @@
                 <ScalarProperty Name="Activa" ColumnName="Activa" />
                 <ScalarProperty Name="Espacio" ColumnName="Espacio" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloqueAcademicoes">
+            <EntityTypeMapping TypeName="SACAAEModel.BloqueAcademico">
+              <MappingFragment StoreEntitySet="BloqueAcademico">
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

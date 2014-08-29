@@ -15,30 +15,20 @@ namespace SACAAE.Models
 using System;
     using System.Collections.Generic;
     
-public partial class BloqueAcademicoXPlanDeEstudio
+public partial class BloqueXPlanXCurso
 {
-
-    public BloqueAcademicoXPlanDeEstudio()
-    {
-
-        this.BloqueXPlanXCursoes = new HashSet<BloqueXPlanXCurso>();
-
-    }
-
 
     public int ID { get; set; }
 
-    public int PlanID { get; set; }
+    public int BloqueXPlanID { get; set; }
 
-    public int BloqueID { get; set; }
+    public int CursoID { get; set; }
 
 
 
-    public virtual BloqueAcademico BloqueAcademico { get; set; }
+    public virtual BloqueAcademicoXPlanDeEstudio BloqueAcademicoXPlanDeEstudio { get; set; }
 
-    public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
-
-    public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
+    public virtual Curso Curso { get; set; }
 
 }
 

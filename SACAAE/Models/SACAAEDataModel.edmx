@@ -38,6 +38,14 @@
           <Property Name="PlanID" Type="int" Nullable="false" />
           <Property Name="BloqueID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BloqueXPlanXCurso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BloqueXPlanID" Type="int" Nullable="false" />
+          <Property Name="CursoID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="ID" />
@@ -255,6 +263,30 @@
             </Principal>
             <Dependent Role="BloqueAcademicoXPlanDeEstudio">
               <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
+          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="1" />
+          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BloqueAcademicoXPlanDeEstudio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BloqueXPlanXCurso">
+              <PropertyRef Name="BloqueXPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BloqueXPlanXCurso_Cursos">
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BloqueXPlanXCurso">
+              <PropertyRef Name="CursoID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -551,6 +583,7 @@
           <EntitySet Name="Aulas" EntityType="Self.Aulas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloqueAcademico" EntityType="Self.BloqueAcademico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloqueAcademicoXPlanDeEstudio" EntityType="Self.BloqueAcademicoXPlanDeEstudio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BloqueXPlanXCurso" EntityType="Self.BloqueXPlanXCurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComisionesXProfesor" EntityType="Self.ComisionesXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
@@ -585,6 +618,14 @@
           <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" Association="Self.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
             <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
             <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" Association="Self.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BloqueXPlanXCurso_Cursos" Association="Self.FK_BloqueXPlanXCurso_Cursos">
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="Self.FK_Comisiones_Estado_Estado_Id">
             <End Role="Estado" EntitySet="Estado" />
@@ -823,6 +864,15 @@
             <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
             <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
           </AssociationSet>
+          <EntitySet Name="BloqueXPlanXCursoes" EntityType="SACAAEModel.BloqueXPlanXCurso" />
+          <AssociationSet Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" Association="SACAAEModel.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCursoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BloqueXPlanXCurso_Cursos" Association="SACAAEModel.FK_BloqueXPlanXCurso_Cursos">
+            <End Role="Curso" EntitySet="Cursos" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCursoes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Comisione">
           <Key>
@@ -864,6 +914,7 @@
           <Property Type="Int32" Name="HorasPracticas" />
           <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_CURSOS_PLAN_PLANES_ID" FromRole="Curso" ToRole="PlanesDeEstudio" />
           <NavigationProperty Name="CursosXGrupoes" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="Curso" ToRole="CursosXGrupo" />
+          <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_Cursos" FromRole="Curso" ToRole="BloqueXPlanXCurso" />
         </EntityType>
         <EntityType Name="CursosXGrupo">
           <Key>
@@ -1396,6 +1447,7 @@
           <Property Name="BloqueID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BloqueAcademico" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="BloqueAcademico" />
           <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="PlanesDeEstudio" />
+          <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="BloqueXPlanXCurso" />
         </EntityType>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
           <End Type="SACAAEModel.BloqueAcademico" Role="BloqueAcademico" Multiplicity="1" />
@@ -1418,6 +1470,40 @@
             </Principal>
             <Dependent Role="BloqueAcademicoXPlanDeEstudio">
               <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BloqueXPlanXCurso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BloqueXPlanID" Type="Int32" Nullable="false" />
+          <Property Name="CursoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BloqueAcademicoXPlanDeEstudio" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" FromRole="BloqueXPlanXCurso" ToRole="BloqueAcademicoXPlanDeEstudio" />
+          <NavigationProperty Name="Curso" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_Cursos" FromRole="BloqueXPlanXCurso" ToRole="Curso" />
+        </EntityType>
+        <Association Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
+          <End Type="SACAAEModel.BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" Multiplicity="1" />
+          <End Type="SACAAEModel.BloqueXPlanXCurso" Role="BloqueXPlanXCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BloqueAcademicoXPlanDeEstudio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BloqueXPlanXCurso">
+              <PropertyRef Name="BloqueXPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BloqueXPlanXCurso_Cursos">
+          <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="SACAAEModel.BloqueXPlanXCurso" Role="BloqueXPlanXCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BloqueXPlanXCurso">
+              <PropertyRef Name="CursoID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1651,6 +1737,15 @@
               <MappingFragment StoreEntitySet="BloqueAcademicoXPlanDeEstudio">
                 <ScalarProperty Name="BloqueID" ColumnName="BloqueID" />
                 <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BloqueXPlanXCursoes">
+            <EntityTypeMapping TypeName="SACAAEModel.BloqueXPlanXCurso">
+              <MappingFragment StoreEntitySet="BloqueXPlanXCurso">
+                <ScalarProperty Name="CursoID" ColumnName="CursoID" />
+                <ScalarProperty Name="BloqueXPlanID" ColumnName="BloqueXPlanID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -23,6 +23,8 @@ public partial class Curso
 
         this.CursosXGrupoes = new HashSet<CursosXGrupo>();
 
+        this.BloqueXPlanXCursoes = new HashSet<BloqueXPlanXCurso>();
+
     }
 
 
@@ -47,6 +49,8 @@ public partial class Curso
     public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
 
     public virtual ICollection<CursosXGrupo> CursosXGrupoes { get; set; }
+
+    public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
 
 }
 

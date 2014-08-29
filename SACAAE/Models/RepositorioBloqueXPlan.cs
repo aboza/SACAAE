@@ -24,6 +24,13 @@ namespace SACAAE.Models
             return (entidades.BloqueAcademicoXPlanDeEstudios.SingleOrDefault(relacion => relacion.PlanID == pPlanID && relacion.BloqueID == pBloqueID) != null);
         }
 
+        public int idBloqueXPlan(int pPlanID,int pBloqueID)
+        {
+            return (from BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios
+                    where BloquesXPlan.PlanID == pPlanID && BloquesXPlan.BloqueID == pBloqueID
+                    select BloquesXPlan).FirstOrDefault().ID;
+        }
+
         public void crearRelacionBloqueXPlan(BloqueAcademicoXPlanDeEstudio pBloqueXPlan)
         {
             if (existeRelacionBloqueXPlan(pBloqueXPlan.PlanID, pBloqueXPlan.BloqueID))

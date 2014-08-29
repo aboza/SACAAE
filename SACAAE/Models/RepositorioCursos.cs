@@ -48,6 +48,12 @@ namespace SACAAE.Models
                    select Curso;
         }
 
+        public IQueryable<Curso> ObtenerCursos()
+        {
+            return from Curso in entidades.Cursos
+                   select Curso;
+        }
+
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio, int bloque)
         {
             return from Curso in entidades.Cursos

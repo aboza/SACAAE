@@ -15,34 +15,40 @@ namespace SACAAE.Controllers
     {
         
 
-        private RepositorioCursos repoCuros = new RepositorioCursos();
+        private RepositorioCursos repoCursos = new RepositorioCursos();
         private repositorioPlanesEstudio repoPlanes = new repositorioPlanesEstudio();
         private const string TempDataMessageKey = "MessageError";
         private const string TempDataMessageKeySuccess = "MessageSuccess";
 
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult CrearCurso()
         {
             var model = new Curso();
-            ViewBag.oPlanes = repoPlanes.ObtenerTodosPlanes();
             return View(model);
          
         }
 
         [Authorize]
+        public ActionResult Index()
+        {
+            var model = repoCursos.ObtenerCursos();
+            return View(model);
+
+        }
+
+        [Authorize]
         [HttpPost]
-        public ActionResult Index (Curso curso, int HorasPracticas, int HorasTeoricas, string PlanesDeEstudio, int Bloque)
+        public ActionResult CrearCurso(Curso curso, int HorasPracticas, int HorasTeoricas, int Bloque)
         {
 
 
-            if (curso != null && PlanesDeEstudio != null && (HorasPracticas > 0 || HorasTeoricas > 0))
+            if (curso != null && (HorasPracticas > 0 || HorasTeoricas > 0))
             {
                 curso.HorasPracticas = HorasPracticas;
                 curso.HorasTeoricas = HorasTeoricas;
-                curso.PlanDeEstudio = Int16.Parse(PlanesDeEstudio);
                 curso.Bloque = Bloque;
-                repoCuros.guardarCurso(curso);
+                repoCursos.guardarCurso(curso);
                 TempData[TempDataMessageKeySuccess] = "Curso Ingresado";
                 return RedirectToAction("Index");
             }
@@ -58,13 +64,20 @@ namespace SACAAE.Controllers
         }
 
         [Authorize]
+        public ActionResult ModificarCurso(int id)
+        {
+            var model = repoCursos.ObtenerCurso(id);
+            return View(model);
+        }
+
+        [Authorize]
         [HttpPost]
         public ActionResult Eliminar(string planesDeEstudio, string cursosPlan)
         {
 
             if (cursosPlan != null && planesDeEstudio != null)
             {
-                repoCuros.borrarCurso(Int32.Parse(planesDeEstudio), Int32.Parse(cursosPlan));
+                repoCursos.borrarCurso(Int32.Parse(cursosPlan));
                 ViewBag.message = "Curso Eliminado";
                 
             }
@@ -75,6 +88,24 @@ namespace SACAAE.Controllers
             return RedirectToAction("Eliminar");
        
 
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ModificarCurso(Curso pCurso)
+        {
+            if (repoCursos.existeCurso(pCurso.Codigo))
+            {
+                TempData[TempDataMessageKey] = "Es posible que exista un curso con el mismo código. Por Favor intente de nuevo.";
+                return RedirectToAction("ModificarCurso");
+            }
+
+            if (ModelState.IsValid)
+            {
+                repoCursos.ModificarCurso(pCurso);
+                TempData[TempDataMessageKey] = "El registro ha sido editado correctamente.";
+            }
+            return RedirectToAction("Index");
         }
  
 
@@ -94,7 +125,7 @@ namespace SACAAE.Controllers
 
         public ActionResult cursosPlanLista(string idPlan)
         {
-            IQueryable listaCursos = repoCuros.ObtenerCursosDePlan(Int16.Parse(idPlan));
+            IQueryable listaCursos = repoCursos.ObtenerCursosDePlan(Int16.Parse(idPlan));
             if (HttpContext.Request.IsAjaxRequest())
             {
                 return Json(new SelectList(listaCursos, "ID", "Nombre"), JsonRequestBehavior.AllowGet); 

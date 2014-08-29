@@ -515,6 +515,8 @@
     <Content Include="Views\Bloque\ModificarBloqueAcademico.cshtml" />
     <Content Include="Views\BloqueXPlan\CrearBloqueXPlan.cshtml" />
     <Content Include="Views\BloqueXPlanXCurso\CrearBloqueXPlanXCurso.cshtml" />
+    <Content Include="Views\Courses\CrearCurso.cshtml" />
+    <Content Include="Views\Courses\ModificarCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

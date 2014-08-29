@@ -36,9 +36,9 @@ public partial class BloqueAcademicoXPlanDeEstudio
 
     public virtual BloqueAcademico BloqueAcademico { get; set; }
 
-    public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
-
     public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
+
+    public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
 
 }
 

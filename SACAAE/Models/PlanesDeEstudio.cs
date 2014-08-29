@@ -21,11 +21,9 @@ public partial class PlanesDeEstudio
     public PlanesDeEstudio()
     {
 
-        this.Cursos = new HashSet<Curso>();
+        this.BloqueAcademicoXPlanDeEstudios = new HashSet<BloqueAcademicoXPlanDeEstudio>();
 
         this.PlanesDeEstudioXSedes = new HashSet<PlanesDeEstudioXSede>();
-
-        this.BloqueAcademicoXPlanDeEstudios = new HashSet<BloqueAcademicoXPlanDeEstudio>();
 
     }
 
@@ -38,13 +36,11 @@ public partial class PlanesDeEstudio
 
 
 
-    public virtual ICollection<Curso> Cursos { get; set; }
+    public virtual ICollection<BloqueAcademicoXPlanDeEstudio> BloqueAcademicoXPlanDeEstudios { get; set; }
 
     public virtual Modalidade Modalidade { get; set; }
 
     public virtual ICollection<PlanesDeEstudioXSede> PlanesDeEstudioXSedes { get; set; }
-
-    public virtual ICollection<BloqueAcademicoXPlanDeEstudio> BloqueAcademicoXPlanDeEstudios { get; set; }
 
 }
 

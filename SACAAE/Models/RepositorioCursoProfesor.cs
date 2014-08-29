@@ -111,7 +111,9 @@ namespace SACAAE.Models
         public IQueryable obtenerCursos(int plan)
         {
             return from cursos in entidades.Cursos
-                   where (cursos.PlanDeEstudio == plan)
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on cursos.ID equals BloqueXPlanXCursos.ID
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                   where (BloquesXPlan.PlanID == plan)
                    select new { cursos.ID, cursos.Nombre, cursos.Codigo };
         }
 

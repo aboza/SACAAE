@@ -14,12 +14,19 @@ namespace SACAAE.Models
             entidades = new SACAAEEntities(); 
         }
 
+        public Curso ObtenerCurso(int id)
+        {
+            return entidades.Cursos.SingleOrDefault(curso => curso.ID == id);
+        }
+
         public int IdCursos(string CursoBuscado, int PlanDeEstudioCurso)
         {
 
             IQueryable<Curso> Resultado =
                 from Curso in entidades.Cursos
-                where (Curso.Nombre == CursoBuscado && Curso.PlanDeEstudio == PlanDeEstudioCurso)
+                join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.ID
+                join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                where (Curso.Nombre == CursoBuscado && BloquesXPlan.PlanID == PlanDeEstudioCurso)
                 select Curso;
 
             try
@@ -44,7 +51,9 @@ namespace SACAAE.Models
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio)
         {
             return from Curso in entidades.Cursos
-                   where Curso.PlanDeEstudio == PlanDeEstudio
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.ID
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                   where BloquesXPlan.PlanID == PlanDeEstudio
                    select Curso;
         }
 
@@ -57,7 +66,9 @@ namespace SACAAE.Models
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio, int bloque)
         {
             return from Curso in entidades.Cursos
-                   where Curso.PlanDeEstudio == PlanDeEstudio && Curso.Bloque == bloque
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.ID
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                   where BloquesXPlan.PlanID == PlanDeEstudio && BloquesXPlan.BloqueID == bloque
                    select Curso;
         }
 
@@ -117,7 +128,7 @@ namespace SACAAE.Models
         public void guardarCurso(Curso curso)
         {
 
-            if (existeCurso(curso.PlanDeEstudio, curso.Nombre))
+            if (existeCurso(curso.Nombre))
                 return; 
             entidades.Cursos.Add(curso);
             Save(); 
@@ -127,16 +138,18 @@ namespace SACAAE.Models
         public IQueryable<Curso> ObtenerCursosDePlan(int id)
         {
             return from curso in entidades.Cursos
-                   where curso.PlanDeEstudio == id
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on curso.ID equals BloqueXPlanXCursos.ID
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                   where BloquesXPlan.PlanID == id
                    orderby curso.Nombre
                    select curso; 
         }
 
-        public void borrarCurso(int planDeEstudio, int Curso)
+        public void borrarCurso(int Curso)
         {
-            if (existeCurso(planDeEstudio, Curso))
+            if (existeCurso(Curso))
             {
-                var curso = entidades.Cursos.SingleOrDefault(c => c.ID == Curso && c.PlanDeEstudio == planDeEstudio);
+                var curso = entidades.Cursos.SingleOrDefault(c => c.ID == Curso);
                 if (curso != null)
                 {
                     entidades.Cursos.Remove(curso);
@@ -153,28 +166,47 @@ namespace SACAAE.Models
                    select Detalle_Curso;
         }
 
-        private bool existeCurso(int planDeEstudio, string Curso)
+        public bool existeCurso(string Curso)
         {
           
-            return (entidades.Cursos.SingleOrDefault(c => c.Nombre == Curso && c.PlanDeEstudio == planDeEstudio) != null); 
+            return (entidades.Cursos.SingleOrDefault(c => c.Nombre == Curso) != null); 
            
         }
 
-        private bool existeCurso(int planDeEstudio, int Curso)
+        public bool existeCurso(int Curso)
         {
 
-            return (entidades.Cursos.SingleOrDefault(c => c.ID == Curso && c.PlanDeEstudio == planDeEstudio) != null);
+            return (entidades.Cursos.SingleOrDefault(c => c.ID == Curso) != null);
 
         }
+
 
         public Boolean existeCursoEnBloque(int planDeEstudio, int Bloque)
         {
             var request = from curso in entidades.Cursos
-                          where curso.PlanDeEstudio == planDeEstudio && curso.Bloque == Bloque
+                          join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on curso.ID equals BloqueXPlanXCursos.ID
+                          join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                          where BloquesXPlan.PlanID == planDeEstudio && BloquesXPlan.BloqueID == Bloque
                           select curso;
             if (request.Any())
                 return true;
             return false;
+        }
+
+        public void ModificarCurso(Curso pCurso)
+        {
+            var vCurso = entidades.Cursos.SingleOrDefault(curso => curso.ID == pCurso.ID);
+            if (vCurso != null)
+            {
+                entidades.Entry(vCurso).Property(curso => curso.Codigo).CurrentValue = pCurso.Codigo;
+                entidades.Entry(vCurso).Property(curso => curso.HorasPracticas).CurrentValue = pCurso.HorasPracticas;
+                entidades.Entry(vCurso).Property(curso => curso.HorasTeoricas).CurrentValue = pCurso.HorasTeoricas;
+                entidades.Entry(vCurso).Property(curso => curso.Nombre).CurrentValue = pCurso.Nombre;
+                entidades.Entry(vCurso).Property(curso => curso.Externo).CurrentValue = pCurso.Externo;
+                Save();
+            }
+            else
+                return;
         }
 
         private void Save()

@@ -21,9 +21,9 @@ public partial class Curso
     public Curso()
     {
 
-        this.CursosXGrupoes = new HashSet<CursosXGrupo>();
-
         this.BloqueXPlanXCursoes = new HashSet<BloqueXPlanXCurso>();
+
+        this.CursosXGrupoes = new HashSet<CursosXGrupo>();
 
     }
 
@@ -40,17 +40,13 @@ public partial class Curso
 
     public bool Externo { get; set; }
 
-    public int PlanDeEstudio { get; set; }
-
     public Nullable<int> HorasPracticas { get; set; }
 
 
 
-    public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
+    public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
 
     public virtual ICollection<CursosXGrupo> CursosXGrupoes { get; set; }
-
-    public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
 
 }
 

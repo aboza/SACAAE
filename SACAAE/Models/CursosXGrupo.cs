@@ -34,11 +34,11 @@ public partial class CursosXGrupo
 
 
 
-    public virtual Curso Curso1 { get; set; }
-
     public virtual Grupo Grupo1 { get; set; }
 
     public virtual ICollection<Detalle_Curso> Detalle_Curso { get; set; }
+
+    public virtual Curso Curso1 { get; set; }
 
 }
 

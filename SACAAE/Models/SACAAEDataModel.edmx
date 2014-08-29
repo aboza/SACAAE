@@ -76,7 +76,6 @@
           <Property Name="HorasTeoricas" Type="int" Nullable="false" />
           <Property Name="Bloque" Type="int" Nullable="false" />
           <Property Name="Externo" Type="bit" Nullable="false" />
-          <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
           <Property Name="HorasPracticas" Type="int" />
         </EntityType>
         <EntityType Name="CursosXGrupo">
@@ -347,18 +346,6 @@
             </Principal>
             <Dependent Role="ComisionesXProfesor">
               <PropertyRef Name="Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CURSOS_PLAN_PLANES_ID">
-          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanesDeEstudio">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Cursos">
-              <PropertyRef Name="PlanDeEstudio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -647,10 +634,6 @@
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
           </AssociationSet>
-          <AssociationSet Name="FK_CURSOS_PLAN_PLANES_ID" Association="Self.FK_CURSOS_PLAN_PLANES_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-            <End Role="Cursos" EntitySet="Cursos" />
-          </AssociationSet>
           <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="Self.FK_CursosXGrupo_Curso_Cursos_ID">
             <End Role="Cursos" EntitySet="Cursos" />
             <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
@@ -731,7 +714,6 @@
         <EntityContainer Name="SACAAEEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Comisiones" EntityType="SACAAEModel.Comisione" />
           <EntitySet Name="ComisionesXProfesors" EntityType="SACAAEModel.ComisionesXProfesor" />
-          <EntitySet Name="Cursos" EntityType="SACAAEModel.Curso" />
           <EntitySet Name="CursosXGrupoes" EntityType="SACAAEModel.CursosXGrupo" />
           <EntitySet Name="Detalle_Curso" EntityType="SACAAEModel.Detalle_Curso" />
           <EntitySet Name="Estadoes" EntityType="SACAAEModel.Estado" />
@@ -739,7 +721,6 @@
           <EntitySet Name="Horarios" EntityType="SACAAEModel.Horario" />
           <EntitySet Name="Modalidades" EntityType="SACAAEModel.Modalidade" />
           <EntitySet Name="Periodos" EntityType="SACAAEModel.Periodo" />
-          <EntitySet Name="PlanesDeEstudios" EntityType="SACAAEModel.PlanesDeEstudio" />
           <EntitySet Name="PlanesDeEstudioXSedes" EntityType="SACAAEModel.PlanesDeEstudioXSede" />
           <EntitySet Name="Profesores" EntityType="SACAAEModel.Profesore" />
           <EntitySet Name="ProfesoresXCursoes" EntityType="SACAAEModel.ProfesoresXCurso" />
@@ -766,14 +747,6 @@
           <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID">
             <End Role="Profesore" EntitySet="Profesores" />
             <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CURSOS_PLAN_PLANES_ID" Association="SACAAEModel.FK_CURSOS_PLAN_PLANES_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
-            <End Role="Curso" EntitySet="Cursos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID">
-            <End Role="Curso" EntitySet="Cursos" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupoes" />
           </AssociationSet>
           <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="SACAAEModel.FK_CursosXGrupo_Grupo_Grupo_ID">
             <End Role="Grupo" EntitySet="Grupoes" />
@@ -811,17 +784,9 @@
             <End Role="Horario" EntitySet="Horarios" />
             <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
           </AssociationSet>
-          <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="SACAAEModel.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-            <End Role="Modalidade" EntitySet="Modalidades" />
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Periodo_Periodos_ID" Association="SACAAEModel.FK_ProyectosXProfesor_Periodo_Periodos_ID">
             <End Role="Periodo" EntitySet="Periodos" />
             <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSedes" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="SACAAEModel.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
             <End Role="Sede" EntitySet="Sedes" />
@@ -860,20 +825,34 @@
             <End Role="BloqueAcademico" EntitySet="BloqueAcademicoes" />
             <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
           </AssociationSet>
-          <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" Association="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
-            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
-          </AssociationSet>
           <EntitySet Name="BloqueXPlanXCursoes" EntityType="SACAAEModel.BloqueXPlanXCurso" />
           <AssociationSet Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" Association="SACAAEModel.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
             <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
             <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCursoes" />
           </AssociationSet>
+          <EntitySet Name="Cursos" EntityType="SACAAEModel.Curso" />
+          <EntitySet Name="PlanesDeEstudios" EntityType="SACAAEModel.PlanesDeEstudio" />
+          <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" Association="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudios" />
+          </AssociationSet>
           <AssociationSet Name="FK_BloqueXPlanXCurso_Cursos" Association="SACAAEModel.FK_BloqueXPlanXCurso_Cursos">
             <End Role="Curso" EntitySet="Cursos" />
             <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCursoes" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID">
+            <End Role="Curso" EntitySet="Cursos" />
+            <End Role="CursosXGrupo" EntitySet="CursosXGrupoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="SACAAEModel.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
+            <End Role="Modalidade" EntitySet="Modalidades" />
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSedes" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Comisione">
           <Key>
             <PropertyRef Name="ID" />
@@ -900,22 +879,6 @@
           <NavigationProperty Name="Periodo1" Relationship="SACAAEModel.FK_ComisionesXProfesor_Periodo_Periodos_ID" FromRole="ComisionesXProfesor" ToRole="Periodo" />
           <NavigationProperty Name="Profesore" Relationship="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID" FromRole="ComisionesXProfesor" ToRole="Profesore" />
         </EntityType>
-        <EntityType Name="Curso">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="HorasTeoricas" Nullable="false" />
-          <Property Type="Int32" Name="Bloque" Nullable="false" />
-          <Property Type="Boolean" Name="Externo" Nullable="false" />
-          <Property Type="Int32" Name="PlanDeEstudio" Nullable="false" />
-          <Property Type="Int32" Name="HorasPracticas" />
-          <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_CURSOS_PLAN_PLANES_ID" FromRole="Curso" ToRole="PlanesDeEstudio" />
-          <NavigationProperty Name="CursosXGrupoes" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="Curso" ToRole="CursosXGrupo" />
-          <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_Cursos" FromRole="Curso" ToRole="BloqueXPlanXCurso" />
-        </EntityType>
         <EntityType Name="CursosXGrupo">
           <Key>
             <PropertyRef Name="ID" />
@@ -923,9 +886,9 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="Curso" Nullable="false" />
           <Property Type="Int32" Name="Grupo" Nullable="false" />
-          <NavigationProperty Name="Curso1" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="CursosXGrupo" ToRole="Curso" />
           <NavigationProperty Name="Grupo1" Relationship="SACAAEModel.FK_CursosXGrupo_Grupo_Grupo_ID" FromRole="CursosXGrupo" ToRole="Grupo" />
           <NavigationProperty Name="Detalle_Curso" Relationship="SACAAEModel.FK_Detalle_Curso_Curso_CursosXGrupo_ID" FromRole="CursosXGrupo" ToRole="Detalle_Curso" />
+          <NavigationProperty Name="Curso1" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="CursosXGrupo" ToRole="Curso" />
         </EntityType>
         <EntityType Name="Detalle_Curso">
           <Key>
@@ -993,18 +956,6 @@
           <NavigationProperty Name="ProyectosXProfesors" Relationship="SACAAEModel.FK_ProyectosXProfesor_Periodo_Periodos_ID" FromRole="Periodo" ToRole="ProyectosXProfesor" />
           <NavigationProperty Name="Ajustes" Relationship="SACAAEModel.FK_Ajustes_Periodo" FromRole="Periodo" ToRole="Ajuste" />
         </EntityType>
-        <EntityType Name="PlanesDeEstudio">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Modalidad" Nullable="false" />
-          <NavigationProperty Name="Cursos" Relationship="SACAAEModel.FK_CURSOS_PLAN_PLANES_ID" FromRole="PlanesDeEstudio" ToRole="Curso" />
-          <NavigationProperty Name="Modalidade" Relationship="SACAAEModel.FK_PlanesDeEstudio_Modalidad_Modalidades_ID" FromRole="PlanesDeEstudio" ToRole="Modalidade" />
-          <NavigationProperty Name="PlanesDeEstudioXSedes" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" FromRole="PlanesDeEstudio" ToRole="PlanesDeEstudioXSede" />
-          <NavigationProperty Name="BloqueAcademicoXPlanDeEstudios" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" FromRole="PlanesDeEstudio" ToRole="BloqueAcademicoXPlanDeEstudio" />
-        </EntityType>
         <EntityType Name="PlanesDeEstudioXSede">
           <Key>
             <PropertyRef Name="ID" />
@@ -1013,8 +964,8 @@
           <Property Type="Int32" Name="Sede" Nullable="false" />
           <Property Type="Int32" Name="PlanDeEstudio" Nullable="false" />
           <NavigationProperty Name="Grupoes" Relationship="SACAAEModel.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" FromRole="PlanesDeEstudioXSede" ToRole="Grupo" />
-          <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" FromRole="PlanesDeEstudioXSede" ToRole="PlanesDeEstudio" />
           <NavigationProperty Name="Sede1" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_Sede_Sedes_ID" FromRole="PlanesDeEstudioXSede" ToRole="Sede" />
+          <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" FromRole="PlanesDeEstudioXSede" ToRole="PlanesDeEstudio" />
         </EntityType>
         <EntityType Name="Profesore">
           <Key>
@@ -1147,30 +1098,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CURSOS_PLAN_PLANES_ID">
-          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="1" />
-          <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanesDeEstudio">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Curso">
-              <PropertyRef Name="PlanDeEstudio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
-          <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="1" />
-          <End Type="SACAAEModel.CursosXGrupo" Role="CursosXGrupo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Curso">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CursosXGrupo">
-              <PropertyRef Name="Curso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CursosXGrupo_Grupo_Grupo_ID">
           <End Type="SACAAEModel.Grupo" Role="Grupo" Multiplicity="1" />
           <End Type="SACAAEModel.CursosXGrupo" Role="CursosXGrupo" Multiplicity="*" />
@@ -1279,18 +1206,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-          <End Type="SACAAEModel.Modalidade" Role="Modalidade" Multiplicity="1" />
-          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modalidade">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PlanesDeEstudio">
-              <PropertyRef Name="Modalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProyectosXProfesor_Periodo_Periodos_ID">
           <End Type="SACAAEModel.Periodo" Role="Periodo" Multiplicity="1" />
           <End Type="SACAAEModel.ProyectosXProfesor" Role="ProyectosXProfesor" Multiplicity="*" />
@@ -1300,18 +1215,6 @@
             </Principal>
             <Dependent Role="ProyectosXProfesor">
               <PropertyRef Name="Periodo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="1" />
-          <End Type="SACAAEModel.PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanesDeEstudio">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PlanesDeEstudioXSede">
-              <PropertyRef Name="PlanDeEstudio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1446,8 +1349,8 @@
           <Property Name="PlanID" Type="Int32" Nullable="false" />
           <Property Name="BloqueID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BloqueAcademico" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="BloqueAcademico" />
-          <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="PlanesDeEstudio" />
           <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="BloqueXPlanXCurso" />
+          <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" FromRole="BloqueAcademicoXPlanDeEstudio" ToRole="PlanesDeEstudio" />
         </EntityType>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
           <End Type="SACAAEModel.BloqueAcademico" Role="BloqueAcademico" Multiplicity="1" />
@@ -1458,18 +1361,6 @@
             </Principal>
             <Dependent Role="BloqueAcademicoXPlanDeEstudio">
               <PropertyRef Name="BloqueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="1" />
-          <End Type="SACAAEModel.BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanesDeEstudio">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BloqueAcademicoXPlanDeEstudio">
-              <PropertyRef Name="PlanID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1495,6 +1386,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="HorasTeoricas" Type="Int32" Nullable="false" />
+          <Property Name="Bloque" Type="Int32" Nullable="false" />
+          <Property Name="Externo" Type="Boolean" Nullable="false" />
+          <Property Name="HorasPracticas" Type="Int32" />
+          <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_Cursos" FromRole="Curso" ToRole="BloqueXPlanXCurso" />
+          <NavigationProperty Name="CursosXGrupoes" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="Curso" ToRole="CursosXGrupo" />
+        </EntityType>
+        <EntityType Name="PlanesDeEstudio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Modalidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BloqueAcademicoXPlanDeEstudios" Relationship="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" FromRole="PlanesDeEstudio" ToRole="BloqueAcademicoXPlanDeEstudio" />
+          <NavigationProperty Name="Modalidade" Relationship="SACAAEModel.FK_PlanesDeEstudio_Modalidad_Modalidades_ID" FromRole="PlanesDeEstudio" ToRole="Modalidade" />
+          <NavigationProperty Name="PlanesDeEstudioXSedes" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" FromRole="PlanesDeEstudio" ToRole="PlanesDeEstudioXSede" />
+        </EntityType>
+        <Association Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
+          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="1" />
+          <End Type="SACAAEModel.BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanesDeEstudio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BloqueAcademicoXPlanDeEstudio">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BloqueXPlanXCurso_Cursos">
           <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="1" />
           <End Type="SACAAEModel.BloqueXPlanXCurso" Role="BloqueXPlanXCurso" Multiplicity="*" />
@@ -1504,6 +1432,42 @@
             </Principal>
             <Dependent Role="BloqueXPlanXCurso">
               <PropertyRef Name="CursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
+          <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="SACAAEModel.CursosXGrupo" Role="CursosXGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CursosXGrupo">
+              <PropertyRef Name="Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
+          <End Type="SACAAEModel.Modalidade" Role="Modalidade" Multiplicity="1" />
+          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modalidade">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlanesDeEstudio">
+              <PropertyRef Name="Modalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
+          <End Type="SACAAEModel.PlanesDeEstudio" Role="PlanesDeEstudio" Multiplicity="1" />
+          <End Type="SACAAEModel.PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanesDeEstudio">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlanesDeEstudioXSede">
+              <PropertyRef Name="PlanDeEstudio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1531,20 +1495,6 @@
                 <ScalarProperty Name="Periodo" ColumnName="Periodo" />
                 <ScalarProperty Name="Profesor" ColumnName="Profesor" />
                 <ScalarProperty Name="Comision" ColumnName="Comision" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cursos">
-            <EntityTypeMapping TypeName="SACAAEModel.Curso">
-              <MappingFragment StoreEntitySet="Cursos">
-                <ScalarProperty Name="HorasPracticas" ColumnName="HorasPracticas" />
-                <ScalarProperty Name="PlanDeEstudio" ColumnName="PlanDeEstudio" />
-                <ScalarProperty Name="Externo" ColumnName="Externo" />
-                <ScalarProperty Name="Bloque" ColumnName="Bloque" />
-                <ScalarProperty Name="HorasTeoricas" ColumnName="HorasTeoricas" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1607,15 +1557,6 @@
           <EntitySetMapping Name="Periodos">
             <EntityTypeMapping TypeName="SACAAEModel.Periodo">
               <MappingFragment StoreEntitySet="Periodos">
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PlanesDeEstudios">
-            <EntityTypeMapping TypeName="SACAAEModel.PlanesDeEstudio">
-              <MappingFragment StoreEntitySet="PlanesDeEstudio">
-                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1746,6 +1687,28 @@
               <MappingFragment StoreEntitySet="BloqueXPlanXCurso">
                 <ScalarProperty Name="CursoID" ColumnName="CursoID" />
                 <ScalarProperty Name="BloqueXPlanID" ColumnName="BloqueXPlanID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursos">
+            <EntityTypeMapping TypeName="SACAAEModel.Curso">
+              <MappingFragment StoreEntitySet="Cursos">
+                <ScalarProperty Name="HorasPracticas" ColumnName="HorasPracticas" />
+                <ScalarProperty Name="Externo" ColumnName="Externo" />
+                <ScalarProperty Name="Bloque" ColumnName="Bloque" />
+                <ScalarProperty Name="HorasTeoricas" ColumnName="HorasTeoricas" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanesDeEstudios">
+            <EntityTypeMapping TypeName="SACAAEModel.PlanesDeEstudio">
+              <MappingFragment StoreEntitySet="PlanesDeEstudio">
+                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -53,6 +53,9 @@
         <EntityTypeShape EntityType="SACAAEModel.Aula" Width="1.5" PointX="3.375" PointY="25.25" />
         <AssociationConnector Association="SACAAEModel.FK_Aulas_Sedes" />
         <EntityTypeShape EntityType="SACAAEModel.BloqueAcademico" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SACAAEModel.BloqueAcademicoXPlanDeEstudio" Width="1.5" PointX="3" PointY="14.375" />
+        <AssociationConnector Association="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico" />
+        <AssociationConnector Association="SACAAEModel.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

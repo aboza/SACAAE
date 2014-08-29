@@ -220,6 +220,9 @@
     <Compile Include="Models\BloqueAcademico.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BloqueAcademicoXPlanDeEstudio.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Comisione.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
@@ -252,6 +255,7 @@
     </Compile>
     <Compile Include="Models\RepositorioAulas.cs" />
     <Compile Include="Models\RepositorioBloqueAcademico.cs" />
+    <Compile Include="Models\RepositorioBloqueXPlan.cs" />
     <Compile Include="Models\RepositorioComision.cs" />
     <Compile Include="Models\RepositorioComisionesProfesor.cs" />
     <Compile Include="Models\RepositorioCursoProfesor.cs" />
@@ -504,10 +508,10 @@
     <Content Include="Views\Bloque\EliminarBloqueAcademico.cshtml" />
     <Content Include="Views\Bloque\Index.cshtml" />
     <Content Include="Views\Bloque\ModificarBloqueAcademico.cshtml" />
+    <Content Include="Views\BloqueXPlan\CrearBloqueXPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BloqueXPlan\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

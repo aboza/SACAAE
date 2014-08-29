@@ -76,6 +76,8 @@ public partial class SACAAEEntities : DbContext
 
     public DbSet<BloqueAcademico> BloqueAcademicoes { get; set; }
 
+    public DbSet<BloqueAcademicoXPlanDeEstudio> BloqueAcademicoXPlanDeEstudios { get; set; }
+
 }
 
 }

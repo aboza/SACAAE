@@ -25,6 +25,8 @@ public partial class PlanesDeEstudio
 
         this.PlanesDeEstudioXSedes = new HashSet<PlanesDeEstudioXSede>();
 
+        this.BloqueAcademicoXPlanDeEstudios = new HashSet<BloqueAcademicoXPlanDeEstudio>();
+
     }
 
 
@@ -41,6 +43,8 @@ public partial class PlanesDeEstudio
     public virtual Modalidade Modalidade { get; set; }
 
     public virtual ICollection<PlanesDeEstudioXSede> PlanesDeEstudioXSedes { get; set; }
+
+    public virtual ICollection<BloqueAcademicoXPlanDeEstudio> BloqueAcademicoXPlanDeEstudios { get; set; }
 
 }
 

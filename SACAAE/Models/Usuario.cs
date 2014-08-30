@@ -18,7 +18,7 @@ using System;
 public partial class Usuario
 {
 
-    public int ID_Usuario { get; set; }
+    public int ID { get; set; }
 
     public string Nombre { get; set; }
 

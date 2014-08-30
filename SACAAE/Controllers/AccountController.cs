@@ -18,6 +18,9 @@ namespace SACAAE.Controllers
     {
         public ProveedorMembersia MembershipService { get; set; }
         private RepositorioPeriodos RepoPeriodos = new RepositorioPeriodos();
+        private RepositorioSACAAE vRepoCuentas = new RepositorioSACAAE();
+        private const string TempDataMessageKey = "MessageError";
+        private const string TempDataMessageKeySuccess = "MessageSuccess";
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -98,31 +101,6 @@ namespace SACAAE.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
-        [HttpPost]
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                try
-                {
-                    /*string username, string fullName, string password, string email*/
-                    MembershipService.CreateUser(model.UserName, model.Name, model.Password, model.Email);
-
-                    FormsAuthentication.SetAuthCookie(model.UserName, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (ArgumentException ae)
-                {
-                    ModelState.AddModelError("", ae.Message);
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
 
         //
         // GET: /Account/ChangePassword
@@ -154,6 +132,96 @@ namespace SACAAE.Controllers
         public ActionResult ChangePasswordSuccess()
         {
             return View();
+        }
+
+        /*Alexis Boza 2 Semestre 2014*/
+        [Authorize]
+        public ActionResult Index()
+        {
+            var model = vRepoCuentas.ObtenerTodosUsuarios();
+            return View(model);
+        }
+
+        /*Alexis Boza 2 Semestre 2014*/
+        [Authorize]
+        public ActionResult CrearUsuario()
+        {
+            var model = new Usuario();
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult EliminarUsuario(int id)
+        {
+            var model = vRepoCuentas.ObtenerUsuario(id);
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult ModificarUsuario(int id)
+        {
+            var model = vRepoCuentas.ObtenerUsuario(id);
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CrearUsuario(Usuario pUsuario, string validarContrasenia)
+        {
+            if (ModelState.IsValid)
+            {
+                if (pUsuario.NombreUsuario == null)
+                {
+                    TempData[TempDataMessageKey] = "Nombre de Usuario no Válido";
+                    return View(pUsuario);
+                }
+                if (vRepoCuentas.ExisteUsuario(pUsuario))
+                {
+                    TempData[TempDataMessageKey] = "Ya existe una cuenta con ese nombre de usuario. Por Favor intente de nuevo.";
+                    return View(pUsuario);
+                }
+                if (!pUsuario.Contrasenia.Equals(validarContrasenia))
+                {
+                    TempData[TempDataMessageKey] = "La contraseñas no concuerdan.Por Favor intente de nuevo";
+                    return View(pUsuario);
+                }
+                vRepoCuentas.CrearUsuario(pUsuario);
+                TempData[TempDataMessageKeySuccess] = "El usuario ha sido creado exitosamente";
+                return RedirectToAction("Index");
+            }
+            return View(pUsuario);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EliminarUsuario(Usuario pUsuario)
+        {
+            vRepoCuentas.EliminarUsuario(pUsuario);
+            TempData[TempDataMessageKey] = "El registro ha sido eliminado correctamente.";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ModificarUsuario(Usuario pUsuario, string Contrasenia, string validarContrasenia)
+        {
+            if (ModelState.IsValid)
+            {
+                if (String.IsNullOrEmpty(Contrasenia))
+                {
+                    TempData[TempDataMessageKey] = "Para modificar el usuario es necesario proveer una nueva contraseña. Por Favor intente de nuevo.";
+                    return View(pUsuario);
+                }
+                if (!Contrasenia.Equals(validarContrasenia))
+                {
+                    TempData[TempDataMessageKey] = "La contraseñas no concuerdan.Por Favor intente de nuevo";
+                    return View(pUsuario);
+                }
+
+                pUsuario.Contrasenia = Contrasenia;
+                vRepoCuentas.modificarUsuario(pUsuario);
+                TempData[TempDataMessageKey] = "El registro ha sido editado correctamente.";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

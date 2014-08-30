@@ -22,101 +22,90 @@ namespace SACAAE.Models
                 return this.entidades.Usuarios.Count();
             }
         }
- 
+
         public RepositorioSACAAE()
         {
             this.entidades = new SACAAEEntities();
         }
- 
- 
+
+
         public IQueryable<Usuario> ObtenerTodosUsuarios()
         {
             return from user in entidades.Usuarios
                    orderby user.NombreUsuario
                    select user;
         }
- 
+
         public Usuario ObtenerUsuario(int id)
         {
-            return entidades.Usuarios.SingleOrDefault(user => user.ID_Usuario == id);
+            return entidades.Usuarios.SingleOrDefault(user => user.ID == id);
         }
- 
+
         public Usuario ObtenerUsuario(string NombreUsuario)
         {
             return entidades.Usuarios.SingleOrDefault(user => user.NombreUsuario == NombreUsuario);
-        }        
- 
+        }
+
         private void AgregarUsuario(Usuario usuario)
         {
             if (ExisteUsuario(usuario))
                 throw new ArgumentException(MuchoUsuario);
- 
+
             entidades.Usuarios.Add(usuario);
         }
- 
-        public void CrearUsuario(string nombreUsuario, string nombre, string contrasenia, string correo)
+
+        public void CrearUsuario(Usuario model)
         {
-            if (string.IsNullOrEmpty(nombreUsuario.Trim()))
-                throw new ArgumentException("El nombre de usuario no es válido. Por favor, intente de nuevo.");
-            if (string.IsNullOrEmpty(nombre.Trim()))
-                throw new ArgumentException("El nombre no es válido. Por favor, intente de nuevo.");
-            if (string.IsNullOrEmpty(contrasenia.Trim()))
-                throw new ArgumentException("La contraseña no es válida. Por favor, ingrese una contraseña válida.");
-            if (string.IsNullOrEmpty(correo.Trim()))
-                throw new ArgumentException("El correo no es válido. Por favor, ingrese un correo válido");
-            if (this.entidades.Usuarios.Any(user => user.NombreUsuario == nombreUsuario))
-                throw new ArgumentException("El nombre de usuario ya existe. Por favor, especifique un nuevo nombre de usuario.");
- 
-            Usuario nuevoUsuario = new Usuario()
+            if (ExisteUsuario(model))
+                return;
+            else
             {
-                NombreUsuario = nombreUsuario,
-                Nombre = nombre,
-                Contrasenia = FormsAuthentication.HashPasswordForStoringInConfigFile(contrasenia.Trim(), "md5"),
-                Correo = correo,
-            };
- 
-            try
-            {
-                AgregarUsuario(nuevoUsuario);
+                string tempContrasenia = model.Contrasenia;
+                model.Contrasenia = FormsAuthentication.HashPasswordForStoringInConfigFile(tempContrasenia, "md5");
+                entidades.Usuarios.Add(model);
+                Save();
             }
-            catch (ArgumentException ae)
-            {
-                throw ae;
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
-                    "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
-            }
- 
-            // Immediately persist the user data
-            Save();
         }
- 
-        public void BorrarUsuario(Usuario usuario)
+
+        public void EliminarUsuario(Usuario pUsuario)
         {
-            if (!ExisteUsuario(usuario))
-                throw new ArgumentException(FaltaUsuario);
- 
-            entidades.Usuarios.Remove(usuario);
+            var vUsuario = entidades.Usuarios.SingleOrDefault(user => user.ID == pUsuario.ID);
+            if (vUsuario != null)
+            {
+                entidades.Usuarios.Remove(vUsuario);
+                Save();
+            }
+            else
+                return;
         }
- 
-        public void BorrarUsuario(string nombreUsuario)
+
+        public void modificarUsuario(Usuario pUsuario)
         {
-            BorrarUsuario(ObtenerUsuario(nombreUsuario));
+            var vUsuario = entidades.Usuarios.SingleOrDefault(usuario => usuario.ID == pUsuario.ID);
+            if (vUsuario != null)
+            {
+                entidades.Entry(vUsuario).Property(usuario => usuario.Nombre).CurrentValue = pUsuario.Nombre;
+                entidades.Entry(vUsuario).Property(usuario => usuario.NombreUsuario).CurrentValue = pUsuario.NombreUsuario;
+                entidades.Entry(vUsuario).Property(usuario => usuario.Contrasenia).CurrentValue = FormsAuthentication.HashPasswordForStoringInConfigFile( pUsuario.Contrasenia, "md5");
+                entidades.Entry(vUsuario).Property(usuario => usuario.Correo).CurrentValue = pUsuario.Correo;
+                Save();
+            }
+            else
+                return;
         }
-  
+       
+
         public void Save()
         {
             entidades.SaveChanges();
-        }        
- 
+        }
+
         public bool ExisteUsuario(Usuario usuario)
         {
             if (usuario == null)
                 return false;
- 
-            return (entidades.Usuarios.SingleOrDefault(u => u.ID_Usuario == usuario.ID_Usuario || 
+
+            return (entidades.Usuarios.SingleOrDefault(u => u.ID == usuario.ID ||
                 u.NombreUsuario == usuario.NombreUsuario) != null);
         }
 

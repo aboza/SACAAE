@@ -62,8 +62,6 @@ public partial class SACAAEEntities : DbContext
 
     public DbSet<Sede> Sedes { get; set; }
 
-    public DbSet<Usuario> Usuarios { get; set; }
-
     public DbSet<Ajuste> Ajustes { get; set; }
 
     public DbSet<Dia> Dias { get; set; }
@@ -79,6 +77,8 @@ public partial class SACAAEEntities : DbContext
     public DbSet<Curso> Cursos { get; set; }
 
     public DbSet<PlanesDeEstudio> PlanesDeEstudios { get; set; }
+
+    public DbSet<Usuario> Usuarios { get; set; }
 
 }
 

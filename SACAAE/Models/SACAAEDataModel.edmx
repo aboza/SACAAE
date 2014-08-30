@@ -209,9 +209,9 @@
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
-            <PropertyRef Name="ID_Usuario" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Contrasenia" Type="nvarchar" MaxLength="200" Nullable="false" />
@@ -727,7 +727,6 @@
           <EntitySet Name="Proyectos" EntityType="SACAAEModel.Proyecto" />
           <EntitySet Name="ProyectosXProfesors" EntityType="SACAAEModel.ProyectosXProfesor" />
           <EntitySet Name="Sedes" EntityType="SACAAEModel.Sede" />
-          <EntitySet Name="Usuarios" EntityType="SACAAEModel.Usuario" />
           <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="SACAAEModel.FK_Comisiones_Estado_Estado_Id">
             <End Role="Estado" EntitySet="Estadoes" />
             <End Role="Comisione" EntitySet="Comisiones" />
@@ -852,6 +851,7 @@
             <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudios" />
             <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSedes" />
           </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="SACAAEModel.Usuario" />
           </EntityContainer>
         <EntityType Name="Comisione">
           <Key>
@@ -1027,16 +1027,6 @@
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PlanesDeEstudioXSedes" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_Sede_Sedes_ID" FromRole="Sede" ToRole="PlanesDeEstudioXSede" />
           <NavigationProperty Name="Aulas" Relationship="SACAAEModel.FK_Aulas_Sedes" FromRole="Sede" ToRole="Aula" />
-        </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="ID_Usuario" />
-          </Key>
-          <Property Type="Int32" Name="ID_Usuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Contrasenia" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Correo" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Comisiones_Estado_Estado_Id">
           <End Type="SACAAEModel.Estado" Role="Estado" Multiplicity="1" />
@@ -1471,6 +1461,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1623,17 +1623,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="SACAAEModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ajustes">
             <EntityTypeMapping TypeName="SACAAEModel.Ajuste">
               <MappingFragment StoreEntitySet="Ajustes">
@@ -1708,6 +1697,17 @@
             <EntityTypeMapping TypeName="SACAAEModel.PlanesDeEstudio">
               <MappingFragment StoreEntitySet="PlanesDeEstudio">
                 <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="SACAAEModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

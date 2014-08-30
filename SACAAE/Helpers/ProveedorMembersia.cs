@@ -186,10 +186,6 @@ namespace SACAAE.Helpers
 
         }
 
-        public void CreateUser(string username, string fullName, string password, string email)
-        {
-            this.repositorio.CrearUsuario(username, fullName, password, email);
-        }
 
     }
 }

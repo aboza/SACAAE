@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="SACAAEModel.Proyecto" Width="1.5" PointX="0.5501148274867399" PointY="12.952295756410946" />
         <EntityTypeShape EntityType="SACAAEModel.ProyectosXProfesor" Width="1.5" PointX="8.981235716948861" PointY="1.3923362947033422" />
         <EntityTypeShape EntityType="SACAAEModel.Sede" Width="1.5" PointX="1.0655997884765267" PointY="24.560984980576198" />
-        <EntityTypeShape EntityType="SACAAEModel.Usuario" Width="1.5" PointX="4.2667384260644852" PointY="22.0676865084412" />
         <AssociationConnector Association="SACAAEModel.FK_Comisiones_Estado_Estado_Id" />
         <AssociationConnector Association="SACAAEModel.FK_ComisionesXProfesor_Comision_Comisiones_ID" />
         <AssociationConnector Association="SACAAEModel.FK_ComisionesXProfesor_Horario_Horario_Id" />
@@ -58,6 +57,7 @@
         <AssociationConnector Association="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" />
         <AssociationConnector Association="SACAAEModel.FK_PlanesDeEstudio_Modalidad_Modalidades_ID" />
         <AssociationConnector Association="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" />
+        <EntityTypeShape EntityType="SACAAEModel.Usuario" Width="1.5" PointX="3.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

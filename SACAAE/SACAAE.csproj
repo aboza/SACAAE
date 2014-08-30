@@ -520,6 +520,10 @@
     <Content Include="Views\Plans\Index.cshtml" />
     <Content Include="Views\Plans\BloqueXPlan.cshtml" />
     <Content Include="Views\Plans\CursoXPlanXBloque.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\CrearUsuario.cshtml" />
+    <Content Include="Views\Account\EliminarUsuario.cshtml" />
+    <Content Include="Views\Account\ModificarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

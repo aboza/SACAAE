@@ -29,7 +29,7 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "";
+                    var items = "<tr><th>Plane de Estudio</th><th> </th></tr>  ";
                     $.each(data, function (i, plan) {
                         var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")');
                         var href = $newLinkTarget.attr('href') + '?plan=' + plan.Value;
@@ -38,7 +38,7 @@
                     });
 
                     if (items != "") {
-                        $("#datosPlan").append(items);
+                        $("#datosPlan").html(items);
                     }
                 });
             });
@@ -131,11 +131,6 @@
     </div>     
 
     <table id="datosPlan" class="table">
-    <tr>
-        <th>
-            Plane de Estudio
-        </th>
-        <th> </th>
-    </tr>  
+    
 </table>
     }

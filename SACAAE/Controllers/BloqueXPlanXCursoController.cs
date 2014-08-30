@@ -19,11 +19,11 @@ namespace SACAAE.Controllers
         private const string TempDataMessageKeySuccess = "MessageSuccess";
         // GET: BloqueXPlanXCurso
         [Authorize]
-        public ActionResult CrearBloqueXPlanXCurso()
+        public ActionResult CrearBloqueXPlanXCurso(int plan)
         {
             var vBloqueXPlan = new BloqueAcademicoXPlanDeEstudio();
-            ViewBag.Planes = vRepoPlanes.ObtenerTodosPlanesDeEstudio();
-            ViewBag.Bloques = vRepoBloques.ListarBloquesAcademicos();
+            ViewBag.Planes = vRepoPlanes.ObtenerUnPlanDeEstudio(plan);
+            ViewBag.Bloques = vRepoBloques.obtenerBloques(plan);
             ViewBag.Cursos = vRepoCursos.ObtenerCursos();
             return View();
         }
@@ -32,9 +32,9 @@ namespace SACAAE.Controllers
         [HttpPost]
         public ActionResult CrearBloqueXPlanXCurso(BloqueXPlanXCurso pBloqueXPlanXCurso, string selectPlanDeEstudio, string selectBloqueAcademico,string selectCurso)
         {
+            int PlanID = Int16.Parse(selectPlanDeEstudio); 
             if (pBloqueXPlanXCurso != null && selectPlanDeEstudio != null && selectBloqueAcademico != null && selectCurso != null)
             {
-                int PlanID = Int16.Parse(selectPlanDeEstudio); ;
                 int BloqueID = Int16.Parse(selectBloqueAcademico);
                 int CursoID = Int16.Parse(selectCurso);
 
@@ -43,20 +43,20 @@ namespace SACAAE.Controllers
                 if (vRepoBloquesXPlanXCurso.existeRelacionBloqueXPlanXCurso(pBloqueXPlanXCurso.BloqueXPlanID, pBloqueXPlanXCurso.CursoID))
                 {
                     TempData[TempDataMessageKey] = "El Bloque académico de este plan de estudio ya cuenta con el curso seleccionado. Por Favor intente de nuevo.";
-                    return RedirectToAction("CrearBloqueXPlanXCurso");
+                    return RedirectToAction("CrearBloqueXPlanXCurso", new { plan = PlanID });
                 }
                 if (vRepoBloquesXPlanXCurso.existeRelacionCursoEnPlan(PlanID, pBloqueXPlanXCurso.CursoID))
                 {
                     TempData[TempDataMessageKey] = "El Plan de estudio  ya cuenta con el curso seleccionado. Por Favor intente de nuevo.";
-                    return RedirectToAction("CrearBloqueXPlanXCurso");
+                    return RedirectToAction("CrearBloqueXPlanXCurso", new { plan = PlanID });
                 }
                 vRepoBloquesXPlanXCurso.crearRelacionBloqueXPlanXCurso(pBloqueXPlanXCurso);
                 TempData[TempDataMessageKeySuccess] = "El curso ha sido asignado al bloque académico del plan de estudio exitosamente";
-                return RedirectToAction("CrearBloqueXPlanXCurso");
+                return RedirectToAction("CrearBloqueXPlanXCurso", new { plan = PlanID });
 
             }
             TempData[TempDataMessageKey] = "Datos ingresados son inválidos";
-            return RedirectToAction("CrearBloqueXPlanXCurso");
+            return RedirectToAction("CrearBloqueXPlanXCurso", new { plan = PlanID });
         }
     }
 }

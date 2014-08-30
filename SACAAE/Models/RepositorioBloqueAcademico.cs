@@ -37,6 +37,14 @@ namespace SACAAE.Models
             return entidades.BloqueAcademicoes.SingleOrDefault(bloque => bloque.ID == id);
         }
 
+        public IQueryable<BloqueAcademico> obtenerBloques(int PlanDeEstudio)
+        {
+            return from BloquesAcademicos in entidades.BloqueAcademicoes
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloquesAcademicos.ID equals BloquesXPlan.BloqueID
+                   where BloquesXPlan.PlanID == PlanDeEstudio
+                   select BloquesAcademicos;
+        }
+
         public bool existeBloque(string pDescripcion)
         {
             return (entidades.BloqueAcademicoes.SingleOrDefault(bloque => bloque.Descripcion == pDescripcion) != null);

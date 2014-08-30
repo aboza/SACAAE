@@ -16,6 +16,13 @@ namespace SACAAE.Models
                    select PlanesDeEstudio;
         }
 
+        public IQueryable<PlanesDeEstudio> ObtenerUnPlanDeEstudio(int plan)
+        {
+            return from PlanesDeEstudio in entidades.PlanesDeEstudios
+                   where PlanesDeEstudio.ID==plan
+                   select PlanesDeEstudio;
+        }
+
         public void agregarPlan(PlanesDeEstudio Plan)
         {
             entidades.PlanesDeEstudios.Add(Plan);

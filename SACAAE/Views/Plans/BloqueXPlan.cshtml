@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SACAAE.Models.PlanesDeEstudio>
+
+@{
+    ViewBag.Title = "Planes";
+    Layout = "~/Views/Shared/Privado.cshtml";
+}
+    @section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+    $("#sltBloque").change(function () {
+                var id = $('select[name="sltBloque"]').val();
+                /*
+                var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")'); 
+                var href = $newLinkTarget.attr('href') + '?plan=' + id;
+                $newLinkTarget.attr('href', href);
+                $("#bloquesLink").html($newLinkTarget);*/
+                if (id != " ") {
+                    $("#verCursos").prop("disabled", false);
+                }
+                else
+                    $("#verCursos").prop("disabled", true);
+            });
+        });
+        
+    </script>
+
+}
+
+
+
+
+    <h2>Bloques Academicos</h2>
+    @using (Html.BeginForm())
+{
+    <div class="row-fluid">
+    <div class="col-lg-5">
+        <div class="span12">
+        @if (TempData.ContainsKey("MessageError"))
+        {
+            <p class="text-danger">@TempData["MessageError"].ToString()</p>
+        }
+        @if (TempData.ContainsKey("MessageSuccess"))
+        {
+            <p class="text-success">@TempData["MessageSuccess"].ToString()</p>
+        }
+            <label>Plan de Estudio</label>
+                    <select id="sltPlan" name="sltPlan" class="form-control">
+                        @foreach (var item in ViewBag.Plan)
+                {
+                    <option value="@item.ID">@item.Nombre</option>
+                }
+                    </select>
+         <label>Bloques</label>
+                    <select id="sltBloque" name="sltBloque" class="form-control">
+                        @if (ViewBag.Bloques != null)
+                        {
+                            <option value=" " selected="selected">-- Seleccionar Bloque --</option>
+                            foreach (var item in ViewBag.Bloques)
+                            {         
+                            <option value="@item.ID">@item.Descripcion</option>
+                            }
+                        }
+                        else
+                        {
+                            <option selected="selected">No hay bloques</option>
+                        }
+
+                    </select>
+            <br />
+            <div class="editor-field">
+            <input name="button" id="verCursos" type="submit" value="Ver Cursos" class="btn btn-default"  disabled/>
+        </div>
+                    
+    </div>
+    </div>
+        </div>
+    }

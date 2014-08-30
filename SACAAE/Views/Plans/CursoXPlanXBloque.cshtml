@@ -21,6 +21,7 @@
      <div class="row-fluid">
     <div class="col-lg-5">
         <div class="span12">
+            <p>@Html.ActionLink("Agregar Curso", "CrearBloqueXPlanXCurso","BloqueXPlanXCurso", new { plan = @ViewBag.Plan.ID},null)</p>
             <table id="tablaCurso" class="table">
     <tr>
         <th>
@@ -56,15 +57,14 @@
                 @item.HorasTeoricas
             </td>
             <td>
-                @item.Bloque
+                @ViewBag.Bloque.Nivel
             </td>
             <td><input type="checkbox" value=@item.Externo disabled>
-                @item.Externo
             </td>
             <td>
                 @item.HorasPracticas
             </td>
-                    <td>@Html.ActionLink("Editar", "ModificarCurso","Courses", new { id = @item.ID },null)</td>
+                    <td>@Html.ActionLink("Editar", "ModificarCurso", new { curso = @item.ID, plan = @ViewBag.Plan.ID, bloque = @ViewBag.Bloque.ID},null)</td>
         </tr>
     }
 

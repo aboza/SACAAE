@@ -58,6 +58,30 @@ namespace SACAAE.Models
             }
         }
 
+        public void modificarCursoBloquePlan(int idBloqueXplan, int idBloque)
+        {
+            var vBloqueXPlanXCurso = entidades.BloqueXPlanXCursoes.SingleOrDefault(bloqueXplanXcurso => bloqueXplanXcurso.BloqueXPlanID == idBloqueXplan);
+            if (vBloqueXPlanXCurso != null)
+            {
+                entidades.Entry(vBloqueXPlanXCurso).Property(bloqueXplanXcurso => bloqueXplanXcurso.BloqueXPlanID).CurrentValue = idBloque;
+                Save();
+            }
+            else
+                return;
+        }
+
+        public void eliminarCursoBloquePlan(int pBloqueXPlanID)
+        {
+            var vBloque = entidades.BloqueXPlanXCursoes.SingleOrDefault(bloque => bloque.BloqueXPlanID == pBloqueXPlanID);
+            if (vBloque != null)
+            {
+                entidades.BloqueXPlanXCursoes.Remove(vBloque);
+                Save();
+            }
+            else
+                return;
+            //throw new Exception("Se ha producido un error, no se ha encontrado referencia del registro seleccionado. Por Favor comuniquese con un administrador.");
+        }
         private void Save()
         {
             entidades.SaveChanges();

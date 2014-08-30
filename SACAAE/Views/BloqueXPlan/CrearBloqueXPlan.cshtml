@@ -20,21 +20,19 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <div class="col-lg-4">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <label>Plan de Estudios</label>
         <br />
         <div class="selectpicker">
-            <select name="selectPlanDeEstudio" id="selectPlanDeEstudio">
-                @foreach (var item in ViewBag.Planes)
-                {
-                    <option value="@item.ID">@item.Nombre</option>
-                }
+            <select name="selectPlanDeEstudio" id="selectPlanDeEstudio" class="form-control">
+                    <option value="@ViewBag.Planes.ID">@ViewBag.Planes.Nombre</option>
             </select>
         </div>
         <label>Bloques Académicos</label>
         <br />
         <div class="selectpicker">
-            <select name="selectBloqueAcademico" id="selectBloqueAcademico">
+            <select name="selectBloqueAcademico" id="selectBloqueAcademico" class="form-control">
                 @foreach (var item in ViewBag.Bloques)
                 {
                     <option value="@item.ID">@item.Descripcion</option>
@@ -45,6 +43,8 @@
         <div class="editor-field">
             <input name="button" type="submit" value="Asignar" class="btn btn-default" />
             <input name="button" type="submit" value="Asignar Curso" class="btn btn-default" />
+            @Html.ActionLink("Regresar", "Index","Plans")
         </div>
     </div>
+        </div>
 }

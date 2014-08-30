@@ -11,6 +11,8 @@ namespace SACAAE.Controllers
     {
         private RepositorioPlanesDeEstudio repoPlanes = new RepositorioPlanesDeEstudio();
         private RepositorioBloqueAcademico repoBloques = new RepositorioBloqueAcademico();
+        private RepositorioBloqueXPlan repoBloquesXPlan = new RepositorioBloqueXPlan();
+        private RepositorioBloqueXPlanXCurso repoBloquesXPlanXCurso = new RepositorioBloqueXPlanXCurso();
         private RepositorioCursos repoCursos = new RepositorioCursos();
         private repositorioPlanesXSedes repoPlanesXSedes = new repositorioPlanesXSedes();
         private repositorioModalidades repoModalidades = new repositorioModalidades();
@@ -32,8 +34,8 @@ namespace SACAAE.Controllers
         {
             ViewBag.Modalidades = repoModalidades.ObtenerTodosModalidades();
             ViewBag.Sedes = repoSedes.ObtenerTodosSedes();
-            var model = new PlanesDeEstudio();
-            return View();
+            var model = repoPlanes.ObtenerTodosPlanesDeEstudio();
+            return View(model);
         }
 
         [Authorize]
@@ -49,11 +51,11 @@ namespace SACAAE.Controllers
             return RedirectToAction("BloqueXPlan", new { plan = PlanID });
         }
 
-        public ActionResult BloqueXPlan(int plan)
+        public ActionResult BloqueXPlan(int id)
         {
-            ViewBag.Bloques = repoBloques.obtenerBloques(plan);
-            ViewBag.Plan = repoPlanes.ObtenerUnPlanDeEstudio(plan);
-            return View();
+            var model = repoBloques.obtenerBloques(id);
+            ViewBag.Plan = repoPlanes.ObtenerUnPlanDeEstudio(id);
+            return View(model);
         }
 
         [Authorize]
@@ -69,8 +71,38 @@ namespace SACAAE.Controllers
         public ActionResult CursoXPlanXBloque(int plan,int bloque)
         {
             ViewBag.Cursos = repoCursos.ObtenerCursos(plan,bloque);
+            ViewBag.Bloque = repoBloques.obtenerBloqueAcademico(bloque);
+            ViewBag.Plan = repoPlanes.ObtenerUnPlanDeEstudio(plan);
             var model = new Curso();
             return View(model);
+        }
+
+        [Authorize]
+        public ActionResult ModificarCurso(int plan, int curso, int bloque)
+        {
+            ViewBag.Bloques = repoBloques.obtenerBloques(plan);
+            ViewBag.plan = plan;
+            ViewBag.bloque = bloque;
+            var model = repoCursos.ObtenerCurso(curso);
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ModificarCurso(string sltBloques,int bloque, int plan,string button)
+        {
+            int bloqueXPlanID=repoBloquesXPlan.obtenerIdBloqueXPlan(plan, bloque);
+            if (button == "Eliminar")
+            {
+                repoBloquesXPlanXCurso.eliminarCursoBloquePlan(bloqueXPlanID);
+                TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
+                return RedirectToAction("CursoXPlanXBloque", new { plan = plan, bloque = bloqueXPlanID });   
+            }
+            int bloqID = Int16.Parse(sltBloques);
+            int BloqueID = repoBloquesXPlan.obtenerIdBloqueXPlan(plan,bloqID);
+            repoBloquesXPlanXCurso.modificarCursoBloquePlan(bloqueXPlanID,BloqueID);
+                TempData[TempDataMessageKey] = "El registro ha sido editado correctamente.";
+            return RedirectToAction("CursoXPlanXBloque", new { plan = plan, bloque = bloqID });
         }
 
         [Authorize]

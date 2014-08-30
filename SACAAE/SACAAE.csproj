@@ -524,6 +524,7 @@
     <Content Include="Views\Account\CrearUsuario.cshtml" />
     <Content Include="Views\Account\EliminarUsuario.cshtml" />
     <Content Include="Views\Account\ModificarUsuario.cshtml" />
+    <Content Include="Views\Plans\ModificarCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -43,7 +43,7 @@
             </div>
 
             <div class="editor-field">
-                <select name="Modalidades" id="Modalidades">
+                <select name="Modalidades" id="Modalidades" class="form-control">
                     @foreach (var item in ViewBag.Modalidades)
                     {
                         <option value="@item.ID">@item.Nombre</option>
@@ -59,7 +59,7 @@
          <div class="editor-field">                
                     @foreach (var item in ViewBag.Sedes)
                     {
-                        <input type="checkbox" name="Sedes" id="Sedes" value="@item.ID">@item.Nombre<br />
+                        <input type="checkbox" name="Sedes" id="Sedes" value="@item.ID">@item.Nombre
                     }
                 
 
@@ -70,6 +70,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Crear" class="btn btn-default" />
+                @Html.ActionLink("Regresar", "Index","Plans")
             </div>
         </div>
     </div>

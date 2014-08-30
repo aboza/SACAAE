@@ -31,43 +31,36 @@
                 $.getJSON(route, function (data) {
                     var items = "";
                     $.each(data, function (i, plan) {
-
-                        items += "<option value='" + plan.Value + "'>" + plan.Text + "</option>";
+                        var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")');
+                        var href = $newLinkTarget.attr('href') + '?plan=' + plan.Value;
+                        $newLinkTarget.attr('href', href);
+                        items += "<tr><td>" + plan.Text + "</td><td><td>" + '@Html.ActionLink("Ver Bloque", "BloqueXPlan","Plans", new {id=17},null)' + "</td></tr>";
                     });
 
                     if (items != "") {
-                        $("#sltPlan").html(items);
-                        $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan --</option>");
-                        $("#sltPlan").prop("disabled", false);
-                    }
-                    else {
-                        $("#sltPlan").html("<option>No hay planes para esa sede y modalidad</option>");
+                        $("#datosPlan").append(items);
                     }
                 });
             });
             /* Funcion llamada cuando se cambien los valores del plan */
-            
+            /*
             $("#sltPlan").change(function () {
                 var id = $('select[name="sltPlan"]').val();
-                /*
                 var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")'); 
                 var href = $newLinkTarget.attr('href') + '?plan=' + id;
                 $newLinkTarget.attr('href', href);
-                $("#bloquesLink").html($newLinkTarget);*/
+                $("#bloquesLink").html($newLinkTarget);
                 if (id != '') {
                     $("#verBloques").prop("disabled", false);
                 }
                 else
                     $("#verBloques").prop("disabled", true);
-            });
+            });*/
         });
         
     </script>
 
 }
-
-
-
     <h2>Planes de Estudio</h2>
         @if (TempData.ContainsKey("MessageError"))
         {
@@ -130,18 +123,19 @@
                     {                    
                         @Html.ActionLink("Agregar Modalidad", "Crear", "Modalidad")
                     }
-            
-                <label>
-                    Plan de Estudio
-                </label>
-                    <select id="sltPlan" name="sltPlan" class="form-control">
-                    </select>
             <br />
-            <div class="editor-field">
-            <input name="button" id="verBloques" type="submit" value="Ver Bloques" class="btn btn-default"  disabled/>
-        </div>
+    <br />
+    <br />
+            </div>
     </div>
-    </div>
-        </div>
-<br />
+    </div>     
+
+    <table id="datosPlan" class="table">
+    <tr>
+        <th>
+            Plane de Estudio
+        </th>
+        <th> </th>
+    </tr>  
+</table>
     }

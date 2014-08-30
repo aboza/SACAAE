@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SACAAE.Models.PlanesDeEstudio>
+﻿@model IEnumerable<SACAAE.Models.BloqueAcademico>
 
 @{
     ViewBag.Title = "Planes";
@@ -45,33 +45,41 @@
         }
             <label>Plan de Estudio</label>
                     <select id="sltPlan" name="sltPlan" class="form-control">
-                        @foreach (var item in ViewBag.Plan)
-                {
-                    <option value="@item.ID">@item.Nombre</option>
-                }
-                    </select>
-         <label>Bloques</label>
-                    <select id="sltBloque" name="sltBloque" class="form-control">
-                        @if (ViewBag.Bloques != null)
-                        {
-                            <option value=" " selected="selected">-- Seleccionar Bloque --</option>
-                            foreach (var item in ViewBag.Bloques)
-                            {         
-                            <option value="@item.ID">@item.Descripcion</option>
-                            }
-                        }
-                        else
-                        {
-                            <option selected="selected">No hay bloques</option>
-                        }
-
+                    <option value="@ViewBag.Plan.ID">@ViewBag.Plan.Nombre</option>
                     </select>
             <br />
-            <div class="editor-field">
-            <input name="button" id="verCursos" type="submit" value="Ver Cursos" class="btn btn-default"  disabled/>
-        </div>
+    <p> @Html.ActionLink("Agregar Bloques", "CrearBloqueXPlan","BloqueXPlan", new { plan=ViewBag.Plan.ID },null)</p>
+    <br />
                     
     </div>
     </div>
         </div>
+    
+    <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nivel)
+        </td>
+        <td>
+            @Html.ActionLink("Ver Cursos", "CursoXPlanXBloque", new { bloque = item.ID , plan=ViewBag.Plan.ID })
+        </td>
+    </tr>
+}
+
+</table>
+    <p>@Html.ActionLink("Regresar", "Index","Plans")</p>
     }

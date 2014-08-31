@@ -8,6 +8,8 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
+            /* Deshabilitar componentes que no tienen datos cargados */
+            $("#sltPlan").prop("disabled", "disabled");
             /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
             $("#sltModalidad, #sltSede").change(function () {
 
@@ -30,10 +32,10 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Número</th></tr>  ";
+                    var items = "<tr><th>Número Grupo</th><th>Curso</th></tr>  ";
                     $.each(data, function (i, oferta) {
                         var newLink = '<a href="@Url.Action("EliminarOferta")/' + oferta.ID + '">Eliminar</a>';
-                        items += "<tr><td>" + oferta.Numero + "</td><td><td>" + newLink + "</td></tr>";
+                        items += "<tr><td>" + oferta.Numero + "</td><td>" + oferta.Nombre + "</td><td>" + newLink + "</td></tr>";
                     });
 
                     if (items != "") {

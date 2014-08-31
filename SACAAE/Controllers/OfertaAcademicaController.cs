@@ -114,10 +114,9 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult EliminarOferta(int grupo, string button)
+        public ActionResult EliminarOferta(Grupo grupo)
         {
-            var grupoEntity = vRepoGrupos.obtenerUnGrupo(grupo);
-            vRepoGrupos.eliminarGrupo(grupoEntity);
+            vRepoGrupos.eliminarGrupo(grupo);
             TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
             return RedirectToAction("Index");
         }

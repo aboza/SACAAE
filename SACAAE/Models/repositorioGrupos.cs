@@ -18,8 +18,10 @@ namespace SACAAE.Models
         public IQueryable ListarGruposXSedeXPeriodo(int pPlanID, int pPeriodoID)
         {
             return from Grupos in entidades.Grupoes
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Grupos.BloqueXPlanXCursoID equals BloqueXPlanXCursos.ID
+                   join Cursos in entidades.Cursos on BloqueXPlanXCursos.CursoID equals Cursos.ID
                    where Grupos.PlanDeEstudio == pPlanID && Grupos.Periodo == pPeriodoID
-                   select new { Grupos.ID, Grupos.Numero };
+                   select new { Grupos.ID, Grupos.Numero, Cursos.Nombre};
         }
 
         public Grupo obtenerUnGrupo(int id)

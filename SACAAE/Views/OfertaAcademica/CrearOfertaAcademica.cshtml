@@ -33,25 +33,7 @@
                     if (items != "") {
                         $("#sltPlan").prop("disabled", false);
                         $("#sltPlan").html(items);
-                    }
-                });
-            });
-
-            $("#sltPlan").change(function () {
-                var route = "/CursoProfesor/Bloques/List/" + $('select[name="sltPlan"]').val();
-                $.getJSON(route, function (data) {
-                    var items = "";
-                    $.each(data, function (i, bloque) {
-                        items += "<option value= " + bloque.Value + ">" + bloque.Text + "</option>";
-                    });
-
-                    if (items != "") {
-                        $("#sltBloque").prop("disabled", false);
-                        $("#sltBloque").html(items);
-                    }
-                    else {
-                        $("#sltBloque").prop("disabled", "disabled");
-                        $("#sltBloque").html("<option>No hay bloques académicos para ese plan de estudio.</option>")
+                        $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan de Estudio --</option>");
                     }
                 });
             });

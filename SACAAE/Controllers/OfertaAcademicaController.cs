@@ -38,9 +38,35 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult CrearOfertaAcademica(string sltPeriodo,string sltSede,string sltPlan,
-            string sltBloque,string sltCurso, int cantidadGrupos)
+        public ActionResult CrearOfertaAcademica(string sltPeriodo, string sltSede, string sltPlan,
+            string sltBloque, string sltCurso, int cantidadGrupos)
         {
+            if (String.IsNullOrEmpty(sltPeriodo))
+            {
+                TempData[TempDataMessageKey] = "Es necesario que seleccione un Periodo";
+                return RedirectToAction("CrearOfertaAcademica");
+            }
+            if (String.IsNullOrEmpty(sltSede))
+            {
+                TempData[TempDataMessageKey] = "Es necesario que seleccione una Sede";
+                return RedirectToAction("CrearOfertaAcademica");
+            }
+            if (String.IsNullOrEmpty(sltPlan))
+            {
+                TempData[TempDataMessageKey] = "Es necesario que seleccione un Plan";
+                return RedirectToAction("CrearOfertaAcademica");
+            }
+            if (String.IsNullOrEmpty(sltBloque))
+            {
+                TempData[TempDataMessageKey] = "Es necesario que seleccione un Bloque";
+                return RedirectToAction("CrearOfertaAcademica");
+            }
+            if (String.IsNullOrEmpty(sltCurso))
+            {
+                TempData[TempDataMessageKey] = "Es necesario que seleccione un Curso";
+                return RedirectToAction("CrearOfertaAcademica");
+            }
+
             int vPeriodoID = Int16.Parse(sltPeriodo);
             int vSedeID = Int16.Parse(sltSede);
             int vPlanID = Int16.Parse(sltPlan);

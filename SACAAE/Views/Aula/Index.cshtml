@@ -7,15 +7,28 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $(function () {
-            $.getJSON("/Groups/Sedes/List", function (data) {
-                var items = "";
-                $.each(data, function (i, sede) {
-                    items += "<option value='" + sede.Value + "'>" + sede.Text + "</option>";
+        $(document).ready(function () {
+            /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
+            $("#selectSede").change(function () {
+
+                var route = "/Aula/Aulas/List/" + $('select[name="selectSede"]').val();
+                //alert(route);
+
+                $.getJSON(route, function (data) {
+                    var items = "<tr><th>Código</th><th>Capacidad</th><th>Activa</th><th>Acciones</th></tr>";
+                    $.each(data, function (i, aula) {
+                        var newLink = '<a href="@Url.Action("ModificarAula")/' + aula.ID + '">Editar</a> | <a href="@Url.Action("EliminarAula")/' + aula.ID + '">Eliminar</a>';
+                        items += "<tr><td>" + aula.Codigo + "</td>";
+                        items += "<td>" + aula.Espacio + "</td>";
+                        items += '<td><input type="checkbox" value="'+aula.Activa+'" disabled></td><td>' + newLink + "</td></tr>";
+                    });
+
+                        if (items != "") {
+                            $("#datosAula").html(items);
+                        }
+                    });
                 });
-                $("#selectSede").html(items);
             });
-        });
     </script>
 
 }
@@ -61,37 +74,7 @@
 <br />
 <div class="row">
     <div class="span12">
-        <table class="table">
-            <tr>
-                <th>Código</th>
-                <th>Capacidad</th>
-                <th>Activa</th>
-                <th>Sede</th>
-                <th>Acciones</th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Codigo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Espacio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Activa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sede.Nombre)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "ModificarAula", new { id = item.ID }) |
-                        @Html.ActionLink("Eliminar", "EliminarAula", new { id = item.ID })
-                    </td>
-                </tr>
-            }
-
+        <table id="datosAula" class="table">
         </table>
     </div>
 </div>

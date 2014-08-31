@@ -23,11 +23,11 @@
             /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
             $("#sltModalidad, #sltSede").change(function () {
 
-                var route = "/CursoProfesor/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
+                var route = "/Plans/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
                 $.getJSON(route, function (data) {
                     var items = "";
                     $.each(data, function (i, plan) {
-                        items += "<option value= " + plan.Value + ">" + plan.Text + "</option>";
+                        items += "<option value= " + plan.ID + ">" + plan.Nombre + "</option>";
                     });
 
                     if (items != "") {

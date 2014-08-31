@@ -528,6 +528,8 @@
     <Content Include="Views\Groups\CrearGrupo.cshtml" />
     <Content Include="Views\OfertaAcademica\CrearOfertaAcademica.cshtml" />
     <Content Include="Views\Plans\EliminarBloque.cshtml" />
+    <Content Include="Views\OfertaAcademica\Index.cshtml" />
+    <Content Include="Views\OfertaAcademica\EliminarOferta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,6 +28,7 @@ namespace SACAAE.Controllers
         public ActionResult CrearAula()
         {
             var model = new Aula();
+            ViewBag.Sedes = vRepoSedes.ObtenerTodosSedes();
             return View(model);
         }
 
@@ -36,8 +37,7 @@ namespace SACAAE.Controllers
             IQueryable listaAulas = vRepoAulas.ListarAulasXSede(sede);
             if (HttpContext.Request.IsAjaxRequest())
             {
-                return Json(listaAulas, JsonRequestBehavior.AllowGet
-                        );
+                return Json(listaAulas, JsonRequestBehavior.AllowGet);
             }
             return View(listaAulas);
         }
@@ -53,6 +53,7 @@ namespace SACAAE.Controllers
         public ActionResult ModificarAula(int id)
         {
             var model = vRepoAulas.ObtenerAula(id);
+            ViewBag.Sedes = vRepoSedes.ObtenerTodosSedes();
             return View(model);
         }
 

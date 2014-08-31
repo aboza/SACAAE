@@ -1,7 +1,7 @@
-﻿@model IEnumerable<SACAAE.Models.PlanesDeEstudio>
+﻿
 
 @{
-    ViewBag.Title = "Planes";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Privado.cshtml";
 }
 
@@ -11,20 +11,33 @@
             /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
             $("#sltModalidad, #sltSede").change(function () {
 
-                var route = "/Plans/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
-                //alert(route);
-
+                var route = "/Plans/PlanesSede/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Plan de Estudio</th><th> </th></tr>  ";
+                    var items = "";
                     $.each(data, function (i, plan) {
-                        var newLink = '<a href="@Url.Action("BloqueXPlan")/' + plan.ID + '">Ver Bloques</a>';
-                        var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")');
-                        var href = $newLinkTarget.attr('href') + '?plan=' + plan.Value;
-                        items += "<tr><td>" + plan.Nombre + "</td><td><td>" + newLink + "</td></tr>";
+                        items += "<option value= " + plan.ID + ">" + plan.Nombre + "</option>";
                     });
 
                     if (items != "") {
-                        $("#datosPlan").html(items);
+                        $("#sltPlan").prop("disabled", false);
+                        $("#sltPlan").html(items);
+                    }
+                });
+            });
+            $("#sltPlan").change(function () {
+
+                var route = "/OfertaAcademica/Ofertas/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltPlan"]').val() + "/" + $('select[name="sltPeriodo"]').val();
+                //alert(route);
+
+                $.getJSON(route, function (data) {
+                    var items = "<tr><th>Número</th></tr>  ";
+                    $.each(data, function (i, oferta) {
+                        var newLink = '<a href="@Url.Action("EliminarOferta")/' + oferta.ID + '">Eliminar</a>';
+                        items += "<tr><td>" + oferta.Numero + "</td><td><td>" + newLink + "</td></tr>";
+                    });
+
+                    if (items != "") {
+                        $("#datosOferta").html(items);
                     }
                 });
             });
@@ -33,7 +46,7 @@
     </script>
 
 }
-    <h2>Planes de Estudio</h2>
+    <h2>Oferta Academica</h2>
         @if (TempData.ContainsKey("MessageError"))
         {
             <p class="text-danger">@TempData["MessageError"].ToString()</p>
@@ -48,8 +61,26 @@
     <div class="col-lg-5">
         <div class="span12">
         <p>
-            @Html.ActionLink("Agregar Nuevo", "CrearPlan")
+            @Html.ActionLink("Agregar Nueva Oferta", "CrearOfertaAcademica")
         </p>
+            <label>
+                    Período
+                </label>
+                <select id="sltPeriodo" name="sltPeriodo" class="form-control">
+                    @if (ViewBag.Periodos != null)
+                    {
+                        <option value=" " selected="selected">-- Seleccionar Periodo --</option>
+                        foreach (var item in ViewBag.Periodos)
+                        {
+                            <option value="@item.ID">@item.Nombre</option>
+                        }
+                    }
+                    else
+                    {
+                        <option selected="selected">No hay Periodos</option>
+                    }
+
+                </select>
          <label>
                     Sede
                 </label>
@@ -95,6 +126,10 @@
                     {                    
                         @Html.ActionLink("Agregar Modalidad", "Crear", "Modalidad")
                     }
+            <label>
+                    Plan
+                </label>
+                <select id="sltPlan" name="sltPlan" class="form-control"></select>
             <br />
     <br />
     <br />
@@ -102,7 +137,7 @@
     </div>
     </div>     
 
-    <table id="datosPlan" class="table">
+    <table id="datosOferta" class="table">
     
 </table>
     }

@@ -32,7 +32,18 @@ namespace SACAAE.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.Modalidades = vRepoModalidades.ObtenerTodosModalidades();
+            ViewBag.Sedes = vRepoSedes.ObtenerTodosSedes();
+            ViewBag.Periodos = vRepoPeriodos.obtenerTodosPeriodos();
             return View();
+        }
+
+        [Authorize]
+        public ActionResult EliminarOferta(int id)
+        {
+            ViewBag.Grupo = id;
+            var model = vRepoGrupos.obtenerUnGrupo(id);
+            return View(model);
         }
 
 
@@ -62,6 +73,26 @@ namespace SACAAE.Controllers
                 vRepoGrupos.agregarGrupo(vNewGrupo);
             }
             TempData[TempDataMessageKeySuccess] = "Los Grupos fueron creados correctamente";
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ObtenerOfertasAcademicas(int sede,int plan, int periodo)
+        {
+            IQueryable listaOfertas = vRepoGrupos.ListarGruposXSedeXPeriodo(plan, periodo);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(listaOfertas, JsonRequestBehavior.AllowGet);
+            }
+            return View(listaOfertas);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EliminarOferta(int grupo, string button)
+        {
+            var grupoEntity = vRepoGrupos.obtenerUnGrupo(grupo);
+            vRepoGrupos.eliminarGrupo(grupoEntity);
+            TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
             return RedirectToAction("Index");
         }
     }

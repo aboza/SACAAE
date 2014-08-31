@@ -17,11 +17,11 @@ namespace SACAAE.Models
         }
 
 
-        public IQueryable<Aula> ListarAulasXSede(int pSedeID)
+        public IQueryable ListarAulasXSede(int pSedeID)
         {
             return from Aulas in entidades.Aulas
                    where Aulas.SedeID == pSedeID
-                   select Aulas;
+                   select new { Aulas.ID, Aulas.Codigo, Aulas.Espacio, Aulas.Activa };
         }
 
 

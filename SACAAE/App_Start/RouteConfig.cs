@@ -106,6 +106,29 @@ namespace SACAAE
             "BloqueXPlanXCurso/Cursos/List/{plan}/{bloque}",
             new { Controller = "BloqueXPlanXCurso", action = "ObtenerCursos" });
             /*Fin rutas Alexis 2014 S2*/
+
+            /*rutas Jack 2014 S2*/
+            routes.MapRoute(
+            "ObtenerAulas",
+            "Aula/Aulas/List/{sede}",
+            new { Controller = "Aula", action = "ObtenerAula" });
+
+            routes.MapRoute(
+             "ObtenerPlansEstudios",
+             "Plans/Planes/List/{sede}/{modalidad}",
+             new { Controller = "CursoProfesor", action = "ObtenerPlanesEstudio" });
+
+            routes.MapRoute(
+             "ObtenerPlansEstudiosSede",
+             "Plans/PlanesSede/List/{sede}/{modalidad}",
+             new { Controller = "CursoProfesor", action = "ObtenerPlanesEstudioSede" });
+
+            routes.MapRoute(
+             "ObtenerOfertasAcademicas",
+             "OfertaAcademica/Ofertas/List/{sede}/{plan}/{periodo}",
+             new { Controller = "OfertaAcademica", action = "ObtenerOfertasAcademicas" });
+
+            /*Fin rutas Jack 2014 S2*/
         }
     }
 }

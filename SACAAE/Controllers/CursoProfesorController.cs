@@ -94,15 +94,20 @@ namespace SACAAE.Controllers
             IQueryable listaPlanes = repositorioCursoProfesor.obtenerPlanesEstudio(sede, modalidad);
             if (HttpContext.Request.IsAjaxRequest())
             {
-                return Json(new SelectList(
-                        listaPlanes,
-                        "ID",
-                        "Nombre"), JsonRequestBehavior.AllowGet
-                        );
+                return Json(listaPlanes, JsonRequestBehavior.AllowGet);
             }
             return View(listaPlanes);
         }
 
+        public ActionResult ObtenerPlanesEstudioSede(int sede, int modalidad)
+        {
+            IQueryable listaPlanes = repositorioCursoProfesor.obtenerPlanesEstudioSede(sede, modalidad);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(listaPlanes, JsonRequestBehavior.AllowGet);
+            }
+            return View(listaPlanes);
+        }
 
         public ActionResult ObtenerCursos(int plan)
         {

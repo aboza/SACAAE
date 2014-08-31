@@ -103,6 +103,17 @@ namespace SACAAE.Models
 
         }
 
+        public IQueryable obtenerPlanesEstudioSede(int sede, int modalidad)
+        {
+            return from sedes in entidades.Sedes
+                   join planesporsede in entidades.PlanesDeEstudioXSedes on sedes.ID equals planesporsede.Sede
+                   join planesestudio in entidades.PlanesDeEstudios on planesporsede.PlanDeEstudio equals planesestudio.ID
+                   join modalidades in entidades.Modalidades on planesestudio.Modalidad equals modalidades.ID
+                   where (sedes.ID == sede) && (modalidades.ID == modalidad)
+                   select new { planesporsede.ID, planesestudio.Nombre };
+
+        }
+
         /// <summary>
         /// Obtiene los cursos abiertos para un determinado plan de estudio.
         /// </summary>

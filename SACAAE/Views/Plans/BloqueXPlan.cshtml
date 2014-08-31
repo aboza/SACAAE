@@ -55,7 +55,7 @@
             @Html.DisplayFor(modelItem => item.Nivel)
         </td>
         <td>
-            @Html.ActionLink("Ver Cursos", "CursoXPlanXBloque", new { bloque = item.ID , plan=ViewBag.Plan.ID })
+            @Html.ActionLink("Ver Cursos", "CursoXPlanXBloque", new { bloque = item.ID , plan=ViewBag.Plan.ID })|@Html.ActionLink("Eliminar", "EliminarBloque", new { bloque = item.ID , plan=ViewBag.Plan.ID })
         </td>
     </tr>
 }

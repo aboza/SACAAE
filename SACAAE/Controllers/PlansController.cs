@@ -30,6 +30,8 @@ namespace SACAAE.Controllers
             return View();
         }
 
+        
+
         public ActionResult Index()
         {
             ViewBag.Modalidades = repoModalidades.ObtenerTodosModalidades();
@@ -83,18 +85,19 @@ namespace SACAAE.Controllers
             ViewBag.Bloques = repoBloques.obtenerBloques(plan);
             ViewBag.plan = plan;
             ViewBag.bloque = bloque;
+            ViewBag.curso = curso;
             var model = repoCursos.ObtenerCurso(curso);
             return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ModificarCurso(string sltBloques,int bloque, int plan,string button)
+        public ActionResult ModificarCurso(string sltBloques,int bloque, int plan, int curso,string button)
         {
             int bloqueXPlanID=repoBloquesXPlan.obtenerIdBloqueXPlan(plan, bloque);
             if (button == "Eliminar")
             {
-                repoBloquesXPlanXCurso.eliminarCursoBloquePlan(bloqueXPlanID);
+                repoBloquesXPlanXCurso.eliminarCursoBloquePlan(bloqueXPlanID,curso);
                 TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
                 return RedirectToAction("CursoXPlanXBloque", new { plan = plan, bloque = bloqueXPlanID });   
             }
@@ -136,6 +139,25 @@ namespace SACAAE.Controllers
             }
             TempData[TempDataMessageKeySuccess] = "Plan Creado Exitosamente";
             return RedirectToAction("CrearBloqueXPlan", "BloqueXPlan", new { plan = idplan });
+        }
+
+        [Authorize]
+        public ActionResult EliminarBloque(int bloque, int plan)
+        {
+            ViewBag.Plan = repoPlanes.ObtenerUnPlanDeEstudio(plan);
+            ViewBag.Bloque = bloque;
+            var model = repoBloques.obtenerBloqueAcademico(bloque);            
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EliminarBloque(int plan, int bloque,string button)
+        {
+            int bloqueXPlanID = repoBloquesXPlan.obtenerIdBloqueXPlan(plan, bloque);
+            repoBloquesXPlan.eliminarBloquePlan(bloqueXPlanID);
+            TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
+            return RedirectToAction("BloqueXPlan/"+plan);
         }
 
         

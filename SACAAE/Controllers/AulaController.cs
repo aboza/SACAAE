@@ -11,6 +11,7 @@ namespace SACAAE.Controllers
     public class AulaController : Controller
     {
         private RepositorioAulas vRepoAulas = new RepositorioAulas();
+        private repositorioSedes vRepoSedes = new repositorioSedes();
         private const string TempDataMessageKey = "MessageError";
         private const string TempDataMessageKeySuccess = "MessageSuccess";
 
@@ -18,6 +19,7 @@ namespace SACAAE.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.Sedes = vRepoSedes.ObtenerTodosSedes();
             var model = vRepoAulas.ListarAulas();
             return View(model);
         } 
@@ -27,6 +29,17 @@ namespace SACAAE.Controllers
         {
             var model = new Aula();
             return View(model);
+        }
+
+        public ActionResult ObtenerAula(int sede)
+        {
+            IQueryable listaAulas = vRepoAulas.ListarAulasXSede(sede);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(listaAulas, JsonRequestBehavior.AllowGet
+                        );
+            }
+            return View(listaAulas);
         }
 
         [Authorize]

@@ -8,20 +8,6 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            /* Deshabilitar componentes que no tienen datos cargados */
-            $("#sltPlan").prop("disabled", "disabled");
-            $("#sltCurso").prop("disabled", "disabled");
-            $("#sltGrupo").prop("disabled", "disabled");
-
-            /* Se agregan los option por defecto a los select vacíos */
-            itemSltPlan = "<option>Seleccione Sede y Modalidad</option>";
-            itemSltCurso = "<option>Seleccione Sede, Modalidad y Plan de Estudio</option>";
-            itemSltGrupo = "<option>Seleccione Sede, Modalidad, Plan de Estudio y Curso</option>";
-
-            $("#sltPlan").html(itemSltPlan);
-            $("#sltCurso").html(itemSltCurso);
-            $("#sltGrupo").html(itemSltGrupo);
-
             /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
             $("#sltModalidad, #sltSede").change(function () {
 
@@ -42,20 +28,6 @@
                     }
                 });
             });
-            /* Funcion llamada cuando se cambien los valores del plan */
-            /*
-            $("#sltPlan").change(function () {
-                var id = $('select[name="sltPlan"]').val();
-                var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")'); 
-                var href = $newLinkTarget.attr('href') + '?plan=' + id;
-                $newLinkTarget.attr('href', href);
-                $("#bloquesLink").html($newLinkTarget);
-                if (id != '') {
-                    $("#verBloques").prop("disabled", false);
-                }
-                else
-                    $("#verBloques").prop("disabled", true);
-            });*/
         });
         
     </script>

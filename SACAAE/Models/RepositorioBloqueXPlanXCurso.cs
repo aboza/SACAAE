@@ -75,9 +75,9 @@ namespace SACAAE.Models
                 return;
         }
 
-        public void eliminarCursoBloquePlan(int pBloqueXPlanID)
+        public void eliminarCursoBloquePlan(int pBloqueXPlanID, int curso)
         {
-            var vBloque = entidades.BloqueXPlanXCursoes.SingleOrDefault(bloque => bloque.BloqueXPlanID == pBloqueXPlanID);
+            var vBloque = entidades.BloqueXPlanXCursoes.SingleOrDefault(bloque => bloque.BloqueXPlanID == pBloqueXPlanID && bloque.CursoID==curso);
             if (vBloque != null)
             {
                 entidades.BloqueXPlanXCursoes.Remove(vBloque);

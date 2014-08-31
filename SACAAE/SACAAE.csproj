@@ -527,6 +527,7 @@
     <Content Include="Views\Plans\ModificarCurso.cshtml" />
     <Content Include="Views\Groups\CrearGrupo.cshtml" />
     <Content Include="Views\OfertaAcademica\CrearOfertaAcademica.cshtml" />
+    <Content Include="Views\Plans\EliminarBloque.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

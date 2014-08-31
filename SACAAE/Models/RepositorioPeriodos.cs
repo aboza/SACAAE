@@ -34,6 +34,13 @@ namespace SACAAE.Models
             Save(); 
         }
 
+        public IQueryable<Periodo> obtenerTodosPeriodos()
+        {
+            return from periodo in entidades.Periodos
+                   orderby periodo.Nombre
+                   select periodo;
+        }
+
         private void Save()
         {
             entidades.SaveChanges();

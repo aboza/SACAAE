@@ -18,6 +18,14 @@ using System;
 public partial class BloqueXPlanXCurso
 {
 
+    public BloqueXPlanXCurso()
+    {
+
+        this.Grupoes = new HashSet<Grupo>();
+
+    }
+
+
     public int ID { get; set; }
 
     public int BloqueXPlanID { get; set; }
@@ -29,6 +37,8 @@ public partial class BloqueXPlanXCurso
     public virtual BloqueAcademicoXPlanDeEstudio BloqueAcademicoXPlanDeEstudio { get; set; }
 
     public virtual Curso Curso { get; set; }
+
+    public virtual ICollection<Grupo> Grupoes { get; set; }
 
 }
 

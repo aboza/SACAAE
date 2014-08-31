@@ -32,13 +32,13 @@
     {
 
 
-        @Html.TextBoxFor(model => model.Nombre, new
+        @Html.TextBoxFor(model => model.Numero, new
                {
                    @class = "form-control",
                    @placeholder = "Nombre del grupo",
                    @required = "true"
                })
-        @Html.ValidationMessageFor(model => model.Nombre)
+        @Html.ValidationMessageFor(model => model.Numero)
 
         <label>Sede</label>
         <br />

@@ -29,7 +29,7 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Plane de Estudio</th><th> </th></tr>  ";
+                    var items = "<tr><th>Plan de Estudio</th><th> </th></tr>  ";
                     $.each(data, function (i, plan) {
                         var newLink = '<a href="@Url.Action("BloqueXPlan")/' + plan.Value + '">Ver Bloques</a>';
                         var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")');

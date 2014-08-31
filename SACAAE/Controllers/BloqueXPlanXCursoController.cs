@@ -58,5 +58,19 @@ namespace SACAAE.Controllers
             TempData[TempDataMessageKey] = "Datos ingresados son inválidos";
             return RedirectToAction("CrearBloqueXPlanXCurso", new { plan = PlanID });
         }
+
+        public ActionResult ObtenerCursos(int plan, int bloque)
+        {
+            IQueryable vListaCursos = vRepoCursos.ObtenerCursos(plan,bloque);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(new SelectList(
+                        vListaCursos,
+                        "ID",
+                        "Nombre"), JsonRequestBehavior.AllowGet
+                        );
+            }
+            return View(vListaCursos);
+        }
     }
 }

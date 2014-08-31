@@ -38,11 +38,7 @@ public partial class SACAAEEntities : DbContext
 
     public DbSet<CursosXGrupo> CursosXGrupoes { get; set; }
 
-    public DbSet<Detalle_Curso> Detalle_Curso { get; set; }
-
     public DbSet<Estado> Estadoes { get; set; }
-
-    public DbSet<Grupo> Grupoes { get; set; }
 
     public DbSet<Horario> Horarios { get; set; }
 
@@ -72,13 +68,17 @@ public partial class SACAAEEntities : DbContext
 
     public DbSet<BloqueAcademicoXPlanDeEstudio> BloqueAcademicoXPlanDeEstudios { get; set; }
 
-    public DbSet<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
-
     public DbSet<Curso> Cursos { get; set; }
 
     public DbSet<PlanesDeEstudio> PlanesDeEstudios { get; set; }
 
     public DbSet<Usuario> Usuarios { get; set; }
+
+    public DbSet<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
+
+    public DbSet<Detalle_Grupo> Detalle_Grupo { get; set; }
+
+    public DbSet<Grupo> Grupoes { get; set; }
 
 }
 

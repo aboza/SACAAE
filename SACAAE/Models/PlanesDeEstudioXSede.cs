@@ -34,11 +34,11 @@ public partial class PlanesDeEstudioXSede
 
 
 
-    public virtual ICollection<Grupo> Grupoes { get; set; }
-
     public virtual Sede Sede1 { get; set; }
 
     public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
+
+    public virtual ICollection<Grupo> Grupoes { get; set; }
 
 }
 

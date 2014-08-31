@@ -23,11 +23,11 @@ public partial class Horario
 
         this.ComisionesXProfesors = new HashSet<ComisionesXProfesor>();
 
-        this.Detalle_Curso = new HashSet<Detalle_Curso>();
-
         this.ProyectosXProfesors = new HashSet<ProyectosXProfesor>();
 
         this.Dias = new HashSet<Dia>();
+
+        this.Detalle_Grupo = new HashSet<Detalle_Grupo>();
 
     }
 
@@ -38,11 +38,11 @@ public partial class Horario
 
     public virtual ICollection<ComisionesXProfesor> ComisionesXProfesors { get; set; }
 
-    public virtual ICollection<Detalle_Curso> Detalle_Curso { get; set; }
-
     public virtual ICollection<ProyectosXProfesor> ProyectosXProfesors { get; set; }
 
     public virtual ICollection<Dia> Dias { get; set; }
+
+    public virtual ICollection<Detalle_Grupo> Detalle_Grupo { get; set; }
 
 }
 

@@ -123,15 +123,15 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="curso">El id del curso.</param>
         /// <returns>Lista de grupos abiertos de ese curso.</returns>
-        public IQueryable obtenerGrupos(int curso)
-        {
-            var Curso = obtenerCurso(curso);
+        //public IQueryable obtenerGrupos(int curso)
+        //{
+        //    var Curso = obtenerCurso(curso);
             
-            return from grupos in entidades.Grupoes
-                   join cursosxgrupo in entidades.CursosXGrupoes on grupos.ID equals cursosxgrupo.Grupo
-                   where cursosxgrupo.Curso == curso
-                   select new { cursosxgrupo.ID, Nombre = (Curso + " - " + grupos.Nombre)};
-        }
+        //    return from grupos in entidades.Grupoes
+        //           join cursosxgrupo in entidades.CursosXGrupoes on grupos.ID equals cursosxgrupo.Grupo
+        //           where cursosxgrupo.Curso == curso
+        //           select new { cursosxgrupo.ID, Nombre = (Curso + " - " + grupos.Nombre)};
+        //}
 
         /// <summary>
         /// Obtiene el nombre de un curso de acuerdo a su id.
@@ -150,29 +150,29 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="cursoxgrupo">El id del curso por grupo.</param>
         /// <returns>El cupo y el aula del curso por grupo.</returns>
-        public IQueryable obtenerInfo(int cursoxgrupo)
-        {
-            return from detalle in entidades.Detalle_Curso
-                   where detalle.Curso == cursoxgrupo
-                   select new { detalle.Id, detalle.Curso, detalle.Aula, detalle.Cupo };
-        }
+        //public IQueryable obtenerInfo(int cursoxgrupo)
+        //{
+        //    return from detalle in entidades.Detalle_Curso
+        //           where detalle.Curso == cursoxgrupo
+        //           select new { detalle.Id, detalle.Curso, detalle.Aula, detalle.Cupo };
+        //}
 
         /// <summary>
         /// Obtiene el horario de un detalle de curso.
         /// </summary>
         /// <param name="cursoxgrupo">El id del curso por grupo.</param>
         /// <returns>Id del horario.</returns>
-        public int obtenerHorario(int cursoxgrupo)
-        {
-            var query = from detalle in entidades.Detalle_Curso
-                        where detalle.Curso == cursoxgrupo
-                        select detalle;
+        //public int obtenerHorario(int cursoxgrupo)
+        //{
+        //    var query = from detalle in entidades.Detalle_Curso
+        //                where detalle.Curso == cursoxgrupo
+        //                select detalle;
 
-            List<Detalle_Curso> config = query.ToList();
+        //    List<Detalle_Curso> config = query.ToList();
 
 
-            return config[0].Horario;
-        }
+        //    return config[0].Horario;
+        //}
 
 
         /// <summary>
@@ -218,17 +218,17 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="idCursoXGrupo">El id del curso x grupo.</param>
         /// <returns>El id del profesor por curso.</returns>
-        public int obtenerIdProfesorXGrupo(int idCursoXGrupo)
-        {
-            var query = from detalle in entidades.Detalle_Curso
-                        where detalle.Curso == idCursoXGrupo
-                        select detalle;
+        //public int obtenerIdProfesorXGrupo(int idCursoXGrupo)
+        //{
+        //    var query = from detalle in entidades.Detalle_Curso
+        //                where detalle.Curso == idCursoXGrupo
+        //                select detalle;
 
-            List<Detalle_Curso> config = query.ToList();
+        //    List<Detalle_Curso> config = query.ToList();
 
 
-            return config[0].Profesor;
-        }
+        //    return config[0].Profesor;
+        //}
 
 
         /// <summary>
@@ -236,17 +236,17 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="idProfesor">El id del profesor.</param>
         /// <returns>La lista de cursos.</returns>
-        public IQueryable obtenerCursosPorProfesor(int idProfesor)
-        {
+        //public IQueryable obtenerCursosPorProfesor(int idProfesor)
+        //{
 
-            return from profesores in entidades.Profesores
-                   join profesoresxcurso in entidades.ProfesoresXCursoes on profesores.ID equals profesoresxcurso.Profesor
-                   join detallecurso in entidades.Detalle_Curso on profesoresxcurso.Id equals detallecurso.Profesor
-                   join cursosxgrupo in entidades.CursosXGrupoes on detallecurso.Curso equals cursosxgrupo.ID
-                   join cursos in entidades.Cursos on cursosxgrupo.Curso equals cursos.ID
-                   where profesores.ID == idProfesor
-                   select new { profesoresxcurso.Id, cursos.Nombre, cursos.Codigo };
-        }
+        //    return from profesores in entidades.Profesores
+        //           join profesoresxcurso in entidades.ProfesoresXCursoes on profesores.ID equals profesoresxcurso.Profesor
+        //           join detallecurso in entidades.Detalle_Curso on profesoresxcurso.Id equals detallecurso.Profesor
+        //           join cursosxgrupo in entidades.CursosXGrupoes on detallecurso.Curso equals cursosxgrupo.ID
+        //           join cursos in entidades.Cursos on cursosxgrupo.Curso equals cursos.ID
+        //           where profesores.ID == idProfesor
+        //           select new { profesoresxcurso.Id, cursos.Nombre, cursos.Codigo };
+        //}
 
         /// <summary>
         /// Revoca la asignación de un profesor a un curso.

@@ -15,12 +15,12 @@ namespace SACAAE.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Detalle_Curso
+public partial class Detalle_Grupo
 {
 
     public int Id { get; set; }
 
-    public int Curso { get; set; }
+    public int Grupo { get; set; }
 
     public int Profesor { get; set; }
 

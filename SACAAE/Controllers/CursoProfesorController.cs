@@ -60,34 +60,34 @@ namespace SACAAE.Controllers
             return View();
         }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras)
-        {
-            var creado = false ;
-            var idProfesorXCurso = 0; 
+        //[Authorize]
+        //[HttpPost]
+        //public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras)
+        //{
+        //    var creado = false ;
+        //    var idProfesorXCurso = 0; 
             
-            idProfesorXCurso = repositorioCursoProfesor.obtenerIdProfesorXGrupo(sltGrupo);
-            if (idProfesorXCurso != 0)
-            {
-                creado = repositorioCursoProfesor.asignarProfesor(idProfesorXCurso, sltProfesor, txtHoras);
+        //    idProfesorXCurso = repositorioCursoProfesor.obtenerIdProfesorXGrupo(sltGrupo);
+        //    if (idProfesorXCurso != 0)
+        //    {
+        //        creado = repositorioCursoProfesor.asignarProfesor(idProfesorXCurso, sltProfesor, txtHoras);
 
-                if (creado)
-                {
-                    TempData[TempDataMessageKey] = "Profesor asignado correctamente.";
-                }
-                else
-                {
-                    TempData[TempDataMessageKey] = "Ocurrió un error al asignar el profesor.";
-                }
-            }
-            else
-            {
-                TempData[TempDataMessageKey] = "No se pudo obtener el id de profesor x curso.";
-            }
+        //        if (creado)
+        //        {
+        //            TempData[TempDataMessageKey] = "Profesor asignado correctamente.";
+        //        }
+        //        else
+        //        {
+        //            TempData[TempDataMessageKey] = "Ocurrió un error al asignar el profesor.";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        TempData[TempDataMessageKey] = "No se pudo obtener el id de profesor x curso.";
+        //    }
             
-            return RedirectToAction("Asignar");
-        }
+        //    return RedirectToAction("Asignar");
+        //}
 
         public ActionResult ObtenerPlanesEstudio(int sede, int modalidad)
         {
@@ -122,52 +122,52 @@ namespace SACAAE.Controllers
             return View(listaCursos);
         }
 
-        public ActionResult ObtenerGrupos(int curso)
-        {
-            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso);
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                return Json(new SelectList(
-                    listaGrupos,
-                    "ID",
-                    "Nombre"), JsonRequestBehavior.AllowGet
-                    );
+        //public ActionResult ObtenerGrupos(int curso)
+        //{
+        //    IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso);
+        //    if (HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        return Json(new SelectList(
+        //            listaGrupos,
+        //            "ID",
+        //            "Nombre"), JsonRequestBehavior.AllowGet
+        //            );
 
-                //var json = JsonConvert.SerializeObject(listaGrupos);
-            }
-            return View(listaGrupos);
-        }
-
-
-        public ActionResult ObtenerInfo(int cursoxgrupo)
-        {
-            IQueryable listaInfo = repositorioCursoProfesor.obtenerInfo(cursoxgrupo);
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                var json = JsonConvert.SerializeObject(listaInfo);
-
-                return Content(json);
-            }
-            return View(listaInfo);
-        }
+        //        //var json = JsonConvert.SerializeObject(listaGrupos);
+        //    }
+        //    return View(listaGrupos);
+        //}
 
 
-        public ActionResult ObtenerHorario(int cursoxgrupo)
-        {
-            int idHorario = repositorioCursoProfesor.obtenerHorario(cursoxgrupo);
-            IQueryable listaHorario = null;
+        //public ActionResult ObtenerInfo(int cursoxgrupo)
+        //{
+        //    IQueryable listaInfo = repositorioCursoProfesor.obtenerInfo(cursoxgrupo);
+        //    if (HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        var json = JsonConvert.SerializeObject(listaInfo);
 
-            if (idHorario != 0)
-            {
-                listaHorario = repositorioCursoProfesor.obtenerInfoHorario(idHorario);
+        //        return Content(json);
+        //    }
+        //    return View(listaInfo);
+        //}
 
-                var json = JsonConvert.SerializeObject(listaHorario);
 
-                return Content(json);
-            }
+        //public ActionResult ObtenerHorario(int cursoxgrupo)
+        //{
+        //    int idHorario = repositorioCursoProfesor.obtenerHorario(cursoxgrupo);
+        //    IQueryable listaHorario = null;
 
-            return View(listaHorario);
-        }
+        //    if (idHorario != 0)
+        //    {
+        //        listaHorario = repositorioCursoProfesor.obtenerInfoHorario(idHorario);
+
+        //        var json = JsonConvert.SerializeObject(listaHorario);
+
+        //        return Content(json);
+        //    }
+
+        //    return View(listaHorario);
+        //}
 
         [Authorize]
         public ActionResult Revocar()
@@ -213,16 +213,16 @@ namespace SACAAE.Controllers
         }
 
 
-        public ActionResult ObtenerCursosPorProfesor(int idProfesor)
-        {
-            IQueryable listaCursos = repositorioCursoProfesor.obtenerCursosPorProfesor(idProfesor);
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                var json = JsonConvert.SerializeObject(listaCursos);
+        //public ActionResult ObtenerCursosPorProfesor(int idProfesor)
+        //{
+        //    IQueryable listaCursos = repositorioCursoProfesor.obtenerCursosPorProfesor(idProfesor);
+        //    if (HttpContext.Request.IsAjaxRequest())
+        //    {
+        //        var json = JsonConvert.SerializeObject(listaCursos);
 
-                return Content(json);
-            }
-            return View(listaCursos);
-        }
+        //        return Content(json);
+        //    }
+        //    return View(listaCursos);
+        //}
     }
 }

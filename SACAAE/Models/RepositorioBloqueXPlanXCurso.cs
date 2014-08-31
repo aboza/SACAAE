@@ -35,6 +35,11 @@ namespace SACAAE.Models
             return (entidades.BloqueXPlanXCursoes.SingleOrDefault(relacion => relacion.BloqueXPlanID == pBloqueXPlanID && relacion.CursoID == pCursoID) != null);
         }
 
+        public int obtenerBloqueXPlanXCursoID(int pBloqueXPlanID, int pCursoID)
+        {
+            return (entidades.BloqueXPlanXCursoes.SingleOrDefault(relacion => relacion.BloqueXPlanID == pBloqueXPlanID && relacion.CursoID == pCursoID).ID);
+        }
+
         public bool existeRelacionCursoEnPlan(int pPlanID, int pCursoID)
         {
             var request = from cursos in entidades.Cursos

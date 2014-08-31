@@ -21,7 +21,7 @@ public partial class CursosXGrupo
     public CursosXGrupo()
     {
 
-        this.Detalle_Curso = new HashSet<Detalle_Curso>();
+        this.Detalle_Grupo = new HashSet<Detalle_Grupo>();
 
     }
 
@@ -34,11 +34,11 @@ public partial class CursosXGrupo
 
 
 
-    public virtual Grupo Grupo1 { get; set; }
-
-    public virtual ICollection<Detalle_Curso> Detalle_Curso { get; set; }
-
     public virtual Curso Curso1 { get; set; }
+
+    public virtual ICollection<Detalle_Grupo> Detalle_Grupo { get; set; }
+
+    public virtual Grupo Grupo1 { get; set; }
 
 }
 

@@ -20,11 +20,6 @@ namespace SACAAE
              new { Controller = "CursoProfesor", action = "ObtenerPlanesEstudio" });
 
             routes.MapRoute(
-             "ObtenerCursos",
-             "CursoProfesor/Cursos/List/{plan}",
-             new { Controller = "CursoProfesor", action = "ObtenerCursos" });
-
-            routes.MapRoute(
              "ObtenerGrupos",
              "CursoProfesor/Grupos/List/{curso}",
              new { Controller = "CursoProfesor", action = "ObtenerGrupos" });
@@ -52,7 +47,7 @@ namespace SACAAE
             routes.MapRoute(
             "ObtenerProyectosXProfesor",
             "ProfesoresProyectos/Profesor/Proyectos/{idProfesor}",
-            new { Controller = "ProfesoresProyectos", action = "ObtenerProyectosXProfesor" });    
+            new { Controller = "ProfesoresProyectos", action = "ObtenerProyectosXProfesor" });
 
             /*Fin Rutas Cortés*/
             /*Rutas Alvaro*/
@@ -92,7 +87,7 @@ namespace SACAAE
             routes.MapRoute(
               "cursosPlanLista",
               "Seleccionar/Cursos/List/{idPlan}",
-              new { Controller = "Seleccionar", action = "cursosPlanLista" }); 
+              new { Controller = "Seleccionar", action = "cursosPlanLista" });
             /*Fin rutas avila*/
 
             routes.MapRoute(
@@ -102,12 +97,15 @@ namespace SACAAE
 
             /*rutas Alexis 2014 S2*/
             routes.MapRoute(
-               "aulasXSede",
-               "Courses/Aulas/List/{idSede}",
-               new { Controller = "Aulas", action = "ListarAulasXSede" });
+            "ObtenerBloques",
+            "BloqueXPlan/Bloques/List/{plan}",
+            new { Controller = "BloqueXPlan", action = "ObtenerBloques" });
+
+            routes.MapRoute(
+            "ObtenerCursos",
+            "BloqueXPlanXCurso/Cursos/List/{plan}/{bloque}",
+            new { Controller = "BloqueXPlanXCurso", action = "ObtenerCursos" });
             /*Fin rutas Alexis 2014 S2*/
-
-
         }
     }
 }

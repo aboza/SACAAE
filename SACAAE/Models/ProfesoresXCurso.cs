@@ -21,7 +21,7 @@ public partial class ProfesoresXCurso
     public ProfesoresXCurso()
     {
 
-        this.Detalle_Curso = new HashSet<Detalle_Curso>();
+        this.Detalle_Grupo = new HashSet<Detalle_Grupo>();
 
     }
 
@@ -34,9 +34,9 @@ public partial class ProfesoresXCurso
 
 
 
-    public virtual ICollection<Detalle_Curso> Detalle_Curso { get; set; }
-
     public virtual Profesore Profesore { get; set; }
+
+    public virtual ICollection<Detalle_Grupo> Detalle_Grupo { get; set; }
 
 }
 

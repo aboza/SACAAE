@@ -16,6 +16,14 @@ namespace SACAAE.Models
                    select BloquesAcademicos;
         }
 
+        public IQueryable<BloqueAcademico> ListarBloquesXPlan(int pPlanID)
+        {
+            return from Bloques in entidades.BloqueAcademicoes
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on Bloques.ID equals BloquesXPlan.BloqueID 
+                   where BloquesXPlan.PlanID == pPlanID
+                   select Bloques;
+        }
+
 
         /*public IQueryable<Aula> ListarAulasXSede(int pSedeID)
         {

@@ -39,14 +39,14 @@ namespace SACAAE.Models
             }
         }
 
-        public int IdHorarioCurso(int CursoBuscado, int PlanDeEstudioCurso)
-        {
-            IQueryable<Detalle_Curso> Resultado =
-                from Detalle_Curso in entidades.Detalle_Curso
-                where Detalle_Curso.Curso == CursoBuscado//aqui necesito el id del curso x grupo
-                select Detalle_Curso;
-            return Resultado.FirstOrDefault().Horario;
-        }
+        //public int IdHorarioCurso(int CursoBuscado, int PlanDeEstudioCurso)
+        //{
+        //    IQueryable<Detalle_Curso> Resultado =
+        //        from Detalle_Curso in entidades.Detalle_Curso
+        //        where Detalle_Curso.Curso == CursoBuscado//aqui necesito el id del curso x grupo
+        //        select Detalle_Curso;
+        //    return Resultado.FirstOrDefault().Horario;
+        //}
 
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio)
         {
@@ -65,16 +65,17 @@ namespace SACAAE.Models
 
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio, int bloque)
         {
-            return from Curso in entidades.Cursos
-                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.CursoID
+            return from curso in entidades.Cursos
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on curso.ID equals BloqueXPlanXCursos.CursoID
                    join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
                    where BloquesXPlan.PlanID == PlanDeEstudio && BloquesXPlan.BloqueID == bloque
-                   select Curso;
+                   orderby curso.Nombre
+                   select curso;
         }
 
-        public IQueryable<Detalle_Curso> ObtenerDetalleCursos()
+        public IQueryable<Detalle_Grupo> ObtenerDetalleCursos()
         {
-            return from Detalle_Curso in entidades.Detalle_Curso
+            return from Detalle_Curso in entidades.Detalle_Grupo
                    select Detalle_Curso;
         }
 
@@ -100,30 +101,30 @@ namespace SACAAE.Models
             return NuevoProfesorXCurso.Id;
         }
 
-        public int GuardarDetallesCurso(int CursoXGrupo, int Horario, string Aula, int Profesor)
-        {
-            Detalle_Curso DetallesNuevos = new Detalle_Curso();
-            DetallesNuevos.Curso = CursoXGrupo;
-            DetallesNuevos.Horario = Horario;
-            DetallesNuevos.Aula = Aula;
-            DetallesNuevos.Profesor = Profesor;
-            DetallesNuevos.Cupo = 0;
-            try
-            {
-                entidades.Detalle_Curso.Add(DetallesNuevos);//Agrega la nueva entidad en el modelo local
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
-                    "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
-            }
-            entidades.SaveChanges();//Pasa los cambios a la base de datos
-            return DetallesNuevos.Id;
-        }
+        //public int GuardarDetallesCurso(int CursoXGrupo, int Horario, string Aula, int Profesor)
+        //{
+        //    Detalle_Curso DetallesNuevos = new Detalle_Curso();
+        //    DetallesNuevos.Curso = CursoXGrupo;
+        //    DetallesNuevos.Horario = Horario;
+        //    DetallesNuevos.Aula = Aula;
+        //    DetallesNuevos.Profesor = Profesor;
+        //    DetallesNuevos.Cupo = 0;
+        //    try
+        //    {
+        //        entidades.Detalle_Curso.Add(DetallesNuevos);//Agrega la nueva entidad en el modelo local
+        //    }
+        //    catch (ArgumentException e)
+        //    {
+        //        throw e;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+        //            "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+        //    }
+        //    entidades.SaveChanges();//Pasa los cambios a la base de datos
+        //    return DetallesNuevos.Id;
+        //}
         
         public void guardarCurso(Curso curso)
         {
@@ -159,12 +160,12 @@ namespace SACAAE.Models
             }
         }
 
-        public IQueryable<Detalle_Curso> ObtenerDetalleCursos(int CursoXGrupo)
-        {
-            return from Detalle_Curso in entidades.Detalle_Curso
-                   where Detalle_Curso.Curso == CursoXGrupo
-                   select Detalle_Curso;
-        }
+        //public IQueryable<Detalle_Grupo> ObtenerDetalleCursos(int CursoXGrupo)
+        //{
+        //    return from Detalle_Curso in entidades.Detalle_Grupo
+        //           where Detalle_Curso.Curso == CursoXGrupo
+        //           select Detalle_Curso;
+        //}
 
         public bool existeCurso(string Curso)
         {

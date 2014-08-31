@@ -52,5 +52,19 @@ namespace SACAAE.Controllers
             return RedirectToAction("CrearBloqueXPlan", new { plan = PlanID });
         }
 
+        public ActionResult ObtenerBloques(int plan)
+        {
+            IQueryable listaBloques = vRepoBloques.ListarBloquesXPlan(plan);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(new SelectList(
+                        listaBloques,
+                        "ID",
+                        "Descripcion"), JsonRequestBehavior.AllowGet
+                        );
+            }
+            return View(listaBloques);
+        }
+
     }
 }

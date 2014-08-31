@@ -28,15 +28,17 @@ public partial class Grupo
 
     public int ID { get; set; }
 
-    public string Nombre { get; set; }
+    public int Numero { get; set; }
 
     public int PlanDeEstudio { get; set; }
 
     public int Periodo { get; set; }
 
-    public int Bloque { get; set; }
+    public int BloqueXPlanXCursoID { get; set; }
 
 
+
+    public virtual BloqueXPlanXCurso BloqueXPlanXCurso { get; set; }
 
     public virtual ICollection<CursosXGrupo> CursosXGrupoes { get; set; }
 

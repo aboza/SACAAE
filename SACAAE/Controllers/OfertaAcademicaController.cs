@@ -41,7 +41,6 @@ namespace SACAAE.Controllers
         [Authorize]
         public ActionResult EliminarOferta(int id)
         {
-            ViewBag.Grupo = id;
             var model = vRepoGrupos.obtenerUnGrupo(id);
             return View(model);
         }

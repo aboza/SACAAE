@@ -26,9 +26,7 @@ namespace SACAAE.Models
 
         public Grupo obtenerUnGrupo(int id)
         {
-            return (from Grupos in entidades.Grupoes
-                   where Grupos.ID == id
-                   select Grupos).SingleOrDefault();
+            return entidades.Grupoes.SingleOrDefault(grupo => grupo.ID == id);
         }
         public int ObtenerUltimoNumeroGrupo(int PlanXSedeID, int PeriodoID, int BloqueXPlanXCursoID)
         {
@@ -42,11 +40,16 @@ namespace SACAAE.Models
                 return 1;
         }
 
-        public void eliminarGrupo(Grupo grupo)
+        public void eliminarGrupo(Grupo pGrupo)
         {
-                entidades.Grupoes.Remove(grupo);
+            var vGrupo = entidades.Grupoes.SingleOrDefault(grupo => grupo.ID == pGrupo.ID);
+            if (vGrupo != null)
+            {
+                entidades.Grupoes.Remove(vGrupo);
                 Save();
-            //throw new Exception("Se ha producido un error, no se ha encontrado referencia del registro seleccionado. Por Favor comuniquese con un administrador.");
+            }
+            else
+                return;
         }
 
         //public IQueryable<Grupo> ObtenerTodosGrupos()

@@ -34,13 +34,11 @@
                     @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
             </div>
             <br />
-            <div class="editor-field">
-                    <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
+            <p>
+                <input type="submit" value="Crear" class="btn" />
+                | @Html.ActionLink("Regresar", "Index")
+            </p>
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Regresar", "Index")
-    </div>
 </div>

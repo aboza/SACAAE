@@ -4,27 +4,7 @@
     ViewBag.Title = "Planes";
     Layout = "~/Views/Shared/Privado.cshtml";
 }
-    @section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-    $("#sltBloque").change(function () {
-                var id = $('select[name="sltBloque"]').val();
-                /*
-                var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")'); 
-                var href = $newLinkTarget.attr('href') + '?plan=' + id;
-                $newLinkTarget.attr('href', href);
-                $("#bloquesLink").html($newLinkTarget);*/
-                if (id != " ") {
-                    $("#verCursos").prop("disabled", false);
-                }
-                else
-                    $("#verCursos").prop("disabled", true);
-            });
-        });
-        
-    </script>
-
-}
+   
 
 
 

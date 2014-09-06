@@ -204,6 +204,7 @@
     <Compile Include="Controllers\OfertaAcademicaController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\PlazasController.cs" />
     <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="Controllers\ProfesoresProyectosController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
@@ -252,6 +253,12 @@
     <Compile Include="Models\Periodo.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Plaza.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlazaXProfesor.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Profesore.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
@@ -275,6 +282,7 @@
     <Compile Include="Models\RepositorioPlanesDeEstudio.cs" />
     <Compile Include="Models\repositorioPlanesEstudio.cs" />
     <Compile Include="Models\repositorioPlanesXSedes.cs" />
+    <Compile Include="Models\RepositorioPlazas.cs" />
     <Compile Include="Models\RepositorioProfesor.cs" />
     <Compile Include="Models\RepositorioProfesorProyecto.cs" />
     <Compile Include="Models\RepositorioProyecto.cs" />
@@ -530,6 +538,11 @@
     <Content Include="Views\Plans\EliminarBloque.cshtml" />
     <Content Include="Views\OfertaAcademica\Index.cshtml" />
     <Content Include="Views\OfertaAcademica\EliminarOferta.cshtml" />
+    <Content Include="Views\Plazas\Index.cshtml" />
+    <Content Include="Views\Plazas\Crear.cshtml" />
+    <Content Include="Views\Plazas\Detalles.cshtml" />
+    <Content Include="Views\Plazas\Editar.cshtml" />
+    <Content Include="Views\Plazas\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

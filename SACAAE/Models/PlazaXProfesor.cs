@@ -12,20 +12,13 @@ namespace SACAAE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Estado
+    public partial class PlazaXProfesor
     {
-        public Estado()
-        {
-            this.Comisiones = new HashSet<Comisione>();
-            this.Profesores = new HashSet<Profesore>();
-            this.Proyectos = new HashSet<Proyecto>();
-        }
+        public int ID { get; set; }
+        public int Plaza { get; set; }
+        public int Profesor { get; set; }
     
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-    
-        public virtual ICollection<Comisione> Comisiones { get; set; }
-        public virtual ICollection<Profesore> Profesores { get; set; }
-        public virtual ICollection<Proyecto> Proyectos { get; set; }
+        public virtual Plaza Plaza1 { get; set; }
+        public virtual Profesore Profesore { get; set; }
     }
 }

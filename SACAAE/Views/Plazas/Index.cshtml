@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SACAAE.Models.Plaza>
+
+@{
+    ViewBag.Title = "Plazas";
+    Layout = "~/Views/Shared/Privado.cshtml";
+}
+
+<div class="row">
+    <h2>Lista de Plazas</h2>
+    <div class="span12">
+        @if (TempData.ContainsKey("Message"))
+        {
+            <p class="text-success">@TempData["Message"].ToString()</p>
+        }
+        <p>
+            @Html.ActionLink("Agregar Nuevo", "Crear")
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <table class="table">
+            <tr>
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    Tipo de Plaza
+                </th>
+                <th>
+                    Tipo según tiempo
+                </th>
+                <th>
+                    Horas Totales
+                </th>
+                <th>
+                    Tiempo de vigencia
+                </th>
+                <th>Acciones</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo_Plaza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo_de_plaza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo_segun_tiempo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Horas_Totales)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tiempo_de_vigencia)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                        @Html.ActionLink("Detalles", "Detalles", new { id = item.ID }) |
+                        @Html.ActionLink("Borrar", "Eliminar", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+

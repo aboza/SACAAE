@@ -24,6 +24,13 @@ namespace SACAAE.Models
                    select new { Aulas.ID, Aulas.Codigo, Aulas.Espacio, Aulas.Activa };
         }
 
+        public IQueryable ListarAulasXSedeCompleta(int pSedeID)
+        {
+            return from Aulas in entidades.Aulas
+                   where Aulas.SedeID == pSedeID
+                   select Aulas;
+        }
+
 
         public int idAula(string pCodigoAula)
         {

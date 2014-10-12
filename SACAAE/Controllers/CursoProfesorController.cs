@@ -127,21 +127,21 @@ namespace SACAAE.Controllers
             return View(listaCursos);
         }
 
-        //public ActionResult ObtenerGrupos(int curso)
-        //{
-        //    IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso);
-        //    if (HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        return Json(new SelectList(
-        //            listaGrupos,
-        //            "ID",
-        //            "Nombre"), JsonRequestBehavior.AllowGet
-        //            );
+        public ActionResult ObtenerGrupos(int curso, int plan, int bloque)
+        {
+            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso,plan,bloque);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(new SelectList(
+                    listaGrupos,
+                    "ID",
+                    "Numero"), JsonRequestBehavior.AllowGet
+                    );
 
-        //        //var json = JsonConvert.SerializeObject(listaGrupos);
-        //    }
-        //    return View(listaGrupos);
-        //}
+                //var json = JsonConvert.SerializeObject(listaGrupos);
+            }
+            return View(listaGrupos);
+        }
 
 
         //public ActionResult ObtenerInfo(int cursoxgrupo)

@@ -39,14 +39,17 @@ namespace SACAAE.Models
             }
         }
 
-        //public int IdHorarioCurso(int CursoBuscado, int PlanDeEstudioCurso)
-        //{
-        //    IQueryable<Detalle_Curso> Resultado =
-        //        from Detalle_Curso in entidades.Detalle_Curso
-        //        where Detalle_Curso.Curso == CursoBuscado//aqui necesito el id del curso x grupo
-        //        select Detalle_Curso;
-        //    return Resultado.FirstOrDefault().Horario;
-        //}
+        public int IdHorarioCurso(int grupo)
+       {
+            IQueryable<Detalle_Grupo> Resultado =
+                from Detalle_Grupos in entidades.Detalle_Grupo
+                where Detalle_Grupos.Grupo == grupo
+                select Detalle_Grupos;
+            Detalle_Grupo res= Resultado.FirstOrDefault();
+            if (res == null)
+                return 0;
+            return res.Horario;
+        }
 
         public IQueryable<Curso> ObtenerCursos(int PlanDeEstudio)
         {
@@ -101,30 +104,30 @@ namespace SACAAE.Models
             return NuevoProfesorXCurso.Id;
         }
 
-        //public int GuardarDetallesCurso(int CursoXGrupo, int Horario, string Aula, int Profesor)
-        //{
-        //    Detalle_Curso DetallesNuevos = new Detalle_Curso();
-        //    DetallesNuevos.Curso = CursoXGrupo;
-        //    DetallesNuevos.Horario = Horario;
-        //    DetallesNuevos.Aula = Aula;
-        //    DetallesNuevos.Profesor = Profesor;
-        //    DetallesNuevos.Cupo = 0;
-        //    try
-        //    {
-        //        entidades.Detalle_Curso.Add(DetallesNuevos);//Agrega la nueva entidad en el modelo local
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-        //        throw e;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
-        //            "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
-        //    }
-        //    entidades.SaveChanges();//Pasa los cambios a la base de datos
-        //    return DetallesNuevos.Id;
-        //}
+        public int GuardarDetallesCurso(int grupo, int Horario, string Aula, int Profesor,int cupo)
+        {
+            Detalle_Grupo DetallesNuevos = new Detalle_Grupo();
+            DetallesNuevos.Grupo = grupo;
+            DetallesNuevos.Horario = Horario;
+            DetallesNuevos.Aula = Aula;
+            DetallesNuevos.Profesor = Profesor;
+            DetallesNuevos.Cupo = cupo;
+            try
+            {
+                entidades.Detalle_Grupo.Add(DetallesNuevos);//Agrega la nueva entidad en el modelo local
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+                    "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+            }
+            entidades.SaveChanges();//Pasa los cambios a la base de datos
+            return DetallesNuevos.Id;
+        }
         
         public void guardarCurso(Curso curso)
         {

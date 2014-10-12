@@ -231,7 +231,13 @@
     <Compile Include="Models\Comisione.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComisionesXProfesor.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Curso.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CursosXGrupo.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detalle_Grupo.cs">
@@ -243,6 +249,9 @@
     <Compile Include="Models\Estado.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Grupo.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Horario.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
@@ -252,10 +261,22 @@
     <Compile Include="Models\Periodo.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlanesDeEstudio.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PlanesDeEstudioXSede.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Profesore.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfesoresXCurso.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Proyecto.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProyectosXProfesor.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RepositorioAulas.cs" />
@@ -280,27 +301,6 @@
     <Compile Include="Models\RepositorioProyecto.cs" />
     <Compile Include="Models\RepositorioSACAAE.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ComisionesXProfesor.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CursosXGrupo.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Grupo.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PlanesDeEstudio.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PlanesDeEstudioXSede.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProfesoresXCurso.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProyectosXProfesor.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\repositorioSedes.cs" />
     <Compile Include="Models\SACAAEDataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -530,6 +530,7 @@
     <Content Include="Views\Plans\EliminarBloque.cshtml" />
     <Content Include="Views\OfertaAcademica\Index.cshtml" />
     <Content Include="Views\OfertaAcademica\EliminarOferta.cshtml" />
+    <Content Include="Views\Horarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

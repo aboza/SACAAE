@@ -52,18 +52,21 @@ namespace SACAAE.Models
                 return;
         }
 
-        //public IQueryable<Grupo> ObtenerTodosGrupos()
-        //{
-        //    return from Grupo in entidades.Grupoes
-        //           orderby Grupo.Nombre
-        //           select Grupo;
-        //}
-        //public IQueryable<Grupo> ListaGrupos(int PlanDeEstudio, int Periodo, int Bloque)
-        //{
-        //    return from Grupo in entidades.Grupoes
-        //           where Grupo.PlanDeEstudio == PlanDeEstudio && Grupo.Bloque == Bloque && Grupo.Periodo == Periodo
-        //           select Grupo;
-        //}
+        public IQueryable<Grupo> ObtenerTodosGrupos()
+        {
+            return from Grupo in entidades.Grupoes
+                   orderby Grupo.Numero
+                   select Grupo;
+        }
+        public IQueryable<Grupo> ListaGrupos(int PlanDeEstudio, int Periodo, int Bloque)
+        {
+            var idBloque = from bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes
+                           join bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios on bloqueXPlanXCurso.BloqueXPlanID equals bloqueXPlan.ID
+                           select bloqueXPlan.BloqueID;
+            return from Grupo in entidades.Grupoes
+                   where Grupo.PlanDeEstudio == PlanDeEstudio && Grupo.BloqueXPlanXCursoID == Bloque && Grupo.Periodo == Periodo
+                   select Grupo;
+        }
         
         //public bool existeGrupo(string name, int periodo, int IDplan)
         //{

@@ -21,7 +21,7 @@ namespace SACAAE
 
             routes.MapRoute(
              "ObtenerGrupos",
-             "CursoProfesor/Grupos/List/{curso}",
+             "CursoProfesor/Grupos/List/{curso}/{plan}/{bloque}",
              new { Controller = "CursoProfesor", action = "ObtenerGrupos" });
 
             routes.MapRoute(
@@ -127,6 +127,7 @@ namespace SACAAE
              "ObtenerOfertasAcademicas",
              "OfertaAcademica/Ofertas/List/{sede}/{plan}/{periodo}",
              new { Controller = "OfertaAcademica", action = "ObtenerOfertasAcademicas" });
+
 
             /*Fin rutas Jack 2014 S2*/
         }

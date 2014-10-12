@@ -134,15 +134,19 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="curso">El id del curso.</param>
         /// <returns>Lista de grupos abiertos de ese curso.</returns>
-        //public IQueryable obtenerGrupos(int curso)
-        //{
-        //    var Curso = obtenerCurso(curso);
-            
-        //    return from grupos in entidades.Grupoes
-        //           join cursosxgrupo in entidades.CursosXGrupoes on grupos.ID equals cursosxgrupo.Grupo
-        //           where cursosxgrupo.Curso == curso
-        //           select new { cursosxgrupo.ID, Nombre = (Curso + " - " + grupos.Nombre)};
-        //}
+        public IQueryable obtenerGrupos(int curso,int plan, int bloque)
+        {
+            var idBloqueXPlan = (from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
+                                 where bloqueXPlan.BloqueID == bloque && bloqueXPlan.PlanID == plan
+                                 select bloqueXPlan.ID).FirstOrDefault();
+            var idBloqueXPlanXCurso = (from bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes
+                                       where bloqueXPlanXCurso.CursoID == curso && bloqueXPlanXCurso.BloqueXPlanID == idBloqueXPlan
+                                      select bloqueXPlanXCurso.ID).FirstOrDefault();
+
+            return from grupos in entidades.Grupoes
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso
+                   select new { grupos.ID, grupos.Numero };
+        }
 
         /// <summary>
         /// Obtiene el nombre de un curso de acuerdo a su id.

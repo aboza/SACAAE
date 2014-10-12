@@ -36,8 +36,50 @@
     }
 </Style>
 
+@section Scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Deshabilitar componentes que no tienen datos cargados */
+        $("#sltCurso").prop("disabled", "disabled");
+        $("#sltGrupo").prop("disabled", "disabled");
+        /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
+        $("#sltBloque").change(function () {
+            var plan = getCookie("SelPlanDeEstudio");
+            var route = "/BloqueXPlanXCurso/Cursos/List/" + plan + "/" + $('select[name="sltBloque"]').val();
+            $.getJSON(route, function (data) {
+                var items = "";
+                $.each(data, function (i, curso) {
+                    items += "<option value= " + curso.Value + ">" + curso.Text + "</option>";
+                });
 
-<script>
+                
+                $("#sltCurso").prop("disabled", false);
+                $("#sltGrupo").html("");
+                $("#sltGrupo").prop("disabled", "disabled");
+                    $("#sltCurso").html(items);
+                    $("#sltCurso").prepend("<option value='' selected='selected'>-- Seleccionar Curso --</option>");
+                
+            });
+        });
+        $("#sltCurso").change(function () {
+            var plan = getCookie("SelPlanDeEstudio");
+            var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + $('select[name="sltBloque"]').val();
+
+            $.getJSON(route, function (data) {
+                var items = "";
+                $.each(data, function (i, grupo) {
+                    items += "<option value='" + grupo.Value + "'>" + grupo.Text + "</option>";
+                });
+
+
+                $("#sltGrupo").prop("disabled", false);
+                $("#sltGrupo").html(items);
+                $("#sltGrupo").prepend("<option value='' selected='selected'>-- Seleccionar Grupo --</option>");
+
+            });
+        });
+    });
+
     function Cargar() {
         var cookie = getCookie("ACargar");//i es el nombre de la cookie, es un contador de cursos pero en toda la sesion no local
         var cantidad = 0;
@@ -85,7 +127,10 @@
 function AgregarCurso()
     {
     var table = document.getElementById("Resultado");
-    var Curso = document.getElementById("ComboCursos").options[document.getElementById("ComboCursos").selectedIndex].value;
+    var Curso = document.getElementById("sltCurso").options[document.getElementById("sltCurso").selectedIndex].text;
+    var Bloque = document.getElementById("sltBloque").options[document.getElementById("sltBloque").selectedIndex].value;
+    var Grupo = document.getElementById("sltGrupo").options[document.getElementById("sltGrupo").selectedIndex].value;
+    var Aula = document.getElementById("sltAula").options[document.getElementById("sltAula").selectedIndex].text;
     var Dia = document.getElementById("ComboDia").options[document.getElementById("ComboDia").selectedIndex].value;
     var HoraInicio = document.getElementById("ComboHoraInicio").options[document.getElementById("ComboHoraInicio").selectedIndex].value;
     var HoraFin = document.getElementById("ComboHoraFin").options[document.getElementById("ComboHoraFin").selectedIndex].value;
@@ -154,13 +199,13 @@ function AgregarCurso()
     }
     cantidad++;
     setCookie("i", cantidad.toString(), 1);
-    setCookie("Cookie"+cantidad.toString(), Curso+"|"+Dia+"|"+HoraInicio+MinInicio+"|"+HoraFin+MinFin, 1);
+    setCookie("Cookie" + cantidad.toString(), Curso + "|" + Dia + "|" + HoraInicio + MinInicio + "|" + HoraFin + MinFin + "|"+Bloque+"|"+Grupo+"|"+Aula, 1);
 }
 
 function EliminarCurso()
 {
     var table = document.getElementById("Resultado");
-    var Curso = document.getElementById("ComboCursos").options[document.getElementById("ComboCursos").selectedIndex].value;
+    var Curso = document.getElementById("sltCurso").options[document.getElementById("sltCurso").selectedIndex].text;
     var Dia = document.getElementById("ComboDia").options[document.getElementById("ComboDia").selectedIndex].value;
     var HoraInicio = document.getElementById("ComboHoraInicio").options[document.getElementById("ComboHoraInicio").selectedIndex].value;
     var HoraFin;
@@ -276,20 +321,59 @@ return "";
 }
 </script>
 
+}
 
-<body onload="Cargar()">
 
 <div class="col-lg-4">
     <h2>Gestionar Horarios</h2>
     <hr />
         <div class="span12">
+            <label>
+                    Bloque
+                </label>
+                    <select id="sltBloque" name="sltBloque" class="form-control">
+                        @if (ViewBag.Bloques != null)
+                        {
+                            <option value=" " selected="selected">-- Seleccionar Bloque --</option>
+                            foreach (var item in ViewBag.Bloques)
+                            {         
+                            <option value="@item.ID">@item.Descripcion</option>
+                            }
+                        }
+                        else
+                        {
+                            <option selected="selected">No hay Bloques</option>
+                        }
+
+                    </select>
             <div class="editor-label">
-            Curso
-            <p id="demo"></p>
-            </div>
-            @Html.DropDownList("ComboCursos", new SelectList(ViewBag.Cursos),new {@id="ComboCursos"}) 
-            <div class="editor-field">
-            </div>
+            <label>
+                    Curso
+                </label>
+            </div>             
+            <select id="sltCurso" name="sltCurso" class="form-control"></select>
+            <label>
+                    Grupo
+                </label>
+            <select id="sltGrupo" name="sltGrupo" class="form-control"></select>
+    <label>
+                    Aula
+                </label>
+            <select id="sltAula" name="sltAula" class="form-control">
+                        @if (ViewBag.Aulas != null)
+                        {
+                            <option value=" " selected="selected">-- Seleccionar Aula --</option>
+                            foreach (var item in ViewBag.Aulas)
+                            {         
+                            <option value="@item.ID">@item.Codigo</option>
+                            }
+                        }
+                        else
+                        {
+                            <option selected="selected">No hay Aulas</option>
+                        }
+
+                    </select>
             <div class="editor-label">
             Dia
             </div>
@@ -370,8 +454,4 @@ return "";
                 </table>
     </div>
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
 
-</body>

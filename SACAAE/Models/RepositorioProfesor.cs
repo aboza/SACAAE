@@ -132,6 +132,17 @@ namespace SACAAE.Models
                 p.Nombre == profesor.Nombre) != null);
         }
 
+        public IQueryable obtenerProfeCursoPorPlan(int plan, int periodo)
+        {
+            return from Curso in entidades.Cursos
+                   join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.CursoID
+                   join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
+                   join grupo in entidades.Grupoes on BloqueXPlanXCursos.ID equals grupo.BloqueXPlanXCursoID
+                   join detalleGrupo in entidades.Detalle_Grupo on grupo.ID equals detalleGrupo.Grupo
+                   where BloquesXPlan.PlanID == plan && grupo.Periodo == periodo
+                   select new { Curso.Codigo, Curso.Nombre, grupo.Numero,detalleGrupo.Aula,detalleGrupo.Cupo };
+
+        }
         public void Save()
         {
             entidades.SaveChanges();            

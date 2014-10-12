@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CursoProfesorController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReporteProfeCursoPlanController.cs" />
     <Compile Include="Controllers\HorariosController.cs" />
     <Compile Include="Controllers\OfertaAcademicaController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
@@ -531,9 +532,11 @@
     <Content Include="Views\OfertaAcademica\Index.cshtml" />
     <Content Include="Views\OfertaAcademica\EliminarOferta.cshtml" />
     <Content Include="Views\Horarios\Index.cshtml" />
+    <Content Include="Views\ReporteProfeCursoPlan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ReporteProfeCursoPla\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -80,5 +80,15 @@ namespace SACAAE.Controllers
             var model = repositorio.ObtenerProfesor(id);
             return View(model);
         }
+
+        public ActionResult ObtenerCursosProfesoresPlan(int plan, int periodo)
+        {
+            IQueryable Info = repositorio.obtenerProfeCursoPorPlan(plan, periodo);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(Info, JsonRequestBehavior.AllowGet);
+            }
+            return View(Info);
+        }
     }
 }

@@ -132,6 +132,11 @@ namespace SACAAE
              "ObtenerGruposSinProfe",
              "CursoSinProfesor/Grupos/List/{curso}/{plan}/{bloque}",
              new { Controller = "CursoProfesor", action = "ObtenerGruposSinProfe" });
+
+            routes.MapRoute(
+             "ObtenerInfoReporteCursos",
+             "ObtenerInfoReporteCursos/List/{plan}/{periodo}",
+             new { Controller = "Profesor", action = "ObtenerCursosProfesoresPlan" });
             /*Fin rutas Jack 2014 S2*/
         }
     }

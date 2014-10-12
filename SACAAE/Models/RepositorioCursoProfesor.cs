@@ -148,6 +148,21 @@ namespace SACAAE.Models
                    select new { grupos.ID, grupos.Numero };
         }
 
+        public IQueryable obtenerGruposSinProfe(int curso, int plan, int bloque)
+        {
+            var idBloqueXPlan = (from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
+                                 where bloqueXPlan.BloqueID == bloque && bloqueXPlan.PlanID == plan
+                                 select bloqueXPlan.ID).FirstOrDefault();
+            var idBloqueXPlanXCurso = (from bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes
+                                       where bloqueXPlanXCurso.CursoID == curso && bloqueXPlanXCurso.BloqueXPlanID == idBloqueXPlan
+                                       select bloqueXPlanXCurso.ID).FirstOrDefault();
+
+            return from grupos in entidades.Grupoes
+                   join DetalleGrupo in entidades.Detalle_Grupo on grupos.ID equals DetalleGrupo.Grupo
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.Profesor == 1
+                   select new { grupos.ID, grupos.Numero };
+        }
+
         /// <summary>
         /// Obtiene el nombre de un curso de acuerdo a su id.
         /// </summary>
@@ -165,29 +180,29 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="cursoxgrupo">El id del curso por grupo.</param>
         /// <returns>El cupo y el aula del curso por grupo.</returns>
-        //public IQueryable obtenerInfo(int cursoxgrupo)
-        //{
-        //    return from detalle in entidades.Detalle_Curso
-        //           where detalle.Curso == cursoxgrupo
-        //           select new { detalle.Id, detalle.Curso, detalle.Aula, detalle.Cupo };
-        //}
+        public IQueryable obtenerInfo(int cursoxgrupo)
+        {
+            return from detalle in entidades.Detalle_Grupo
+                   where detalle.Grupo == cursoxgrupo
+                   select new { detalle.Id, detalle.Aula, detalle.Cupo };
+        }
 
         /// <summary>
         /// Obtiene el horario de un detalle de curso.
         /// </summary>
         /// <param name="cursoxgrupo">El id del curso por grupo.</param>
         /// <returns>Id del horario.</returns>
-        //public int obtenerHorario(int cursoxgrupo)
-        //{
-        //    var query = from detalle in entidades.Detalle_Curso
-        //                where detalle.Curso == cursoxgrupo
-        //                select detalle;
+        public int obtenerHorario(int cursoxgrupo)
+        {
+            var query = from detalle in entidades.Detalle_Grupo
+                        where detalle.Grupo == cursoxgrupo
+                        select detalle;
 
-        //    List<Detalle_Curso> config = query.ToList();
+            List<Detalle_Grupo> config = query.ToList();
 
 
-        //    return config[0].Horario;
-        //}
+            return config[0].Horario;
+        }
 
 
         /// <summary>
@@ -210,21 +225,30 @@ namespace SACAAE.Models
         /// <param name="idProfesor">El id del profesor que será asignado a ese curso</param>
         /// <param name="horas">La cantidad de horas del profesor.</param>
         /// <returns>True si se completa la operación.</returns>
-        public bool asignarProfesor(int id, int idProfesor, int horas)
+        public int asignarProfesor(int idProfesor, int horas)
         {
-            var retorno = false;
-            var temp = entidades.ProfesoresXCursoes.Find(id);
-
-            if (temp != null)
+            ProfesoresXCurso ProfXCurso =new ProfesoresXCurso();
+            ProfXCurso.Profesor=idProfesor;
+            ProfXCurso.Horas = horas;
+            try { entidades.ProfesoresXCursoes.Add(ProfXCurso); }
+            catch (ArgumentException e) { throw e; }
+            catch (Exception e)
             {
-                entidades.Entry(temp).Property(p => p.Profesor).CurrentValue = idProfesor;
-                entidades.Entry(temp).Property(p => p.Horas).CurrentValue = horas;
-                retorno = true;
+                throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+                    "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
             }
-
             entidades.SaveChanges();
 
-            return retorno;
+            return ProfXCurso.Id;
+        }
+
+        public int actualizarDetalleGrupo(int idProfesorXCurso, int detalleGrupo)
+        {
+            Detalle_Grupo infoGrupo = entidades.Detalle_Grupo.Find(detalleGrupo);
+            infoGrupo.Profesor = idProfesorXCurso;
+            entidades.SaveChanges();
+
+            return infoGrupo.Id;
         }
 
 

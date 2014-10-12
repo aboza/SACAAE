@@ -15,6 +15,7 @@ namespace SACAAE.Controllers
         // GET: /CursoProfesor/
         private RepositorioProfesor repositorioProfesor = new RepositorioProfesor();
         private RepositorioCursoProfesor repositorioCursoProfesor = new RepositorioCursoProfesor();
+        private repositorioGrupos vRepositorioGrupos =new repositorioGrupos();
         private const string TempDataMessageKey = "Message";
 
         [Authorize]
@@ -60,34 +61,34 @@ namespace SACAAE.Controllers
             return View();
         }
 
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras)
-        //{
-        //    var creado = false ;
-        //    var idProfesorXCurso = 0; 
-            
-        //    idProfesorXCurso = repositorioCursoProfesor.obtenerIdProfesorXGrupo(sltGrupo);
-        //    if (idProfesorXCurso != 0)
-        //    {
-        //        creado = repositorioCursoProfesor.asignarProfesor(idProfesorXCurso, sltProfesor, txtHoras);
+        [Authorize]
+        [HttpPost]
+        public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras)
+        {
+            var creado = 0 ;
+            var idProfesorXCurso = 0; 
+            var idDetalleGrupo = vRepositorioGrupos.obtenerUnDetalleGrupo(sltGrupo);
+            idProfesorXCurso = repositorioCursoProfesor.asignarProfesor(sltProfesor, txtHoras);
+            if (idProfesorXCurso != 0)
+            {
+                creado = repositorioCursoProfesor.actualizarDetalleGrupo(idProfesorXCurso, idDetalleGrupo.Id);
 
-        //        if (creado)
-        //        {
-        //            TempData[TempDataMessageKey] = "Profesor asignado correctamente.";
-        //        }
-        //        else
-        //        {
-        //            TempData[TempDataMessageKey] = "Ocurrió un error al asignar el profesor.";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        TempData[TempDataMessageKey] = "No se pudo obtener el id de profesor x curso.";
-        //    }
+                if (creado !=0)
+                {
+                    TempData[TempDataMessageKey] = "Profesor asignado correctamente.";
+                }
+                else
+                {
+                    TempData[TempDataMessageKey] = "Ocurrió un error al asignar el profesor.";
+                }
+            }
+            else
+            {
+                TempData[TempDataMessageKey] = "No se pudo obtener el id de profesor x curso.";
+            }
             
-        //    return RedirectToAction("Asignar");
-        //}
+            return RedirectToAction("Asignar");
+        }
 
         public ActionResult ObtenerPlanesEstudio(int sede, int modalidad)
         {
@@ -143,36 +144,52 @@ namespace SACAAE.Controllers
             return View(listaGrupos);
         }
 
+        public ActionResult ObtenerGruposSinProfe(int curso, int plan, int bloque)
+        {
+            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGruposSinProfe(curso, plan, bloque);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                return Json(new SelectList(
+                    listaGrupos,
+                    "ID",
+                    "Numero"), JsonRequestBehavior.AllowGet
+                    );
 
-        //public ActionResult ObtenerInfo(int cursoxgrupo)
-        //{
-        //    IQueryable listaInfo = repositorioCursoProfesor.obtenerInfo(cursoxgrupo);
-        //    if (HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        var json = JsonConvert.SerializeObject(listaInfo);
-
-        //        return Content(json);
-        //    }
-        //    return View(listaInfo);
-        //}
+                //var json = JsonConvert.SerializeObject(listaGrupos);
+            }
+            return View(listaGrupos);
+        }
 
 
-        //public ActionResult ObtenerHorario(int cursoxgrupo)
-        //{
-        //    int idHorario = repositorioCursoProfesor.obtenerHorario(cursoxgrupo);
-        //    IQueryable listaHorario = null;
+        public ActionResult ObtenerInfo(int cursoxgrupo)
+        {
+            IQueryable listaInfo = repositorioCursoProfesor.obtenerInfo(cursoxgrupo);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                var json = JsonConvert.SerializeObject(listaInfo);
 
-        //    if (idHorario != 0)
-        //    {
-        //        listaHorario = repositorioCursoProfesor.obtenerInfoHorario(idHorario);
+                return Content(json);
+            }
+            return View(listaInfo);
+        }
 
-        //        var json = JsonConvert.SerializeObject(listaHorario);
 
-        //        return Content(json);
-        //    }
+        public ActionResult ObtenerHorario(int cursoxgrupo)
+        {
+            int idHorario = repositorioCursoProfesor.obtenerHorario(cursoxgrupo);
+            IQueryable listaHorario = null;
 
-        //    return View(listaHorario);
-        //}
+            if (idHorario != 0)
+            {
+                listaHorario = repositorioCursoProfesor.obtenerInfoHorario(idHorario);
+
+                var json = JsonConvert.SerializeObject(listaHorario);
+
+               return Content(json);
+            }
+
+            return View(listaHorario);
+        }
 
         [Authorize]
         public ActionResult Revocar()

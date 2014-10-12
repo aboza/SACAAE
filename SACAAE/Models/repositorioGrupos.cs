@@ -28,6 +28,11 @@ namespace SACAAE.Models
         {
             return entidades.Grupoes.SingleOrDefault(grupo => grupo.ID == id);
         }
+
+        public Detalle_Grupo obtenerUnDetalleGrupo(int grupo)
+        {
+            return entidades.Detalle_Grupo.SingleOrDefault(detalleGrupo => detalleGrupo.Grupo == grupo);
+        }
         public int ObtenerUltimoNumeroGrupo(int PlanXSedeID, int PeriodoID, int BloqueXPlanXCursoID)
         {
             var vGrupos = from grupos in entidades.Grupoes

@@ -128,7 +128,10 @@ namespace SACAAE
              "OfertaAcademica/Ofertas/List/{sede}/{plan}/{periodo}",
              new { Controller = "OfertaAcademica", action = "ObtenerOfertasAcademicas" });
 
-
+            routes.MapRoute(
+             "ObtenerGruposSinProfe",
+             "CursoSinProfesor/Grupos/List/{curso}/{plan}/{bloque}",
+             new { Controller = "CursoProfesor", action = "ObtenerGruposSinProfe" });
             /*Fin rutas Jack 2014 S2*/
         }
     }

@@ -3,33 +3,32 @@ $(document).ready(function() {
     $("#sltPlan").prop("disabled", "disabled");
     $("#sltCurso").prop("disabled", "disabled");
     $("#sltGrupo").prop("disabled", "disabled");
-
+    $("#sltBloque").prop("disabled", "disabled");
     /* Se agregan los option por defecto a los select vacíos */
     itemSltPlan = "<option>Seleccione Sede y Modalidad</option>";
-    itemSltCurso = "<option>Seleccione Sede, Modalidad y Plan de Estudio</option>";
-    itemSltGrupo = "<option>Seleccione Sede, Modalidad, Plan de Estudio y Curso</option>";
+    itemSltBloque = "<option>Seleccione Sede, Modalidad y Plan de Estudio</option>";
+    itemSltGrupo = "<option>Seleccione Sede, Modalidad, Plan de Estudio, Bloque y Curso</option>";
+    itemSltCurso = "<option>Seleccione Sede, Modalidad, Plan de Estudio y Bloque</option>";
 
     $("#sltPlan").html(itemSltPlan);
     $("#sltCurso").html(itemSltCurso);
     $("#sltGrupo").html(itemSltGrupo);
+    $("#sltBloque").html(itemSltBloque);
 
     /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
     $("#sltModalidad, #sltSede").change(function () {
 
-        var route = "/CursoProfesor/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
-        //alert(route);
-
+        var route = "/Plans/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
         $.getJSON(route, function (data) {
             var items = "";
             $.each(data, function (i, plan) {
-
-                items += "<option value='" + plan.Value + "'>" + plan.Text + "</option>";
+                items += "<option value= " + plan.ID + ">" + plan.Nombre + "</option>";
             });
 
             if (items != "") {
-                $("#sltPlan").html(items);
-                $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan --</option>");
                 $("#sltPlan").prop("disabled", false);
+                $("#sltPlan").html(items);
+                $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan de Estudio --</option>");
             }
             else {
                 $("#sltPlan").html("<option>No hay planes para esa sede y modalidad</option>");
@@ -38,32 +37,44 @@ $(document).ready(function() {
     });
 
     $("#sltPlan").change(function () {
-        var route = "/CursoProfesor/Cursos/List/" + $('select[name="sltPlan"]').val();
+        var route = "/BloqueXPlan/Bloques/List/" + $('select[name="sltPlan"]').val();
         $.getJSON(route, function (data) {
             var items = "";
-            /*$.each(data, function (i, curso) {
-
-                items += "<option value='" + curso.Value + "'>" + curso.Text + "</option>";
-            });*/
-
-            for (var i = 0; i < data.length; i++) {
-                items += "<option value='" + data[i]["ID"] + "'>" + data[i]["Codigo"] + " - " + data[i]["Nombre"] + "</option>";
-            }
+            $.each(data, function (i, bloque) {
+                items += "<option value= " + bloque.Value + ">" + bloque.Text + "</option>";
+            });
 
             if (items != "") {
-                $("#sltCurso").html(items);
-                $("#sltCurso").prepend("<option value='' selected='selected'>-- Seleccionar Curso --</option>");
-                $("#sltCurso").prop("disabled", false);
+                $("#sltBloque").html(items);
+                $("#sltBloque").prepend("<option value='' selected='selected'>-- Seleccionar Bloque --</option>");
+                $("#sltBloque").prop("disabled", false);
             }
             else {
-                $("#sltCurso").html("<option>No hay cursos abiertos para ese plan de estudio.</option>")
+                $("#sltBloque").html("<option>No hay Bloque asignados para ese plan de estudio.</option>")
             }
         });
 
     });
+    $("#sltBloque").change(function () {
+        var route = "/BloqueXPlanXCurso/Cursos/List/" + $('select[name="sltPlan"]').val() + "/" + $('select[name="sltBloque"]').val();
+        $.getJSON(route, function (data) {
+            var items = "";
+            $.each(data, function (i, curso) {
+                items += "<option value= " + curso.Value + ">" + curso.Text + "</option>";
+            });
+
+
+            $("#sltCurso").prop("disabled", false);
+            $("#sltGrupo").html("");
+            $("#sltGrupo").prop("disabled", "disabled");
+            $("#sltCurso").html(items);
+            $("#sltCurso").prepend("<option value='' selected='selected'>-- Seleccionar Curso --</option>");
+
+        });
+    });
 
     $("#sltCurso").change(function () {
-        var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val();       
+        var route = "/CursoSinProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + $('select[name="sltPlan"]').val() + "/" + $('select[name="sltBloque"]').val();
         $.getJSON(route, function (data) {
             var items = "";
             //alert(data.toSource());
@@ -108,7 +119,6 @@ $(document).ready(function() {
             //alert(data.toSource());
             cupo = data[0]["Cupo"];
             aula = data[0]["Aula"];
-            id = data[0]["Curso"];
 
             //alert("id es " + id);
 
@@ -122,7 +132,7 @@ $(document).ready(function() {
             }
 
             /* Obtener información del horario */
-            route2 = "/CursoProfesor/Horarios/Info/"+ id;
+            route2 = "/CursoProfesor/Horarios/Info/" + $('select[name="sltGrupo"]').val();
 
             $.getJSON(route2, function (data) {
                 //alert(data.toSource());

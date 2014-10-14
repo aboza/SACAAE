@@ -134,13 +134,16 @@ namespace SACAAE.Models
 
         public IQueryable obtenerProfeCursoPorPlan(int plan, int periodo)
         {
+            var profe = "profe";
             return from Curso in entidades.Cursos
                    join BloqueXPlanXCursos in entidades.BloqueXPlanXCursoes on Curso.ID equals BloqueXPlanXCursos.CursoID
                    join BloquesXPlan in entidades.BloqueAcademicoXPlanDeEstudios on BloqueXPlanXCursos.BloqueXPlanID equals BloquesXPlan.ID
                    join grupo in entidades.Grupoes on BloqueXPlanXCursos.ID equals grupo.BloqueXPlanXCursoID
                    join detalleGrupo in entidades.Detalle_Grupo on grupo.ID equals detalleGrupo.Grupo
+                   join profesorxCurso in entidades.ProfesoresXCursoes on detalleGrupo.Profesor equals profesorxCurso.Id
+                   join profesor in entidades.Profesores on profesorxCurso.Profesor equals profesor.ID
                    where BloquesXPlan.PlanID == plan && grupo.Periodo == periodo
-                   select new { Curso.Codigo, Curso.Nombre, grupo.Numero,detalleGrupo.Aula,detalleGrupo.Cupo };
+                   select new { Curso.Codigo, Curso.Nombre, Curso.Externo,grupo.Numero,grupo.ID,detalleGrupo.Aula,detalleGrupo.Cupo,profe=profesor.Nombre};
 
         }
         public void Save()

@@ -34,18 +34,28 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Código</th><th>Nombre</th><th>Grupo</th><th>Aula</th><th>Cupo</th></tr>";
+                    var items = "<tr><th>Código</th><th>Nombre</th><th>Grupo</th><th>Curso Externo</th><th>Horario</th><th>Aula</th><th>Cupo</th><th>Profesor</th></tr>";
                     $.each(data, function (i, info) {
-                        items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td></tr>";
-                    });
+                        var route2 = "/CursoProfesor/Horarios/Info/" + info.ID;
+                        var horarioItems="";
+                        $.getJSON(route2, function (datos) {
+                            for (var k = 0; k < datos.length; k++) {
+                                horarioItems += datos[k]["Dia1"] + " " + datos[k]["Hora_Inicio"] + " - " + datos[k]["Hora_Fin"] + "\n";
+                                
+                            }
+
+                        items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td><input type='checkbox' value=" + info.Externo + " disabled></td><td colspan='3'>" + "<textarea rows='4' disabled='disabled' class='form-control'>" + horarioItems + "</textarea>" + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td></tr>";
+                        
 
                     if (items != "") {
                         $("#datosReporte").html(items);
                     }
+
+                        });
                 });
             });
         });
-        
+        });
     </script>
 
 }

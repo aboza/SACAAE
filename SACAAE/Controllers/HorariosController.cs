@@ -38,7 +38,6 @@ namespace SACAAE.Models
         {
             String PlanDeEstudio;
             String Modalidad;
-          
             
             try
             {
@@ -137,19 +136,24 @@ namespace SACAAE.Models
                 String Bloque = Partes[4];
                 int Grupo = Int32.Parse(Partes[5]);
                 String Aula = Partes[6];
-                int IdCurso = Cursos.IdCursos(Curso, PlanDeEstudio);
-                int IdHorario = Cursos.IdHorarioCurso(Grupo);
-                if(IdHorario!=0){
-                Horario.AgregarDia(Dia, IdHorario, Convert.ToInt32(HoraInicio), Convert.ToInt32(HoraFin));
-                }
-                else
+                if (Curso != "d")
                 {
-                    int HorarioNuevo = Horario.NuevoHorario();
-                    Horario.AgregarDia(Dia, HorarioNuevo, Convert.ToInt32(HoraInicio), Convert.ToInt32(HoraFin));
-                    int idAula=repoAulas.idAula(Aula);
-                    int cupo=repoAulas.ObtenerAula(idAula).Espacio;
-                    Cursos.GuardarDetallesCurso(Grupo,HorarioNuevo,Aula,1,cupo);
+                    int IdCurso = Cursos.IdCursos(Curso, PlanDeEstudio);
+                    int IdHorario = Cursos.IdHorarioCurso(Grupo);
+                    if (IdHorario != 0)
+                    {
+                        Horario.AgregarDia(Dia, IdHorario, Convert.ToInt32(HoraInicio), Convert.ToInt32(HoraFin));
+                    }
+                    else
+                    {
+                        int HorarioNuevo = Horario.NuevoHorario();
+                        Horario.AgregarDia(Dia, HorarioNuevo, Convert.ToInt32(HoraInicio), Convert.ToInt32(HoraFin));
+                        int idAula = repoAulas.idAula(Aula);
+                        int cupo = repoAulas.ObtenerAula(idAula).Espacio;
+                        Cursos.GuardarDetallesCurso(Grupo, HorarioNuevo, Aula, 1, cupo);
+                    }
                 }
+                
             }
             Response.Cookies.Clear();
             return RedirectToAction("Resultado");

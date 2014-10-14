@@ -160,3 +160,8 @@ $(document).ready(function() {
         });
     });
 });
+
+function habilitarHoras() {
+
+    $("#txtHoras").prop("disabled", false);
+}

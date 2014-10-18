@@ -49,5 +49,7 @@ namespace SACAAE.Models
         public DbSet<ProyectosXProfesor> ProyectosXProfesors { get; set; }
         public DbSet<Sede> Sedes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Plaza> Plazas { get; set; }
+        public DbSet<PlazaXProfesor> PlazaXProfesors { get; set; }
     }
 }

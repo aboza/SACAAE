@@ -15,6 +15,7 @@ namespace SACAAE.Controllers
 
         private const string TempDataMessageKey = "Message";
         private RepositorioPlazas repositorio = new RepositorioPlazas();
+        private RepositorioPlazaProfesor repositorioPlazaXProfesor = new RepositorioPlazaProfesor();
 
         [Authorize]
         public ActionResult Index()
@@ -94,5 +95,27 @@ namespace SACAAE.Controllers
             TempData[TempDataMessageKey] = "Plaza eliminada correctamente";
             return RedirectToAction("Index");
         }
+
+        //
+        // GET: /Plazas/Assign/5
+        [Authorize]
+        public ActionResult Asignar()
+        {
+           
+            ViewBag.Plaza = repositorio.ObtenerTodasPlazas();
+            ViewBag.Profesores = repositorio.ObtenerProfesoresPlaza();
+            return View();            
+        }
+
+        // POST: /Plazas/Delete/5
+        [Authorize]
+        [HttpPost]
+        public ActionResult Asignar(String sltPlaza, String sltProfesor, PlazaXProfesor plaza) 
+        {
+            repositorioPlazaXProfesor.AsignarPlaza(sltPlaza, sltProfesor, plaza.Horas_Asignadas);
+            TempData[TempDataMessageKey] = "Plaza creada correctamente.";
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -58,7 +58,11 @@
         <AssociationConnector Association="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID" />
         <AssociationConnector Association="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" />
         <AssociationConnector Association="SACAAEModel.FK_ProyectosXProfesor_Proyecto_Proyectos_ID" />
-      </Diagram>
+        <EntityTypeShape EntityType="SACAAEModel.Plaza" Width="1.5" PointX="4.5" PointY="20.25" />
+        <EntityTypeShape EntityType="SACAAEModel.PlazaXProfesor" Width="1.5" PointX="6.75" PointY="17.375" />
+        <AssociationConnector Association="SACAAEModel.FK_PlazaXProfesor_Plazas" />
+        <AssociationConnector Association="SACAAEModel.FK_PlazaXProfesor_Profesores" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

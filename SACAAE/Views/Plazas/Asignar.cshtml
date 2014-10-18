@@ -1,0 +1,73 @@
+﻿@model SACAAE.Models.PlazaXProfesor
+@{
+    ViewBag.Title = "Asignar";
+    Layout = "~/Views/Shared/Privado.cshtml";
+}
+
+<h2>Asignar Plaza a Profesor</h2>
+<hr />
+<div class="col-lg-4">
+    <div class="span12">
+        @if (TempData.ContainsKey("Message"))
+        {
+            <p class="text-success">@TempData["Message"].ToString()</p>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+
+            <div class="editor-label">
+                Plazas
+            </div>
+            <div class="editor-field">
+                <select id="sltPlaza" name="sltPlaza" class="form-control">
+                    @foreach (var item in ViewBag.Plaza)
+                    {
+                        <option value="@item.ID">@item.Codigo_Plaza</option>
+                    }
+                </select>
+            </div>
+            <br />
+
+            <br />
+
+            <div class="editor-label">
+                Profesores
+            </div>
+            <div class="editor-field">
+                <select id="sltProfesor" name="sltProfesor" class="form-control">
+                    @foreach (var item in ViewBag.Profesores)
+                    {
+                        <option value="@item.ID">@item.Nombre</option>
+                    }
+                </select>
+            </div>
+            <br />
+            
+            <br />
+            <div class="editor-label">
+                Horas Totales
+            </div>
+
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Horas_Asignadas)
+            </div>
+
+            <br />
+            
+            <br />
+            <p>
+                <input type="submit" value="Asignar" class="btn" />
+
+            </p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}

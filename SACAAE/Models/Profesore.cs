@@ -19,6 +19,7 @@ namespace SACAAE.Models
             this.ComisionesXProfesors = new HashSet<ComisionesXProfesor>();
             this.ProfesoresXCursoes = new HashSet<ProfesoresXCurso>();
             this.ProyectosXProfesors = new HashSet<ProyectosXProfesor>();
+            this.PlazaXProfesors = new HashSet<PlazaXProfesor>();
         }
     
         public int ID { get; set; }
@@ -32,5 +33,6 @@ namespace SACAAE.Models
         public virtual Estado Estado1 { get; set; }
         public virtual ICollection<ProfesoresXCurso> ProfesoresXCursoes { get; set; }
         public virtual ICollection<ProyectosXProfesor> ProyectosXProfesors { get; set; }
+        public virtual ICollection<PlazaXProfesor> PlazaXProfesors { get; set; }
     }
 }

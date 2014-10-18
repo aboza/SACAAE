@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/Privado.cshtml";
 }
 
-@section Scripts {
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/Scripts/jquery.battatech.excelexport.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             /* Deshabilitar componentes que no tienen datos cargados */
@@ -37,28 +39,27 @@
                     var items = "<tr><th>Código</th><th>Nombre</th><th>Grupo</th><th>Curso Externo</th><th>Horario</th><th>Aula</th><th>Cupo</th><th>Profesor</th></tr>";
                     $.each(data, function (i, info) {
                         var route2 = "/CursoProfesor/Horarios/Info/" + info.ID;
-                        var horarioItems="";
+                        var horarioItems = "";
                         $.getJSON(route2, function (datos) {
                             for (var k = 0; k < datos.length; k++) {
-                                horarioItems += datos[k]["Dia1"] + " " + datos[k]["Hora_Inicio"] + " - " + datos[k]["Hora_Fin"] + "\n";
-                                
+                                horarioItems += datos[k]["Dia1"] + " " + datos[k]["Hora_Inicio"] + " - " + datos[k]["Hora_Fin"] + "<br/>";
+
                             }
 
-                        items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td><input type='checkbox' value=" + info.Externo + " disabled></td><td colspan='3'>" + "<textarea rows='4' disabled='disabled' class='form-control'>" + horarioItems + "</textarea>" + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td></tr>";
-                        
+                            items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td><input type='checkbox' value=" + info.Externo + " disabled></td><td>" + horarioItems + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td></tr>";
 
-                    if (items != "") {
-                        $("#datosReporte").html(items);
-                    }
+
+                            if (items != "") {
+                                $("#datosReporte").html(items);
+                            }
 
                         });
+                    });
                 });
             });
         });
-        });
     </script>
 
-}
     <h2>Seleccionar Plan de Estudio</h2>
         @if (TempData.ContainsKey("MessageError"))
         {
@@ -144,9 +145,12 @@
     <br />
 <div class="row">
     <div class="span12">
+        <div id="dvData">
         <table id="datosReporte" class="table">
         </table>
+            </div>
     </div>
+    <button id="btnExport" >Export</button>
 </div>
             </div>
     </div>
@@ -154,3 +158,11 @@
 
 
     }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnExport").click(function (e) {
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+            e.preventDefault();
+        });
+    });
+</script>

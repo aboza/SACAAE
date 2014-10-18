@@ -13,7 +13,7 @@
             <p class="text-success">@TempData["Message"].ToString()</p>
         }
         <p>
-            @Html.ActionLink("Agregar Nuevo", "Crear")
+            @Html.ActionLink("Agregar Nuevo", "Crear")  | @Html.ActionLink("Asignar", "Asignar")
         </p>
     </div>
 </div>
@@ -61,7 +61,7 @@
                     <td>
                         @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
                         @Html.ActionLink("Detalles", "Detalles", new { id = item.ID }) |
-                        @Html.ActionLink("Borrar", "Eliminar", new { id = item.ID })
+                        @Html.ActionLink("Borrar", "Eliminar", new { id = item.ID })                       
                     </td>
                 </tr>
             }

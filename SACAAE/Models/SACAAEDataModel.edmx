@@ -160,6 +160,26 @@
           <Property Name="Sede" Type="int" Nullable="false" />
           <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Plazas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_Plaza" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Tipo_de_plaza" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Tipo_segun_tiempo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Horas_Totales" Type="int" />
+          <Property Name="Tiempo_de_vigencia" Type="int" />
+        </EntityType>
+        <EntityType Name="PlazaXProfesor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plaza" Type="int" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="Horas_Asignadas" Type="int" />
+        </EntityType>
         <EntityType Name="Profesores">
           <Key>
             <PropertyRef Name="ID" />
@@ -481,6 +501,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlazaXProfesor_Plazas">
+          <End Role="Plazas" Type="Self.Plazas" Multiplicity="1" />
+          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plazas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Plaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlazaXProfesor_Profesores">
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Profesores_Estado_Estado_Id">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
@@ -584,6 +628,8 @@
           <EntitySet Name="Periodos" EntityType="Self.Periodos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanesDeEstudio" EntityType="Self.PlanesDeEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanesDeEstudioXSede" EntityType="Self.PlanesDeEstudioXSede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plazas" EntityType="Self.Plazas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlazaXProfesor" EntityType="Self.PlazaXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfesoresXCurso" EntityType="Self.ProfesoresXCurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
@@ -677,6 +723,14 @@
           <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="Self.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
             <End Role="Sedes" EntitySet="Sedes" />
             <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlazaXProfesor_Plazas" Association="Self.FK_PlazaXProfesor_Plazas">
+            <End Role="Plazas" EntitySet="Plazas" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlazaXProfesor_Profesores" Association="Self.FK_PlazaXProfesor_Profesores">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="Self.FK_Profesores_Estado_Estado_Id">
             <End Role="Estado" EntitySet="Estado" />
@@ -852,7 +906,17 @@
             <End Role="Proyecto" EntitySet="Proyectos" />
             <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Plazas" EntityType="SACAAEModel.Plaza" />
+          <EntitySet Name="PlazaXProfesors" EntityType="SACAAEModel.PlazaXProfesor" />
+          <AssociationSet Name="FK_PlazaXProfesor_Plazas" Association="SACAAEModel.FK_PlazaXProfesor_Plazas">
+            <End Role="Plaza" EntitySet="Plazas" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlazaXProfesor_Profesores" Association="SACAAEModel.FK_PlazaXProfesor_Profesores">
+            <End Role="Profesore" EntitySet="Profesores" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesors" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Ajuste">
           <Key>
             <PropertyRef Name="IDConfig" />
@@ -1066,6 +1130,7 @@
           <NavigationProperty Name="Estado1" Relationship="SACAAEModel.FK_Profesores_Estado_Estado_Id" FromRole="Profesore" ToRole="Estado" />
           <NavigationProperty Name="ProfesoresXCursoes" Relationship="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProfesoresXCurso" />
           <NavigationProperty Name="ProyectosXProfesors" Relationship="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProyectosXProfesor" />
+          <NavigationProperty Name="PlazaXProfesors" Relationship="SACAAEModel.FK_PlazaXProfesor_Profesores" FromRole="Profesore" ToRole="PlazaXProfesor" />
         </EntityType>
         <EntityType Name="ProfesoresXCurso">
           <Key>
@@ -1471,6 +1536,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Plaza">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo_Plaza" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_de_plaza" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_segun_tiempo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Horas_Totales" Type="Int32" />
+          <Property Name="Tiempo_de_vigencia" Type="Int32" />
+          <NavigationProperty Name="PlazaXProfesors" Relationship="SACAAEModel.FK_PlazaXProfesor_Plazas" FromRole="Plaza" ToRole="PlazaXProfesor" />
+        </EntityType>
+        <EntityType Name="PlazaXProfesor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plaza" Type="Int32" Nullable="false" />
+          <Property Name="Profesor" Type="Int32" Nullable="false" />
+          <Property Name="Horas_Asignadas" Type="Int32" />
+          <NavigationProperty Name="Plaza1" Relationship="SACAAEModel.FK_PlazaXProfesor_Plazas" FromRole="PlazaXProfesor" ToRole="Plaza" />
+          <NavigationProperty Name="Profesore" Relationship="SACAAEModel.FK_PlazaXProfesor_Profesores" FromRole="PlazaXProfesor" ToRole="Profesore" />
+        </EntityType>
+        <Association Name="FK_PlazaXProfesor_Plazas">
+          <End Type="SACAAEModel.Plaza" Role="Plaza" Multiplicity="1" />
+          <End Type="SACAAEModel.PlazaXProfesor" Role="PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plaza">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Plaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlazaXProfesor_Profesores">
+          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
+          <End Type="SACAAEModel.PlazaXProfesor" Role="PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesore">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1709,6 +1821,28 @@
                 <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plazas">
+            <EntityTypeMapping TypeName="SACAAEModel.Plaza">
+              <MappingFragment StoreEntitySet="Plazas">
+                <ScalarProperty Name="Tiempo_de_vigencia" ColumnName="Tiempo_de_vigencia" />
+                <ScalarProperty Name="Horas_Totales" ColumnName="Horas_Totales" />
+                <ScalarProperty Name="Tipo_segun_tiempo" ColumnName="Tipo_segun_tiempo" />
+                <ScalarProperty Name="Tipo_de_plaza" ColumnName="Tipo_de_plaza" />
+                <ScalarProperty Name="Codigo_Plaza" ColumnName="Codigo_Plaza" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlazaXProfesors">
+            <EntityTypeMapping TypeName="SACAAEModel.PlazaXProfesor">
+              <MappingFragment StoreEntitySet="PlazaXProfesor">
+                <ScalarProperty Name="Horas_Asignadas" ColumnName="Horas_Asignadas" />
+                <ScalarProperty Name="Profesor" ColumnName="Profesor" />
+                <ScalarProperty Name="Plaza" ColumnName="Plaza" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

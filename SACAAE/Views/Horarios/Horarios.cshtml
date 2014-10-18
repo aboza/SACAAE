@@ -121,15 +121,20 @@
                     primera.style.backgroundColor = "#3276b1";
                     primera.rowSpan = CantCeldas.toString();
                     var route2 = "/CursoProfesor/Grupos/Info/" + $('select[name="sltGrupo"]').val();
-                    $.getJSON(route2, function (data) {
-                        var cookie = getCookie("i");//i es el nombre de la cookie, es un contador de cursos pero en toda la sesion no local
-                        var cantidad = 0;
-                        if (cookie != "" && cookie != null && !isNaN(cookie)) {
-                            cantidad = parseInt(cookie);
+                    $.ajax({
+                        url: route2,
+                        datatype: 'json',
+                        async: false,
+                        success: function (data) {
+                            var cookie = getCookie("i");//i es el nombre de la cookie, es un contador de cursos pero en toda la sesion no local
+                            var cantidad = 0;
+                            if (cookie != "" && cookie != null && !isNaN(cookie)) {
+                                cantidad = parseInt(cookie);
+                            }
+                            cantidad++;
+                            setCookie("i", cantidad.toString(), 1);
+                            setCookie("Cookie" + cantidad.toString(), Curso + "|" + Dia + "|" + HoraInicioCookie + "|" + HoraFinCookie + "|" + $('select[name="sltBloque"]').val() + "|" + $('select[name="sltGrupo"]').val() + "|" + data[0]["Aula"], 1);
                         }
-                        cantidad++;
-                        setCookie("i", cantidad.toString(), 1);
-                        setCookie("Cookie" + cantidad.toString(), Curso + "|" + Dia + "|" + HoraInicioCookie + "|" + HoraFinCookie + "|" + $('select[name="sltBloque"]').val() + "|" + $('select[name="sltGrupo"]').val() + "|" + data[0]["Aula"], 1);
                     });
                 }
 

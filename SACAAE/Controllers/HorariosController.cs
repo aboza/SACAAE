@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace SACAAE.Models
 {
@@ -38,11 +39,13 @@ namespace SACAAE.Models
         {
             String PlanDeEstudio;
             String Modalidad;
+            String Periodo;
             
             try
             {
                 PlanDeEstudio = Request.Cookies["SelPlanDeEstudio"].Value;
                 Modalidad = Request.Cookies["SelModalidad"].Value;
+                Periodo = Request.Cookies["Periodo"].Value;
             }
             catch (Exception e)
             {
@@ -50,7 +53,7 @@ namespace SACAAE.Models
             }
             
             int IdPlanDeEstudio = Int32.Parse(PlanDeEstudio);
-
+            int IdPeriodo = Int32.Parse(Periodo);
             List<String> Dias = new List<String>();
             Dias.Add("Lunes");
             Dias.Add("Martes");
@@ -83,7 +86,7 @@ namespace SACAAE.Models
             ViewBag.Minutos = Minutos;
             ViewBag.Bloques = repoBloques.ListarBloquesXPlan(IdPlanDeEstudio);
             ViewBag.Aulas = repoAulas.ListarAulasXSedeCompleta(idSede);
-
+            int idPlanXSede= repoPlanes.IdPlanDeEstudioXSede(idSede,IdPlanDeEstudio);
             return View();
         }
 
@@ -150,7 +153,7 @@ namespace SACAAE.Models
                         Horario.AgregarDia(Dia, HorarioNuevo, Convert.ToInt32(HoraInicio), Convert.ToInt32(HoraFin));
                         int idAula = repoAulas.idAula(Aula);
                         int cupo = repoAulas.ObtenerAula(idAula).Espacio;
-                        Cursos.GuardarDetallesCurso(Grupo, HorarioNuevo, Aula, 1, cupo);
+                        Cursos.GuardarDetallesCurso(Grupo, HorarioNuevo, Aula, 5, cupo);
                     }
                 }
                 
@@ -158,6 +161,23 @@ namespace SACAAE.Models
             Response.Cookies.Clear();
             return RedirectToAction("Resultado");
         }
+
+        public ActionResult ObtenerHorarios(int plan, int periodo)
+        {
+            int idSede = Int16.Parse(Request.Cookies["SelSede"].Value);
+            int idPlanXSede = repoPlanes.IdPlanDeEstudioXSede(idSede, plan);
+            IQueryable listaHorarios = Horario.obtenerInfo(idPlanXSede, periodo);
+                var json = JsonConvert.SerializeObject(listaHorarios);
+
+                return Content(json);
+        }
+
+        public ActionResult ExisteHorario(string dia,int HoraInicio, int HoraFin, string aula, int grupo)
+        {
+            int res = Horario.ExisteHorario(dia,HoraInicio, HoraFin, aula, grupo);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+        
 
         public ActionResult Resultado()
         {

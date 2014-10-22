@@ -17,9 +17,10 @@ namespace SACAAE.Models
         public int ID { get; set; }
         public int Plaza { get; set; }
         public int Profesor { get; set; }
+        public int HorasEnPropiedad { get; set; }
         public Nullable<int> Horas_Asignadas { get; set; }
     
         public virtual Plaza Plaza1 { get; set; }
-        public virtual Profesore Profesore { get; set; }
+        public virtual Profesores Profesores { get; set; }
     }
 }

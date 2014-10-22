@@ -22,7 +22,7 @@ namespace SACAAE.Models
     
         public virtual Horario Horario1 { get; set; }
         public virtual Periodo Periodo1 { get; set; }
-        public virtual Profesore Profesore { get; set; }
         public virtual Proyecto Proyecto1 { get; set; }
+        public virtual Profesores Profesores { get; set; }
     }
 }

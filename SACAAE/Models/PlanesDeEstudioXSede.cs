@@ -23,8 +23,8 @@ namespace SACAAE.Models
         public int Sede { get; set; }
         public int PlanDeEstudio { get; set; }
     
-        public virtual ICollection<Grupo> Grupoes { get; set; }
         public virtual PlanesDeEstudio PlanesDeEstudio { get; set; }
         public virtual Sede Sede1 { get; set; }
+        public virtual ICollection<Grupo> Grupoes { get; set; }
     }
 }

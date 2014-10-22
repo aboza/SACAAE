@@ -137,6 +137,17 @@ namespace SACAAE
              "ObtenerInfoReporteCursos",
              "ObtenerInfoReporteCursos/List/{plan}/{periodo}",
              new { Controller = "Profesor", action = "ObtenerCursosProfesoresPlan" });
+
+            routes.MapRoute(
+             "ExisteHorario",
+             "ExisteHorario/{dia}/{HoraInicio}/{HoraFin}/{aula}/{grupo}",
+             new { Controller = "Horarios", action = "ExisteHorario" });
+
+            routes.MapRoute(
+             "ObtenerHorariosPeriodo",
+             "getHorarios/List/{plan}/{periodo}",
+             new { Controller = "Horarios", action = "ObtenerHorarios" });
+
             /*Fin rutas Jack 2014 S2*/
         }
     }

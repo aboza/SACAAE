@@ -239,9 +239,6 @@
     <Compile Include="Models\Curso.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CursosXGrupo.cs">
-      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Detalle_Grupo.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
@@ -275,7 +272,7 @@
     <Compile Include="Models\PlazaXProfesor.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Profesore.cs">
+    <Compile Include="Models\Profesores.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProfesoresXCurso.cs">

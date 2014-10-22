@@ -55,7 +55,7 @@ namespace SACAAE.Models
         //                    sw.WriteLine("Curso;" +
         //                                item.Grupo1.Nombre + ";" +
         //                                item.Curso1.Nombre + ";" +
-        //                                Detalle.ProfesoresXCurso.Profesore.Nombre + ";" +
+        //                                Detalle.ProfesoresXCurso.Profesores.Nombre + ";" +
         //                                Dia.Dia1 + ";" +
         //                                HoraInicio + ";" +
         //                                HoraFin + ";" +
@@ -88,7 +88,7 @@ namespace SACAAE.Models
 
         //                    sw.WriteLine("Proyecto;N/A;" +
         //                                Proyecto.Nombre + ";" +
-        //                                Profe.Profesore.Nombre + ";" +
+        //                                Profe.Profesores.Nombre + ";" +
         //                                Dia.Dia1 + ";" +
         //                                HoraInicio + ";" +
         //                                HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +
@@ -115,7 +115,7 @@ namespace SACAAE.Models
 
         //                    sw.WriteLine("Comision;N/A;" +
         //                                Comision.Nombre + ";" +
-        //                                Profe.Profesore.Nombre + ";" +
+        //                                Profe.Profesores.Nombre + ";" +
         //                                Dia.Dia1 + ";" +
         //                                HoraInicio + ";" +
         //                                HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +

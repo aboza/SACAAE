@@ -64,7 +64,7 @@ namespace SACAAE.Controllers
             }
 
             /* Se obtiene la lista de profesores */
-            List<Profesore> ListaProfesores = repoProfesores.ObtenerTodosProfesores().ToList<Profesore>();
+            List<Profesores> ListaProfesores = repoProfesores.ObtenerTodosProfesores().ToList<Profesores>();
 
             if (ListaProfesores.Count > 0)
                 ViewBag.Profesores = ListaProfesores;

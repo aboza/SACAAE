@@ -14,11 +14,6 @@ namespace SACAAE.Models
     
     public partial class Grupo
     {
-        public Grupo()
-        {
-            this.CursosXGrupoes = new HashSet<CursosXGrupo>();
-        }
-    
         public int ID { get; set; }
         public int Numero { get; set; }
         public int PlanDeEstudio { get; set; }
@@ -26,7 +21,6 @@ namespace SACAAE.Models
         public int BloqueXPlanXCursoID { get; set; }
     
         public virtual BloqueXPlanXCurso BloqueXPlanXCurso { get; set; }
-        public virtual ICollection<CursosXGrupo> CursosXGrupoes { get; set; }
         public virtual Periodo Periodo1 { get; set; }
         public virtual PlanesDeEstudioXSede PlanesDeEstudioXSede { get; set; }
     }

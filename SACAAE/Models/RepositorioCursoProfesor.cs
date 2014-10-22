@@ -199,7 +199,10 @@ namespace SACAAE.Models
                         select detalle;
 
             List<Detalle_Grupo> config = query.ToList();
-
+            if(!config.Any())
+            {
+                return 0;
+            }
 
             return config[0].Horario;
         }

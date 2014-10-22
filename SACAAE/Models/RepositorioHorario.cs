@@ -93,5 +93,28 @@ namespace SACAAE.Models
                    where Dia.Horario == Horario
                    select Dia;
         }
+
+        public IQueryable obtenerInfo(int plan, int periodo)
+        {
+            return from Dias in entidades.Dias
+                   join detallesGrupo in entidades.Detalle_Grupo on Dias.Horario equals detallesGrupo.Horario
+                   join grupos in entidades.Grupoes on detallesGrupo.Grupo equals grupos.ID
+                   join bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes on grupos.BloqueXPlanXCursoID equals bloqueXPlanXCurso.ID
+                   join cursos in entidades.Cursos on bloqueXPlanXCurso.CursoID equals cursos.ID
+                   where grupos.PlanDeEstudio == plan && grupos.Periodo == periodo
+                   select new {Dias.Dia1, Dias.Hora_Inicio,Dias.Hora_Fin,cursos.Nombre, grupos.Numero, grupos.ID, detallesGrupo.Aula };
+        }
+
+        public int ExisteHorario(string dia, int HoraInicio, int HoraFin, string aula, int grupo)
+        {
+            var vDetalleGrupo=from Dia in entidades.Dias
+                   join DetalleGrupo in entidades.Detalle_Grupo on Dia.Horario equals DetalleGrupo.Horario
+                   where Dia.Dia1==dia && (Dia.Hora_Inicio <= HoraInicio || Dia.Hora_Fin >= HoraFin) && (DetalleGrupo.Aula == aula || DetalleGrupo.Grupo == grupo)
+                   select DetalleGrupo;
+            if (vDetalleGrupo.Any())
+                return 1;
+            else
+                return 0;
+        }
     }
 }

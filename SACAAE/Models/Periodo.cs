@@ -18,8 +18,8 @@ namespace SACAAE.Models
         {
             this.Ajustes = new HashSet<Ajuste>();
             this.ComisionesXProfesors = new HashSet<ComisionesXProfesor>();
-            this.Grupoes = new HashSet<Grupo>();
             this.ProyectosXProfesors = new HashSet<ProyectosXProfesor>();
+            this.Grupoes = new HashSet<Grupo>();
         }
     
         public int ID { get; set; }
@@ -27,7 +27,7 @@ namespace SACAAE.Models
     
         public virtual ICollection<Ajuste> Ajustes { get; set; }
         public virtual ICollection<ComisionesXProfesor> ComisionesXProfesors { get; set; }
-        public virtual ICollection<Grupo> Grupoes { get; set; }
         public virtual ICollection<ProyectosXProfesor> ProyectosXProfesors { get; set; }
+        public virtual ICollection<Grupo> Grupoes { get; set; }
     }
 }

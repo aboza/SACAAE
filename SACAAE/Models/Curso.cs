@@ -17,7 +17,6 @@ namespace SACAAE.Models
         public Curso()
         {
             this.BloqueXPlanXCursoes = new HashSet<BloqueXPlanXCurso>();
-            this.CursosXGrupoes = new HashSet<CursosXGrupo>();
         }
     
         public int ID { get; set; }
@@ -27,8 +26,8 @@ namespace SACAAE.Models
         public int Bloque { get; set; }
         public bool Externo { get; set; }
         public Nullable<int> HorasPracticas { get; set; }
+        public Nullable<int> Creditos { get; set; }
     
         public virtual ICollection<BloqueXPlanXCurso> BloqueXPlanXCursoes { get; set; }
-        public virtual ICollection<CursosXGrupo> CursosXGrupoes { get; set; }
     }
 }

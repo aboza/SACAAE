@@ -36,7 +36,7 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Código</th><th>Nombre</th><th>Grupo</th><th>Curso Externo</th><th>Horario</th><th>Aula</th><th>Cupo</th><th>Profesor</th></tr>";
+                    var items = "<tr><th>Codigo</th><th>Nombre</th><th>Grupo</th><th>Curso Externo</th><th>Horario</th><th>Aula</th><th>Cupo</th><th>Profesor</th><th>Creditos</th></tr>";
                     $.each(data, function (i, info) {
                         var route2 = "/CursoProfesor/Horarios/Info/" + info.ID;
                         var horarioItems = "";
@@ -45,8 +45,10 @@
                                 horarioItems += datos[k]["Dia1"] + " " + datos[k]["Hora_Inicio"] + " - " + datos[k]["Hora_Fin"] + "<br/>";
 
                             }
-
-                            items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td><input type='checkbox' value=" + info.Externo + " disabled></td><td>" + horarioItems + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td></tr>";
+                            var valorExterno = "No";
+                            if (info.Externo)
+                                valorExterno = "Si";
+                            items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td>" + valorExterno + "</td><td>" + horarioItems + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td><td>" + info.Creditos + "</td></tr>";
 
 
                             if (items != "") {

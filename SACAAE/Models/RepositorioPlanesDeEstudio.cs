@@ -75,6 +75,12 @@ namespace SACAAE.Models
             }
         }
 
+        public int IdPlanDeEstudioXSede(int sede, int plan)
+        {
+            return (from planXSede in entidades.PlanesDeEstudioXSedes
+                   where planXSede.Sede == sede && planXSede.PlanDeEstudio == plan
+                   select planXSede).FirstOrDefault().ID;
+        }
         public int IdPlanDeEstudioXSede(String Nombre, String Modalidad,String Sede)
         {
             int IdModalidad = (from Modalidade in entidades.Modalidades

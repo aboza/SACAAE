@@ -24,6 +24,6 @@ namespace SACAAE.Models
         public Nullable<int> Horas { get; set; }
     
         public virtual ICollection<Detalle_Grupo> Detalle_Grupo { get; set; }
-        public virtual Profesore Profesore { get; set; }
+        public virtual Profesores Profesores { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace SACAAE.Controllers
             }
 
             /* Se obtiene la lista de profesores */
-            List<Profesore> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesore>();
+            List<Profesores> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesores>();
             /* Se obtiene la lista de sedes */
             List<Sede> ListaSedes = repositorioCursoProfesor.obtenerTodasSedes().ToList<Sede>();
             /* Se obtiene la lista de modalidades */
@@ -204,7 +204,7 @@ namespace SACAAE.Controllers
             }
 
             /* Se obtiene la lista de profesores */
-            List<Profesore> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesore>();
+            List<Profesores> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesores>();
 
             if (ListaProfesores.Count > 0)
                 ViewBag.Profesores = ListaProfesores;

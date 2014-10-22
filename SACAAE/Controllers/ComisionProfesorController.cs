@@ -35,7 +35,7 @@ namespace SACAAE.Controllers
             {
                 ViewBag.returnUrl = null;
             }
-            List<Profesore> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesore>();
+            List<Profesores> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesores>();
             List<Comisione> ListaComisiones = repositorioComision.ObtenerTodasComisiones().ToList<Comisione>();
 
             if (ListaProfesores.Count > 0)
@@ -86,7 +86,7 @@ namespace SACAAE.Controllers
             }
 
             /* Se obtiene la lista de profesores */
-            List<Profesore> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesore>();
+            List<Profesores> ListaProfesores = repositorioProfesor.ObtenerTodosProfesores().ToList<Profesores>();
 
             if (ListaProfesores.Count > 0)
                 ViewBag.Profesores = ListaProfesores;

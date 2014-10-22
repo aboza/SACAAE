@@ -48,7 +48,7 @@ namespace SACAAE.Models
             using (Stream fs = new MemoryStream())
             {
                 StreamWriter sw = new StreamWriter(fs);
-                sw.WriteLine("Código;Nombre;Grupo;Curso Externo;Dia;Hora Inicio;Hora Fin;Cupo;Profesor");
+                sw.WriteLine("Codigo;Nombre;Grupo;Curso Externo;Dia;Hora Inicio;Hora Fin;Cupo;Profesor;Creditos");
                 string Periodo = Request.Cookies["Periodo"].Value;
                 int idPeriodo = Int16.Parse(Periodo);
                 string Plan = Request.Cookies["Plan"].Value;
@@ -69,7 +69,7 @@ namespace SACAAE.Models
                             sw.WriteLine(item.GetValue("Codigo",null) +";" +
                                         item.GetValue("Nombre",null) + ";" +
                                         item.GetValue("Numero",null) +";" +
-                                        item.GetValue("Externo",null) + ";" +
+                                        "si" + ";" +
                                         item.GetValue("Aula",null) + ";" +
                                         item.GetValue("Cupo",null) + ";" +
                                         item.GetValue("profe",null));
@@ -102,7 +102,7 @@ namespace SACAAE.Models
 
         //                    sw.WriteLine("Proyecto;N/A;" +
         //                                Proyecto.Nombre + ";" +
-        //                                Profe.Profesore.Nombre + ";" +
+        //                                Profe.Profesores.Nombre + ";" +
         //                                Dia.Dia1 + ";" +
         //                                HoraInicio + ";" +
         //                                HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +
@@ -129,7 +129,7 @@ namespace SACAAE.Models
 
         //                    sw.WriteLine("Comision;N/A;" +
         //                                Comision.Nombre + ";" +
-        //                                Profe.Profesore.Nombre + ";" +
+        //                                Profe.Profesores.Nombre + ";" +
         //                                Dia.Dia1 + ";" +
         //                                HoraInicio + ";" +
         //                                HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +

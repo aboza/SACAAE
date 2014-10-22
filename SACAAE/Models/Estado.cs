@@ -17,15 +17,15 @@ namespace SACAAE.Models
         public Estado()
         {
             this.Comisiones = new HashSet<Comisione>();
-            this.Profesores = new HashSet<Profesore>();
             this.Proyectos = new HashSet<Proyecto>();
+            this.Profesores = new HashSet<Profesores>();
         }
     
         public int Id { get; set; }
         public string Nombre { get; set; }
     
         public virtual ICollection<Comisione> Comisiones { get; set; }
-        public virtual ICollection<Profesore> Profesores { get; set; }
         public virtual ICollection<Proyecto> Proyectos { get; set; }
+        public virtual ICollection<Profesores> Profesores { get; set; }
     }
 }

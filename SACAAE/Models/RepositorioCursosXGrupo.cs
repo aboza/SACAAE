@@ -11,7 +11,7 @@ namespace SACAAE.Models
     {
         private SACAAEEntities entidades = new SACAAEEntities();
 
-        public IQueryable<CursosXGrupo> ObtenerCursosGrupo(int Grupo)
+        /*public IQueryable<CursosXGrupo> ObtenerCursosGrupo(int Grupo)
         {
             return from CursosXGrupo in entidades.CursosXGrupoes
                    where CursosXGrupo.Grupo==Grupo
@@ -59,6 +59,6 @@ namespace SACAAE.Models
 
             entidades.SaveChanges();//Pasa los cambios a la base de datos
             return CursoXGrupoNuevo.ID;
-        }
+        }*/
     }
 }

@@ -269,6 +269,9 @@
     <Compile Include="Models\Plaza.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlazasAsignada.cs">
+      <DependentUpon>SACAAEDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PlazaXProfesor.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>

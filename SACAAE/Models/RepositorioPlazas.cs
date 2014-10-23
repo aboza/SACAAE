@@ -66,6 +66,12 @@ namespace SACAAE.Models
           
         }
 
+        public IQueryable<PlazasAsignada> ObtenerPlazasAsignadas()
+        {
+            return from plazaAsig in entidades.PlazasAsignadas
+                   select plazaAsig;
+        }
+
         public Plaza ObtenerPlaza(string codigo)
         {
             return entidades.Plazas.SingleOrDefault(plaza => plaza.Codigo_Plaza == codigo);
@@ -166,41 +172,7 @@ namespace SACAAE.Models
 
             Save();
 
-        }
-
-        //public void AsignarPlaza(int codigoPlaza, int codigoProfesor, int? horasAsignadas)
-        //{
-        //   // if (string.IsNullOrEmpty(codigoPlaza.Trim()))
-        //     //   throw new ArgumentException("El codigo de la plaza no es válido. Por favor, intente de nuevo.");
-
-        //    PlazaXProfesor asignarPlaza = new PlazaXProfesor()
-        //    {
-        //        Plaza = codigoPlaza,
-        //        Profesor = codigoProfesor,
-        //        Horas_Asignadas = horasAsignadas
-        //    };
-
-        //    try
-        //    {
-        //        AgregarPlazaProfesor(asignarPlaza);
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-        //        throw e;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
-        //            "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
-        //    }
-
-        //    Save();
-        //}
-
-        //private void AgregarPlazaProfesor(PlazaXProfesor asignarPlaza)
-        //{
-        //    entidades.PlazaXProfesors.Add(asignarPlaza);
-        //}
+        }       
 
     }
 }

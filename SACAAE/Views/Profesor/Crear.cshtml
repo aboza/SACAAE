@@ -29,18 +29,7 @@
                 @Html.ValidationMessageFor(model => model.Nombre)
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Plaza)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.Plaza, new
-               {
-                   @class = "form-control",
-                   @placeholder = "Código de Plaza",
-                   @required = "true"
-               })
-                @Html.ValidationMessageFor(model => model.Plaza)
-            </div>
+            
 
             <div class="editor-label">
                 @Html.LabelFor(model => model.HorasEnPropiedad)

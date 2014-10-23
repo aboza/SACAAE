@@ -27,7 +27,7 @@ namespace SACAAE.Models
             entidades = new SACAAEEntities();
         }
 
-        public IQueryable<Profesores> ObtenerTodosProfesores()
+        public IQueryable<Profesore> ObtenerTodosProfesores()
         {
             return from profesor in entidades.Profesores
                    orderby profesor.Nombre
@@ -35,32 +35,36 @@ namespace SACAAE.Models
                    select profesor;
         }
 
-        public Profesores ObtenerProfesor(int id)
+        public Profesore ObtenerProfesor(int id)
         {
             return entidades.Profesores.SingleOrDefault(profesor => profesor.ID == id);
         }
 
-        public Profesores ObtenerProfesor(string nombre)
+        public Profesore ObtenerProfesor(string nombre)
         {
             return entidades.Profesores.SingleOrDefault(profesor => profesor.Nombre == nombre);
         }
 
-        private void AgregarProfesor(Profesores profesor)
+        private void AgregarProfesor(Profesore profesor)
         {
             if (ExisteProfesor(profesor))
                 throw new ArgumentException(MuchoProfesor);
             entidades.Profesores.Add(profesor);
         }
 
-        public void CrearProfesor(String nombre,String link, int estado)
+        public void CrearProfesor(String nombre, int horasPropiedad, String link, int estado)
         {
             if (string.IsNullOrEmpty(nombre.Trim()))
                 throw new ArgumentException("El nombre del profesor no es válido. Por favor, inténtelo de nuevo");
+            //if (string.IsNullOrEmpty(plaza.Trim()))
+                //throw new ArgumentException("El código de la plaza no es válido. Por favor, inténtelo de nuevo");
         
             
-            Profesores profesorNuevo = new Profesores()
+            Profesore profesorNuevo = new Profesore()
             {
                 Nombre = nombre,
+                //Plaza = plaza,
+                HorasEnPropiedad = horasPropiedad,
                 Link = link,
                 Estado = estado
             
@@ -83,7 +87,7 @@ namespace SACAAE.Models
             Save();
         }
 
-        public void BorrarProfesor(Profesores profesor)
+        public void BorrarProfesor(Profesore profesor)
         {
             if (!ExisteProfesor(profesor))
                 throw new ArgumentException(FaltaProfesor);
@@ -101,7 +105,7 @@ namespace SACAAE.Models
             BorrarProfesor(ObtenerProfesor(nombre));
         }
 
-        public void Actualizar(Profesores profesor)
+        public void Actualizar(Profesore profesor)
         {
             if (!ExisteProfesor(profesor))
                 AgregarProfesor(profesor);
@@ -111,6 +115,8 @@ namespace SACAAE.Models
             if (temp != null)
             {
                 entidades.Entry(temp).Property(p => p.Nombre).CurrentValue = profesor.Nombre;
+                //entidades.Entry(temp).Property(p => p.Plaza).CurrentValue = profesor.Plaza;
+                entidades.Entry(temp).Property(p => p.HorasEnPropiedad).CurrentValue = profesor.HorasEnPropiedad;
                 entidades.Entry(temp).Property(p => p.Link).CurrentValue = profesor.Link;
             }
 
@@ -118,7 +124,7 @@ namespace SACAAE.Models
         }
         
         /*Helpers*/
-        public bool ExisteProfesor(Profesores profesor)
+        public bool ExisteProfesor(Profesore profesor)
         {
             if (profesor == null)
                 return false;
@@ -137,7 +143,7 @@ namespace SACAAE.Models
                    join profesorxCurso in entidades.ProfesoresXCursoes on detalleGrupo.Profesor equals profesorxCurso.Id
                    join profesor in entidades.Profesores on profesorxCurso.Profesor equals profesor.ID
                    where BloquesXPlan.PlanID == plan && grupo.Periodo == periodo
-                   select new { Curso.Codigo, Curso.Nombre, Curso.Externo,Curso.Creditos,grupo.Numero,grupo.ID,detalleGrupo.Aula,detalleGrupo.Cupo,profe=profesor.Nombre};
+                   select new { Curso.Codigo, Curso.Nombre, Curso.Externo,grupo.Numero,grupo.ID,detalleGrupo.Aula,detalleGrupo.Cupo,profe=profesor.Nombre};
 
         }
         public void Save()

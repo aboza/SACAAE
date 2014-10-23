@@ -25,15 +25,15 @@ namespace SACAAE.Controllers
         [Authorize]
         public ActionResult Crear()
         {
-            var model = new Profesores();
+            var model = new Profesore();
             return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Crear(Profesores nuevoProfesor)
+        public ActionResult Crear(Profesore nuevoProfesor)
         {
-            repositorio.CrearProfesor(nuevoProfesor.Nombre, nuevoProfesor.Link, 1);
+            repositorio.CrearProfesor(nuevoProfesor.Nombre, nuevoProfesor.HorasEnPropiedad, nuevoProfesor.Link, 1);
             TempData[TempDataMessageKey] = "Profesor agregado correctamente.";
             return RedirectToAction("Index");
 
@@ -48,7 +48,7 @@ namespace SACAAE.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Eliminar(Profesores profesor)
+        public ActionResult Eliminar(Profesore profesor)
         {
             repositorio.BorrarProfesor(profesor);
             TempData[TempDataMessageKey] = "Profesor borrado correctamente.";
@@ -64,7 +64,7 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Editar(Profesores profesor)
+        public ActionResult Editar(Profesore profesor)
         {
             if (ModelState.IsValid)
             {

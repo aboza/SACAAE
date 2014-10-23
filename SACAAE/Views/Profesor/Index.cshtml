@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SACAAE.Models.Profesores>
+﻿@model IEnumerable<SACAAE.Models.Profesore>
 
 @{
     ViewBag.Title = "Profesores";
@@ -26,9 +26,6 @@
                     @Html.DisplayNameFor(model => model.Nombre)
                 </th>
                 
-                <th>
-                    @Html.DisplayNameFor(model => model.HorasEnPropiedad)
-                </th>
                  <th>
                     @Html.DisplayNameFor(model => model.Link)
                 </th>
@@ -42,9 +39,7 @@
                         @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HorasEnPropiedad)
-                    </td>
+
                     <td>
                         @if (item.Link == null)
                         {

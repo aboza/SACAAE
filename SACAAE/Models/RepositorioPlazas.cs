@@ -57,7 +57,7 @@ namespace SACAAE.Models
                    select PlazaXProfesor;
         }
 
-        public IQueryable<Profesores> ObtenerProfesoresPlaza()
+        public IQueryable<Profesore> ObtenerProfesoresPlaza()
         {
             return from profesor in entidades.Profesores
                    orderby profesor.Nombre                  

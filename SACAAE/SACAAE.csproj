@@ -275,7 +275,7 @@
     <Compile Include="Models\PlazaXProfesor.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Profesores.cs">
+    <Compile Include="Models\Profesore.cs">
       <DependentUpon>SACAAEDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProfesoresXCurso.cs">

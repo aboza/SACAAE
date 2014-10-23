@@ -4,106 +4,99 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="SACAAEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008">
+    <Schema Namespace="SACAAEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ajustes">
           <Key>
             <PropertyRef Name="IDConfig" />
           </Key>
-          <Property Name="IDConfig" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="IDPeriodoActual" Nullable="false" Type="int" />
+          <Property Name="IDConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDPeriodoActual" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Aulas">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Codigo" Nullable="false" MaxLength="50" Type="varchar" />
-          <Property Name="Espacio" Nullable="false" Type="int" />
-          <Property Name="Activa" Nullable="false" Type="bit" />
-          <Property Name="SedeID" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Espacio" Type="int" Nullable="false" />
+          <Property Name="Activa" Type="bit" Nullable="false" />
+          <Property Name="SedeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BloqueAcademico">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Descripcion" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Nivel" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BloqueAcademicoXPlanDeEstudio">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="PlanID" Nullable="false" Type="int" />
-          <Property Name="BloqueID" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanID" Type="int" Nullable="false" />
+          <Property Name="BloqueID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BloqueXPlanXCurso">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="BloqueXPlanID" Nullable="false" Type="int" />
-          <Property Name="CursoID" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BloqueXPlanID" Type="int" Nullable="false" />
+          <Property Name="CursoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Inicio" Nullable="false" Type="date" />
-          <Property Name="Fin" Nullable="false" Type="date" />
-          <Property Name="Estado" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Inicio" Type="date" Nullable="false" />
+          <Property Name="Fin" Type="date" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ComisionesXProfesor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Comision" Nullable="false" Type="int" />
-          <Property Name="Profesor" Nullable="false" Type="int" />
-          <Property Name="Periodo" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comision" Type="int" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="Periodo" Type="int" Nullable="false" />
           <Property Name="Horario" Type="int" />
         </EntityType>
         <EntityType Name="Cursos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Codigo" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="HorasTeoricas" Nullable="false" Type="int" />
-          <Property Name="Bloque" Nullable="false" Type="int" />
-          <Property Name="Externo" Nullable="false" Type="bit" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="HorasTeoricas" Type="int" Nullable="false" />
+          <Property Name="Bloque" Type="int" Nullable="false" />
+          <Property Name="Externo" Type="bit" Nullable="false" />
           <Property Name="HorasPracticas" Type="int" />
-        </EntityType>
-        <EntityType Name="CursosXGrupo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Curso" Nullable="false" Type="int" />
-          <Property Name="Grupo" Nullable="false" Type="int" />
+          <Property Name="Creditos" Type="int" />
         </EntityType>
         <EntityType Name="Detalle_Grupo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Grupo" Nullable="false" Type="int" />
-          <Property Name="Profesor" Nullable="false" Type="int" />
-          <Property Name="Horario" Nullable="false" Type="int" />
-          <Property Name="Aula" MaxLength="250" Type="varchar" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupo" Type="int" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="Horario" Type="int" Nullable="false" />
+          <Property Name="Aula" Type="varchar" MaxLength="250" />
           <Property Name="Cupo" Type="int" />
         </EntityType>
         <EntityType Name="Dia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Dia" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Horario" Nullable="false" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dia" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Horario" Type="int" Nullable="false" />
           <Property Name="Hora_Inicio" Type="int" />
           <Property Name="Hora_Fin" Type="int" />
         </EntityType>
@@ -111,149 +104,145 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" MaxLength="250" Type="varchar" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Numero" Nullable="false" Type="int" />
-          <Property Name="PlanDeEstudio" Nullable="false" Type="int" />
-          <Property Name="Periodo" Nullable="false" Type="int" />
-          <Property Name="BloqueXPlanXCursoID" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
+          <Property Name="Periodo" Type="int" Nullable="false" />
+          <Property Name="BloqueXPlanXCursoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Modalidades">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Periodos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanesDeEstudio">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Modalidad" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Modalidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanesDeEstudioXSede">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Sede" Nullable="false" Type="int" />
-          <Property Name="PlanDeEstudio" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sede" Type="int" Nullable="false" />
+          <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Plazas">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Codigo_Plaza" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Tipo_de_plaza" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Tipo_segun_tiempo" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo_Plaza" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Tipo_de_plaza" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Tipo_segun_tiempo" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Horas_Totales" Type="int" />
           <Property Name="Tiempo_de_vigencia" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazaXProfesor' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PlazaXProfesor">
           <Key>
             <PropertyRef Name="ID" />
-            
-            
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Plaza" Nullable="false" Type="int" />
-          <Property Name="Profesor" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plaza" Type="int" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="HorasEnPropiedad" Type="int" Nullable="false" />
           <Property Name="Horas_Asignadas" Type="int" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="HorasEnPropiedad" Nullable="false" Type="int" />
-          <Property Name="Link" MaxLength="250" Type="varchar" />
-          <Property Name="Estado" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="250" />
+          <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProfesoresXCurso">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Profesor" Nullable="false" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
           <Property Name="Horas" Type="int" />
         </EntityType>
         <EntityType Name="Proyectos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Inicio" Type="datetime" />
           <Property Name="Fin" Type="datetime" />
-          <Property Name="Estado" Nullable="false" Type="int" />
-          <Property Name="Link" MaxLength="250" Type="varchar" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ProyectosXProfesor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Proyecto" Nullable="false" Type="int" />
-          <Property Name="Profesor" Nullable="false" Type="int" />
-          <Property Name="Periodo" Nullable="false" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proyecto" Type="int" Nullable="false" />
+          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="Periodo" Type="int" Nullable="false" />
           <Property Name="Horario" Type="int" />
         </EntityType>
         <EntityType Name="Sedes">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Nombre" Nullable="false" MaxLength="50" Type="nvarchar" />
-          <Property Name="NombreUsuario" Nullable="false" MaxLength="50" Type="nvarchar" />
-          <Property Name="Contrasenia" Nullable="false" MaxLength="200" Type="nvarchar" />
-          <Property Name="Correo" Nullable="false" MaxLength="60" Type="nvarchar" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasenia" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SACAAEDB.dbo.PlazasAsignadas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PlazasAsignadas">
           <Key>
             <PropertyRef Name="Codigo_Plaza" />
             <PropertyRef Name="Nombre" />
           </Key>
-          <Property Name="Codigo_Plaza" Nullable="false" MaxLength="250" Type="varchar" />
-          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Codigo_Plaza" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Horas_Asignadas" Type="int" />
         </EntityType>
         <Association Name="FK_Ajustes_Periodo">
-          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
-          <End Type="Self.Ajustes" Multiplicity="*" Role="Ajustes" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="Ajustes" Type="Self.Ajustes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -264,8 +253,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Aulas_Sedes">
-          <End Type="Self.Sedes" Multiplicity="1" Role="Sedes" />
-          <End Type="Self.Aulas" Multiplicity="*" Role="Aulas" />
+          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
+          <End Role="Aulas" Type="Self.Aulas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sedes">
               <PropertyRef Name="ID" />
@@ -276,8 +265,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
-          <End Type="Self.BloqueAcademico" Multiplicity="1" Role="BloqueAcademico" />
-          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" Role="BloqueAcademicoXPlanDeEstudio" />
+          <End Role="BloqueAcademico" Type="Self.BloqueAcademico" Multiplicity="1" />
+          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BloqueAcademico">
               <PropertyRef Name="ID" />
@@ -288,8 +277,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-          <End Type="Self.PlanesDeEstudio" Multiplicity="1" Role="PlanesDeEstudio" />
-          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" Role="BloqueAcademicoXPlanDeEstudio" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
+          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -300,8 +289,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
-          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="1" Role="BloqueAcademicoXPlanDeEstudio" />
-          <End Type="Self.BloqueXPlanXCurso" Multiplicity="*" Role="BloqueXPlanXCurso" />
+          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="1" />
+          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BloqueAcademicoXPlanDeEstudio">
               <PropertyRef Name="ID" />
@@ -312,8 +301,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueXPlanXCurso_Cursos">
-          <End Type="Self.Cursos" Multiplicity="1" Role="Cursos" />
-          <End Type="Self.BloqueXPlanXCurso" Multiplicity="*" Role="BloqueXPlanXCurso" />
+          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
+          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cursos">
               <PropertyRef Name="ID" />
@@ -324,8 +313,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comisiones_Estado_Estado_Id">
-          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
-          <End Type="Self.Comisiones" Multiplicity="*" Role="Comisiones" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -336,8 +325,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Comision_Comisiones_ID">
-          <End Type="Self.Comisiones" Multiplicity="1" Role="Comisiones" />
-          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
+          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comisiones">
               <PropertyRef Name="ID" />
@@ -348,8 +337,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Horario_Horario_Id">
-          <End Type="Self.Horario" Multiplicity="0..1" Role="Horario" />
-          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -360,8 +349,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Periodo_Periodos_ID">
-          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
-          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -372,8 +361,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Profesor_Profesores_ID">
-          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
-          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -383,33 +372,9 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
-          <End Type="Self.Cursos" Multiplicity="1" Role="Cursos" />
-          <End Type="Self.CursosXGrupo" Multiplicity="*" Role="CursosXGrupo" />
-          <ReferentialConstraint>
-            <Principal Role="Cursos">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CursosXGrupo">
-              <PropertyRef Name="Curso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CursosXGrupo_Grupo_Grupo_ID">
-          <End Type="Self.Grupo" Multiplicity="1" Role="Grupo" />
-          <End Type="Self.CursosXGrupo" Multiplicity="*" Role="CursosXGrupo" />
-          <ReferentialConstraint>
-            <Principal Role="Grupo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CursosXGrupo">
-              <PropertyRef Name="Grupo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Detalle Curso_Horario_Horario_Id">
-          <End Type="Self.Horario" Multiplicity="1" Role="Horario" />
-          <End Type="Self.Detalle_Grupo" Multiplicity="*" Role="Detalle_Grupo" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Detalle_Grupo" Type="Self.Detalle_Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -420,8 +385,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-          <End Type="Self.ProfesoresXCurso" Multiplicity="1" Role="ProfesoresXCurso" />
-          <End Type="Self.Detalle_Grupo" Multiplicity="*" Role="Detalle_Grupo" />
+          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="1" />
+          <End Role="Detalle_Grupo" Type="Self.Detalle_Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProfesoresXCurso">
               <PropertyRef Name="Id" />
@@ -432,8 +397,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dia_Horario_Horario_Id">
-          <End Type="Self.Horario" Multiplicity="1" Role="Horario" />
-          <End Type="Self.Dia" Multiplicity="*" Role="Dia" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Dia" Type="Self.Dia" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -444,8 +409,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_BloqueXPlanXCurso">
-          <End Type="Self.BloqueXPlanXCurso" Multiplicity="1" Role="BloqueXPlanXCurso" />
-          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
+          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BloqueXPlanXCurso">
               <PropertyRef Name="ID" />
@@ -456,8 +421,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_Periodo_Periodos_ID">
-          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
-          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -468,8 +433,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="1" Role="PlanesDeEstudioXSede" />
-          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudioXSede">
               <PropertyRef Name="ID" />
@@ -480,8 +445,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-          <End Type="Self.Modalidades" Multiplicity="1" Role="Modalidades" />
-          <End Type="Self.PlanesDeEstudio" Multiplicity="*" Role="PlanesDeEstudio" />
+          <End Role="Modalidades" Type="Self.Modalidades" Multiplicity="1" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Modalidades">
               <PropertyRef Name="ID" />
@@ -492,8 +457,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-          <End Type="Self.PlanesDeEstudio" Multiplicity="1" Role="PlanesDeEstudio" />
-          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="*" Role="PlanesDeEstudioXSede" />
+          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -504,8 +469,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-          <End Type="Self.Sedes" Multiplicity="1" Role="Sedes" />
-          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="*" Role="PlanesDeEstudioXSede" />
+          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
+          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sedes">
               <PropertyRef Name="ID" />
@@ -515,9 +480,33 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlazaXProfesor_Plazas">
+          <End Role="Plazas" Type="Self.Plazas" Multiplicity="1" />
+          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plazas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Plaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlazaXProfesor_Profesores">
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesores">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Profesores_Estado_Estado_Id">
-          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
-          <End Type="Self.Profesores" Multiplicity="*" Role="Profesores" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -528,8 +517,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProfesoresXCurso_Profesor_Profesores_ID">
-          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
-          <End Type="Self.ProfesoresXCurso" Multiplicity="*" Role="ProfesoresXCurso" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -540,8 +529,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Proyectos_Estado_Estado_Id">
-          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
-          <End Type="Self.Proyectos" Multiplicity="*" Role="Proyectos" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -552,8 +541,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Horario_Horario_Id">
-          <End Type="Self.Horario" Multiplicity="0..1" Role="Horario" />
-          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
+          <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -564,8 +553,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Periodo_Periodos_ID">
-          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
-          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
+          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -576,8 +565,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Profesor_Profesores_ID">
-          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
-          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
+          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -588,8 +577,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-          <End Type="Self.Proyectos" Multiplicity="1" Role="Proyectos" />
-          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proyectos">
               <PropertyRef Name="ID" />
@@ -608,7 +597,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComisionesXProfesor" EntityType="Self.ComisionesXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cursos" EntityType="Self.Cursos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CursosXGrupo" EntityType="Self.CursosXGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle_Grupo" EntityType="Self.Detalle_Grupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dia" EntityType="Self.Dia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
@@ -619,20 +607,13 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySet Name="PlanesDeEstudio" EntityType="Self.PlanesDeEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanesDeEstudioXSede" EntityType="Self.PlanesDeEstudioXSede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plazas" EntityType="Self.Plazas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlazaXProfesor" EntityType="Self.PlazaXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfesoresXCurso" EntityType="Self.ProfesoresXCurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProyectosXProfesor" EntityType="Self.ProyectosXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sedes" EntityType="Self.Sedes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PlazaXProfesor" EntityType="Self.PlazaXProfesor" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PlazaXProfesor].[ID] AS [ID], 
-    [PlazaXProfesor].[Plaza] AS [Plaza], 
-    [PlazaXProfesor].[Profesor] AS [Profesor], 
-    [PlazaXProfesor].[Horas_Asignadas] AS [Horas_Asignadas]
-    FROM [dbo].[PlazaXProfesor] AS [PlazaXProfesor]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="PlazasAsignadas" EntityType="Self.PlazasAsignadas" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [PlazasAsignadas].[Codigo_Plaza] AS [Codigo_Plaza], 
@@ -641,120 +622,120 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
     FROM [dbo].[PlazasAsignadas] AS [PlazasAsignadas]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Ajustes_Periodo" Association="Self.FK_Ajustes_Periodo">
-            <End EntitySet="Periodos" Role="Periodos" />
-            <End EntitySet="Ajustes" Role="Ajustes" />
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="Ajustes" EntitySet="Ajustes" />
           </AssociationSet>
           <AssociationSet Name="FK_Aulas_Sedes" Association="Self.FK_Aulas_Sedes">
-            <End EntitySet="Sedes" Role="Sedes" />
-            <End EntitySet="Aulas" Role="Aulas" />
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="Aulas" EntitySet="Aulas" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico" Association="Self.FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
-            <End EntitySet="BloqueAcademico" Role="BloqueAcademico" />
-            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
+            <End Role="BloqueAcademico" EntitySet="BloqueAcademico" />
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" Association="Self.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
-            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" Association="Self.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
-            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
-            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
+            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueXPlanXCurso_Cursos" Association="Self.FK_BloqueXPlanXCurso_Cursos">
-            <End EntitySet="Cursos" Role="Cursos" />
-            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
+            <End Role="Cursos" EntitySet="Cursos" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="Self.FK_Comisiones_Estado_Estado_Id">
-            <End EntitySet="Estado" Role="Estado" />
-            <End EntitySet="Comisiones" Role="Comisiones" />
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Comisiones" EntitySet="Comisiones" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Comision_Comisiones_ID" Association="Self.FK_ComisionesXProfesor_Comision_Comisiones_ID">
-            <End EntitySet="Comisiones" Role="Comisiones" />
-            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
+            <End Role="Comisiones" EntitySet="Comisiones" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Horario_Horario_Id" Association="Self.FK_ComisionesXProfesor_Horario_Horario_Id">
-            <End EntitySet="Horario" Role="Horario" />
-            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Periodo_Periodos_ID" Association="Self.FK_ComisionesXProfesor_Periodo_Periodos_ID">
-            <End EntitySet="Periodos" Role="Periodos" />
-            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="Self.FK_ComisionesXProfesor_Profesor_Profesores_ID">
-            <End EntitySet="Profesores" Role="Profesores" />
-            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="Self.FK_CursosXGrupo_Curso_Cursos_ID">
-            <End EntitySet="Cursos" Role="Cursos" />
-            <End EntitySet="CursosXGrupo" Role="CursosXGrupo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="Self.FK_CursosXGrupo_Grupo_Grupo_ID">
-            <End EntitySet="Grupo" Role="Grupo" />
-            <End EntitySet="CursosXGrupo" Role="CursosXGrupo" />
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_Detalle Curso_Horario_Horario_Id" Association="Self.FK_Detalle Curso_Horario_Horario_Id">
-            <End EntitySet="Horario" Role="Horario" />
-            <End EntitySet="Detalle_Grupo" Role="Detalle_Grupo" />
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Detalle_Grupo" EntitySet="Detalle_Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id" Association="Self.FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-            <End EntitySet="ProfesoresXCurso" Role="ProfesoresXCurso" />
-            <End EntitySet="Detalle_Grupo" Role="Detalle_Grupo" />
+            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
+            <End Role="Detalle_Grupo" EntitySet="Detalle_Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="Self.FK_Dia_Horario_Horario_Id">
-            <End EntitySet="Horario" Role="Horario" />
-            <End EntitySet="Dia" Role="Dia" />
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Dia" EntitySet="Dia" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_BloqueXPlanXCurso" Association="Self.FK_Grupo_BloqueXPlanXCurso">
-            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
-            <End EntitySet="Grupo" Role="Grupo" />
+            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
+            <End Role="Grupo" EntitySet="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_Periodo_Periodos_ID" Association="Self.FK_Grupo_Periodo_Periodos_ID">
-            <End EntitySet="Periodos" Role="Periodos" />
-            <End EntitySet="Grupo" Role="Grupo" />
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="Grupo" EntitySet="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" Association="Self.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
-            <End EntitySet="Grupo" Role="Grupo" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+            <End Role="Grupo" EntitySet="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="Self.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-            <End EntitySet="Modalidades" Role="Modalidades" />
-            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
+            <End Role="Modalidades" EntitySet="Modalidades" />
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="Self.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
-            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
+            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="Self.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-            <End EntitySet="Sedes" Role="Sedes" />
-            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
+            <End Role="Sedes" EntitySet="Sedes" />
+            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlazaXProfesor_Plazas" Association="Self.FK_PlazaXProfesor_Plazas">
+            <End Role="Plazas" EntitySet="Plazas" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlazaXProfesor_Profesores" Association="Self.FK_PlazaXProfesor_Profesores">
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="Self.FK_Profesores_Estado_Estado_Id">
-            <End EntitySet="Estado" Role="Estado" />
-            <End EntitySet="Profesores" Role="Profesores" />
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Profesores" EntitySet="Profesores" />
           </AssociationSet>
           <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="Self.FK_ProfesoresXCurso_Profesor_Profesores_ID">
-            <End EntitySet="Profesores" Role="Profesores" />
-            <End EntitySet="ProfesoresXCurso" Role="ProfesoresXCurso" />
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Estado_Estado_Id" Association="Self.FK_Proyectos_Estado_Estado_Id">
-            <End EntitySet="Estado" Role="Estado" />
-            <End EntitySet="Proyectos" Role="Proyectos" />
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Horario_Horario_Id" Association="Self.FK_ProyectosXProfesor_Horario_Horario_Id">
-            <End EntitySet="Horario" Role="Horario" />
-            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Periodo_Periodos_ID" Association="Self.FK_ProyectosXProfesor_Periodo_Periodos_ID">
-            <End EntitySet="Periodos" Role="Periodos" />
-            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
+            <End Role="Periodos" EntitySet="Periodos" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="Self.FK_ProyectosXProfesor_Profesor_Profesores_ID">
-            <End EntitySet="Profesores" Role="Profesores" />
-            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
+            <End Role="Profesores" EntitySet="Profesores" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID" Association="Self.FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-            <End EntitySet="Proyectos" Role="Proyectos" />
-            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -770,7 +751,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySet Name="Comisiones" EntityType="SACAAEModel.Comisione" />
           <EntitySet Name="ComisionesXProfesors" EntityType="SACAAEModel.ComisionesXProfesor" />
           <EntitySet Name="Cursos" EntityType="SACAAEModel.Curso" />
-          <EntitySet Name="CursosXGrupoes" EntityType="SACAAEModel.CursosXGrupo" />
           <EntitySet Name="Detalle_Grupo" EntityType="SACAAEModel.Detalle_Grupo" />
           <EntitySet Name="Dias" EntityType="SACAAEModel.Dia" />
           <EntitySet Name="Estadoes" EntityType="SACAAEModel.Estado" />
@@ -780,7 +760,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySet Name="Periodos" EntityType="SACAAEModel.Periodo" />
           <EntitySet Name="PlanesDeEstudios" EntityType="SACAAEModel.PlanesDeEstudio" />
           <EntitySet Name="PlanesDeEstudioXSedes" EntityType="SACAAEModel.PlanesDeEstudioXSede" />
-          <EntitySet Name="Profesores" EntityType="SACAAEModel.Profesore" />
           <EntitySet Name="ProfesoresXCursoes" EntityType="SACAAEModel.ProfesoresXCurso" />
           <EntitySet Name="Proyectos" EntityType="SACAAEModel.Proyecto" />
           <EntitySet Name="ProyectosXProfesors" EntityType="SACAAEModel.ProyectosXProfesor" />
@@ -830,18 +809,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             <End Role="Periodo" EntitySet="Periodos" />
             <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesors" />
           </AssociationSet>
-          <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesore" EntitySet="Profesores" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID">
-            <End Role="Curso" EntitySet="Cursos" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="SACAAEModel.FK_CursosXGrupo_Grupo_Grupo_ID">
-            <End Role="Grupo" EntitySet="Grupoes" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupoes" />
-          </AssociationSet>
           <AssociationSet Name="FK_Detalle_Curso_Horario_Horario_Id" Association="SACAAEModel.FK_Detalle_Curso_Horario_Horario_Id">
             <End Role="Horario" EntitySet="Horarios" />
             <End Role="Detalle_Grupo" EntitySet="Detalle_Grupo" />
@@ -853,10 +820,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="SACAAEModel.FK_Dia_Horario_Horario_Id">
             <End Role="Horario" EntitySet="Horarios" />
             <End Role="Dia" EntitySet="Dias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="SACAAEModel.FK_Profesores_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estadoes" />
-            <End Role="Profesore" EntitySet="Profesores" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Estado_Estado_Id" Association="SACAAEModel.FK_Proyectos_Estado_Estado_Id">
             <End Role="Estado" EntitySet="Estadoes" />
@@ -890,14 +853,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             <End Role="Sede" EntitySet="Sedes" />
             <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSedes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID">
-            <End Role="Profesore" EntitySet="Profesores" />
-            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCursoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesore" EntitySet="Profesores" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID" Association="SACAAEModel.FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
             <End Role="Proyecto" EntitySet="Proyectos" />
             <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
@@ -908,9 +863,26 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             <End Role="Plaza" EntitySet="Plazas" />
             <End Role="PlazaXProfesor" EntitySet="PlazaXProfesors" />
           </AssociationSet>
+          <EntitySet Name="Profesores" EntityType="SACAAEModel.Profesore" />
+          <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID">
+            <End Role="Profesore" EntitySet="Profesores" />
+            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="SACAAEModel.FK_Profesores_Estado_Estado_Id">
+            <End Role="Estado" EntitySet="Estadoes" />
+            <End Role="Profesore" EntitySet="Profesores" />
+          </AssociationSet>
           <AssociationSet Name="FK_PlazaXProfesor_Profesores" Association="SACAAEModel.FK_PlazaXProfesor_Profesores">
             <End Role="Profesore" EntitySet="Profesores" />
             <End Role="PlazaXProfesor" EntitySet="PlazaXProfesors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID">
+            <End Role="Profesore" EntitySet="Profesores" />
+            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCursoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID">
+            <End Role="Profesore" EntitySet="Profesores" />
+            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesors" />
           </AssociationSet>
           <EntitySet Name="PlazasAsignadas" EntityType="SACAAEModel.PlazasAsignada" />
           </EntityContainer>
@@ -1002,17 +974,7 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <Property Name="Externo" Type="Boolean" Nullable="false" />
           <Property Name="HorasPracticas" Type="Int32" />
           <NavigationProperty Name="BloqueXPlanXCursoes" Relationship="SACAAEModel.FK_BloqueXPlanXCurso_Cursos" FromRole="Curso" ToRole="BloqueXPlanXCurso" />
-          <NavigationProperty Name="CursosXGrupoes" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="Curso" ToRole="CursosXGrupo" />
-        </EntityType>
-        <EntityType Name="CursosXGrupo">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Curso" Type="Int32" Nullable="false" />
-          <Property Name="Grupo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Curso1" Relationship="SACAAEModel.FK_CursosXGrupo_Curso_Cursos_ID" FromRole="CursosXGrupo" ToRole="Curso" />
-          <NavigationProperty Name="Grupo1" Relationship="SACAAEModel.FK_CursosXGrupo_Grupo_Grupo_ID" FromRole="CursosXGrupo" ToRole="Grupo" />
+          <Property Name="Creditos" Type="Int32" />
         </EntityType>
         <EntityType Name="Detalle_Grupo">
           <Key>
@@ -1045,8 +1007,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comisiones" Relationship="SACAAEModel.FK_Comisiones_Estado_Estado_Id" FromRole="Estado" ToRole="Comisione" />
-          <NavigationProperty Name="Profesores" Relationship="SACAAEModel.FK_Profesores_Estado_Estado_Id" FromRole="Estado" ToRole="Profesore" />
           <NavigationProperty Name="Proyectos" Relationship="SACAAEModel.FK_Proyectos_Estado_Estado_Id" FromRole="Estado" ToRole="Proyecto" />
+          <NavigationProperty Name="Profesores" Relationship="SACAAEModel.FK_Profesores_Estado_Estado_Id" FromRole="Estado" ToRole="Profesore" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
@@ -1058,7 +1020,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <Property Name="Periodo" Type="Int32" Nullable="false" />
           <Property Name="BloqueXPlanXCursoID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BloqueXPlanXCurso" Relationship="SACAAEModel.FK_Grupo_BloqueXPlanXCurso" FromRole="Grupo" ToRole="BloqueXPlanXCurso" />
-          <NavigationProperty Name="CursosXGrupoes" Relationship="SACAAEModel.FK_CursosXGrupo_Grupo_Grupo_ID" FromRole="Grupo" ToRole="CursosXGrupo" />
           <NavigationProperty Name="Periodo1" Relationship="SACAAEModel.FK_Grupo_Periodo_Periodos_ID" FromRole="Grupo" ToRole="Periodo" />
           <NavigationProperty Name="PlanesDeEstudioXSede" Relationship="SACAAEModel.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" FromRole="Grupo" ToRole="PlanesDeEstudioXSede" />
         </EntityType>
@@ -1113,21 +1074,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <NavigationProperty Name="PlanesDeEstudio" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" FromRole="PlanesDeEstudioXSede" ToRole="PlanesDeEstudio" />
           <NavigationProperty Name="Sede1" Relationship="SACAAEModel.FK_PlanesDeEstudioXSede_Sede_Sedes_ID" FromRole="PlanesDeEstudioXSede" ToRole="Sede" />
         </EntityType>
-        <EntityType Name="Profesore">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="HorasEnPropiedad" Type="Int32" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ComisionesXProfesors" Relationship="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ComisionesXProfesor" />
-          <NavigationProperty Name="Estado1" Relationship="SACAAEModel.FK_Profesores_Estado_Estado_Id" FromRole="Profesore" ToRole="Estado" />
-          <NavigationProperty Name="ProfesoresXCursoes" Relationship="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProfesoresXCurso" />
-          <NavigationProperty Name="ProyectosXProfesors" Relationship="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProyectosXProfesor" />
-          <NavigationProperty Name="PlazaXProfesors" Relationship="SACAAEModel.FK_PlazaXProfesor_Profesores" FromRole="Profesore" ToRole="PlazaXProfesor" />
-        </EntityType>
         <EntityType Name="ProfesoresXCurso">
           <Key>
             <PropertyRef Name="Id" />
@@ -1162,8 +1108,8 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <Property Name="Horario" Type="Int32" />
           <NavigationProperty Name="Horario1" Relationship="SACAAEModel.FK_ProyectosXProfesor_Horario_Horario_Id" FromRole="ProyectosXProfesor" ToRole="Horario" />
           <NavigationProperty Name="Periodo1" Relationship="SACAAEModel.FK_ProyectosXProfesor_Periodo_Periodos_ID" FromRole="ProyectosXProfesor" ToRole="Periodo" />
-          <NavigationProperty Name="Profesore" Relationship="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" FromRole="ProyectosXProfesor" ToRole="Profesore" />
           <NavigationProperty Name="Proyecto1" Relationship="SACAAEModel.FK_ProyectosXProfesor_Proyecto_Proyectos_ID" FromRole="ProyectosXProfesor" ToRole="Proyecto" />
+          <NavigationProperty Name="Profesore" Relationship="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" FromRole="ProyectosXProfesor" ToRole="Profesore" />
         </EntityType>
         <EntityType Name="Sede">
           <Key>
@@ -1316,42 +1262,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ComisionesXProfesor_Profesor_Profesores_ID">
-          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
-          <End Type="SACAAEModel.ComisionesXProfesor" Role="ComisionesXProfesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesore">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ComisionesXProfesor">
-              <PropertyRef Name="Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
-          <End Type="SACAAEModel.Curso" Role="Curso" Multiplicity="1" />
-          <End Type="SACAAEModel.CursosXGrupo" Role="CursosXGrupo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Curso">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CursosXGrupo">
-              <PropertyRef Name="Curso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CursosXGrupo_Grupo_Grupo_ID">
-          <End Type="SACAAEModel.Grupo" Role="Grupo" Multiplicity="1" />
-          <End Type="SACAAEModel.CursosXGrupo" Role="CursosXGrupo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Grupo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CursosXGrupo">
-              <PropertyRef Name="Grupo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Detalle_Curso_Horario_Horario_Id">
           <End Type="SACAAEModel.Horario" Role="Horario" Multiplicity="1" />
           <End Type="SACAAEModel.Detalle_Grupo" Role="Detalle_Grupo" Multiplicity="*" />
@@ -1385,18 +1295,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Principal>
             <Dependent Role="Dia">
               <PropertyRef Name="Horario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Profesores_Estado_Estado_Id">
-          <End Type="SACAAEModel.Estado" Role="Estado" Multiplicity="1" />
-          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Profesore">
-              <PropertyRef Name="Estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1496,30 +1394,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProfesoresXCurso_Profesor_Profesores_ID">
-          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
-          <End Type="SACAAEModel.ProfesoresXCurso" Role="ProfesoresXCurso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesore">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProfesoresXCurso">
-              <PropertyRef Name="Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProyectosXProfesor_Profesor_Profesores_ID">
-          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
-          <End Type="SACAAEModel.ProyectosXProfesor" Role="ProyectosXProfesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesore">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProyectosXProfesor">
-              <PropertyRef Name="Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
           <End Type="SACAAEModel.Proyecto" Role="Proyecto" Multiplicity="1" />
           <End Type="SACAAEModel.ProyectosXProfesor" Role="ProyectosXProfesor" Multiplicity="*" />
@@ -1553,6 +1427,7 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <Property Name="Profesor" Type="Int32" Nullable="false" />
           <Property Name="Horas_Asignadas" Type="Int32" />
           <NavigationProperty Name="Plaza1" Relationship="SACAAEModel.FK_PlazaXProfesor_Plazas" FromRole="PlazaXProfesor" ToRole="Plaza" />
+          <Property Name="HorasEnPropiedad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Profesore" Relationship="SACAAEModel.FK_PlazaXProfesor_Profesores" FromRole="PlazaXProfesor" ToRole="Profesore" />
         </EntityType>
         <Association Name="FK_PlazaXProfesor_Plazas">
@@ -1567,6 +1442,44 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Profesore">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComisionesXProfesors" Relationship="SACAAEModel.FK_ComisionesXProfesor_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ComisionesXProfesor" />
+          <NavigationProperty Name="Estado1" Relationship="SACAAEModel.FK_Profesores_Estado_Estado_Id" FromRole="Profesore" ToRole="Estado" />
+          <NavigationProperty Name="PlazaXProfesors" Relationship="SACAAEModel.FK_PlazaXProfesor_Profesores" FromRole="Profesore" ToRole="PlazaXProfesor" />
+          <NavigationProperty Name="ProfesoresXCursoes" Relationship="SACAAEModel.FK_ProfesoresXCurso_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProfesoresXCurso" />
+          <NavigationProperty Name="ProyectosXProfesors" Relationship="SACAAEModel.FK_ProyectosXProfesor_Profesor_Profesores_ID" FromRole="Profesore" ToRole="ProyectosXProfesor" />
+        </EntityType>
+        <Association Name="FK_ComisionesXProfesor_Profesor_Profesores_ID">
+          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
+          <End Type="SACAAEModel.ComisionesXProfesor" Role="ComisionesXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesore">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ComisionesXProfesor">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesores_Estado_Estado_Id">
+          <End Type="SACAAEModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profesore">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PlazaXProfesor_Profesores">
           <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
           <End Type="SACAAEModel.PlazaXProfesor" Role="PlazaXProfesor" Multiplicity="*" />
@@ -1575,6 +1488,30 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PlazaXProfesor">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfesoresXCurso_Profesor_Profesores_ID">
+          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
+          <End Type="SACAAEModel.ProfesoresXCurso" Role="ProfesoresXCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesore">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProfesoresXCurso">
+              <PropertyRef Name="Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProyectosXProfesor_Profesor_Profesores_ID">
+          <End Type="SACAAEModel.Profesore" Role="Profesore" Multiplicity="1" />
+          <End Type="SACAAEModel.ProyectosXProfesor" Role="ProyectosXProfesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesore">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProyectosXProfesor">
               <PropertyRef Name="Profesor" />
             </Dependent>
           </ReferentialConstraint>
@@ -1665,21 +1602,13 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySetMapping Name="Cursos">
             <EntityTypeMapping TypeName="SACAAEModel.Curso">
               <MappingFragment StoreEntitySet="Cursos">
+                <ScalarProperty Name="Creditos" ColumnName="Creditos" />
                 <ScalarProperty Name="HorasPracticas" ColumnName="HorasPracticas" />
                 <ScalarProperty Name="Externo" ColumnName="Externo" />
                 <ScalarProperty Name="Bloque" ColumnName="Bloque" />
                 <ScalarProperty Name="HorasTeoricas" ColumnName="HorasTeoricas" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CursosXGrupoes">
-            <EntityTypeMapping TypeName="SACAAEModel.CursosXGrupo">
-              <MappingFragment StoreEntitySet="CursosXGrupo">
-                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
-                <ScalarProperty Name="Curso" ColumnName="Curso" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1767,17 +1696,6 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Profesores">
-            <EntityTypeMapping TypeName="SACAAEModel.Profesore">
-              <MappingFragment StoreEntitySet="Profesores">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="HorasEnPropiedad" ColumnName="HorasEnPropiedad" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProfesoresXCursoes">
             <EntityTypeMapping TypeName="SACAAEModel.ProfesoresXCurso">
               <MappingFragment StoreEntitySet="ProfesoresXCurso">
@@ -1844,9 +1762,20 @@ advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene defin
           <EntitySetMapping Name="PlazaXProfesors">
             <EntityTypeMapping TypeName="SACAAEModel.PlazaXProfesor">
               <MappingFragment StoreEntitySet="PlazaXProfesor">
+                <ScalarProperty Name="HorasEnPropiedad" ColumnName="HorasEnPropiedad" />
                 <ScalarProperty Name="Horas_Asignadas" ColumnName="Horas_Asignadas" />
                 <ScalarProperty Name="Profesor" ColumnName="Profesor" />
                 <ScalarProperty Name="Plaza" ColumnName="Plaza" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesores">
+            <EntityTypeMapping TypeName="SACAAEModel.Profesore">
+              <MappingFragment StoreEntitySet="Profesores">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

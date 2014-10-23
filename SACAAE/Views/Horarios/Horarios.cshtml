@@ -150,8 +150,8 @@
                     var Fin = parseInt(HoraFinCookie)
                     var i = Inicio
                     //Actualizo la tabla con el nuevo curso
-                    var CantCeldas = 6;
-                    while (i < Fin) {
+                    var CantCeldas = 0;
+                    while (i < Fin + 60) {
 
                         var IdCelda = Dia + " " + i;
                         if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
@@ -159,6 +159,10 @@
                         var celda = document.getElementById(IdCelda);
                         if (i == Inicio) {
                             var primera = document.getElementById(IdCelda);
+                        }
+                        else if(celda!=null)
+                        {
+                            celda.parentNode.removeChild(celda);
                         }
                         i += 10;
                         if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100

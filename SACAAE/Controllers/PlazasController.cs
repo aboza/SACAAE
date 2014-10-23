@@ -104,6 +104,7 @@ namespace SACAAE.Controllers
            
             ViewBag.Plaza = repositorio.ObtenerTodasPlazas();
             ViewBag.Profesores = repositorio.ObtenerProfesoresPlaza();
+            ViewBag.PlazasAsignadas = repositorio.ObtenerPlazasAsignadas();
             return View();            
         }
 

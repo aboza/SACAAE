@@ -67,6 +67,49 @@
         }
     </div>
 </div>
+<div class="col-lg-8">
+    <div class="row">
+        <div class="span12">
+            <table class="table">
+                <tr>
+                    <th>
+                        Plaza
+                    </th>
+
+                    <th>
+                        Nombre del Profesor
+                    </th>
+                    <th>
+                        Horas Asignadas
+                    </th>
+                    
+                </tr>
+
+                @foreach (var item in ViewBag.PlazasAsignadas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayForModel()
+                            @item.Codigo_Plaza
+                        </td>
+
+                        <td>
+                            @Html.DisplayForModel()
+                            @item.Nombre
+                        </td>
+                        <td>
+                            @Html.DisplayForModel()
+                            @item.Horas_Asignadas
+                        </td>
+                       
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+</div>
 
 @section Scripts {
   @Scripts.Render("~/bundles/jqueryval")

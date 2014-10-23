@@ -4,106 +4,106 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SACAAEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="SACAAEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008">
         <EntityType Name="Ajustes">
           <Key>
             <PropertyRef Name="IDConfig" />
           </Key>
-          <Property Name="IDConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDPeriodoActual" Type="int" Nullable="false" />
+          <Property Name="IDConfig" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="IDPeriodoActual" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Aulas">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Espacio" Type="int" Nullable="false" />
-          <Property Name="Activa" Type="bit" Nullable="false" />
-          <Property Name="SedeID" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Codigo" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="Espacio" Nullable="false" Type="int" />
+          <Property Name="Activa" Nullable="false" Type="bit" />
+          <Property Name="SedeID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="BloqueAcademico">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Descripcion" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Nivel" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="BloqueAcademicoXPlanDeEstudio">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PlanID" Type="int" Nullable="false" />
-          <Property Name="BloqueID" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PlanID" Nullable="false" Type="int" />
+          <Property Name="BloqueID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="BloqueXPlanXCurso">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BloqueXPlanID" Type="int" Nullable="false" />
-          <Property Name="CursoID" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="BloqueXPlanID" Nullable="false" Type="int" />
+          <Property Name="CursoID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Inicio" Type="date" Nullable="false" />
-          <Property Name="Fin" Type="date" Nullable="false" />
-          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Inicio" Nullable="false" Type="date" />
+          <Property Name="Fin" Nullable="false" Type="date" />
+          <Property Name="Estado" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="ComisionesXProfesor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Comision" Type="int" Nullable="false" />
-          <Property Name="Profesor" Type="int" Nullable="false" />
-          <Property Name="Periodo" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Comision" Nullable="false" Type="int" />
+          <Property Name="Profesor" Nullable="false" Type="int" />
+          <Property Name="Periodo" Nullable="false" Type="int" />
           <Property Name="Horario" Type="int" />
         </EntityType>
         <EntityType Name="Cursos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Codigo" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="HorasTeoricas" Type="int" Nullable="false" />
-          <Property Name="Bloque" Type="int" Nullable="false" />
-          <Property Name="Externo" Type="bit" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Codigo" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="HorasTeoricas" Nullable="false" Type="int" />
+          <Property Name="Bloque" Nullable="false" Type="int" />
+          <Property Name="Externo" Nullable="false" Type="bit" />
           <Property Name="HorasPracticas" Type="int" />
         </EntityType>
         <EntityType Name="CursosXGrupo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Curso" Type="int" Nullable="false" />
-          <Property Name="Grupo" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Curso" Nullable="false" Type="int" />
+          <Property Name="Grupo" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Detalle_Grupo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Grupo" Type="int" Nullable="false" />
-          <Property Name="Profesor" Type="int" Nullable="false" />
-          <Property Name="Horario" Type="int" Nullable="false" />
-          <Property Name="Aula" Type="varchar" MaxLength="250" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Grupo" Nullable="false" Type="int" />
+          <Property Name="Profesor" Nullable="false" Type="int" />
+          <Property Name="Horario" Nullable="false" Type="int" />
+          <Property Name="Aula" MaxLength="250" Type="varchar" />
           <Property Name="Cupo" Type="int" />
         </EntityType>
         <EntityType Name="Dia">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Dia" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Horario" Type="int" Nullable="false" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Dia" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Horario" Nullable="false" Type="int" />
           <Property Name="Hora_Inicio" Type="int" />
           <Property Name="Hora_Fin" Type="int" />
         </EntityType>
@@ -111,135 +111,149 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" MaxLength="250" Type="varchar" />
         </EntityType>
         <EntityType Name="Grupo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Numero" Type="int" Nullable="false" />
-          <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
-          <Property Name="Periodo" Type="int" Nullable="false" />
-          <Property Name="BloqueXPlanXCursoID" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Numero" Nullable="false" Type="int" />
+          <Property Name="PlanDeEstudio" Nullable="false" Type="int" />
+          <Property Name="Periodo" Nullable="false" Type="int" />
+          <Property Name="BloqueXPlanXCursoID" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Horario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
         </EntityType>
         <EntityType Name="Modalidades">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
         </EntityType>
         <EntityType Name="Periodos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
         </EntityType>
         <EntityType Name="PlanesDeEstudio">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Modalidad" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Modalidad" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="PlanesDeEstudioXSede">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Sede" Type="int" Nullable="false" />
-          <Property Name="PlanDeEstudio" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Sede" Nullable="false" Type="int" />
+          <Property Name="PlanDeEstudio" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Plazas">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Codigo_Plaza" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Tipo_de_plaza" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Tipo_segun_tiempo" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Codigo_Plaza" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Tipo_de_plaza" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Tipo_segun_tiempo" Nullable="false" MaxLength="250" Type="varchar" />
           <Property Name="Horas_Totales" Type="int" />
           <Property Name="Tiempo_de_vigencia" Type="int" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazaXProfesor' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PlazaXProfesor">
           <Key>
             <PropertyRef Name="ID" />
+            
+            
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Plaza" Type="int" Nullable="false" />
-          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Plaza" Nullable="false" Type="int" />
+          <Property Name="Profesor" Nullable="false" Type="int" />
           <Property Name="Horas_Asignadas" Type="int" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Plaza" Type="varchar" MaxLength="250" />
-          <Property Name="HorasEnPropiedad" Type="int" Nullable="false" />
-          <Property Name="Link" Type="varchar" MaxLength="250" />
-          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="HorasEnPropiedad" Nullable="false" Type="int" />
+          <Property Name="Link" MaxLength="250" Type="varchar" />
+          <Property Name="Estado" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="ProfesoresXCurso">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Profesor" Type="int" Nullable="false" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Profesor" Nullable="false" Type="int" />
           <Property Name="Horas" Type="int" />
         </EntityType>
         <EntityType Name="Proyectos">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
           <Property Name="Inicio" Type="datetime" />
           <Property Name="Fin" Type="datetime" />
-          <Property Name="Estado" Type="int" Nullable="false" />
-          <Property Name="Link" Type="varchar" MaxLength="250" />
+          <Property Name="Estado" Nullable="false" Type="int" />
+          <Property Name="Link" MaxLength="250" Type="varchar" />
         </EntityType>
         <EntityType Name="ProyectosXProfesor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Proyecto" Type="int" Nullable="false" />
-          <Property Name="Profesor" Type="int" Nullable="false" />
-          <Property Name="Periodo" Type="int" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Proyecto" Nullable="false" Type="int" />
+          <Property Name="Profesor" Nullable="false" Type="int" />
+          <Property Name="Periodo" Nullable="false" Type="int" />
           <Property Name="Horario" Type="int" />
         </EntityType>
         <EntityType Name="Sedes">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contrasenia" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Correo" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nombre" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="NombreUsuario" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="Contrasenia" Nullable="false" MaxLength="200" Type="nvarchar" />
+          <Property Name="Correo" Nullable="false" MaxLength="60" Type="nvarchar" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SACAAEDB.dbo.PlazasAsignadas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PlazasAsignadas">
+          <Key>
+            <PropertyRef Name="Codigo_Plaza" />
+            <PropertyRef Name="Nombre" />
+          </Key>
+          <Property Name="Codigo_Plaza" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Nombre" Nullable="false" MaxLength="250" Type="varchar" />
+          <Property Name="Horas_Asignadas" Type="int" />
         </EntityType>
         <Association Name="FK_Ajustes_Periodo">
-          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
-          <End Role="Ajustes" Type="Self.Ajustes" Multiplicity="*" />
+          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
+          <End Type="Self.Ajustes" Multiplicity="*" Role="Ajustes" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -250,8 +264,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Aulas_Sedes">
-          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
-          <End Role="Aulas" Type="Self.Aulas" Multiplicity="*" />
+          <End Type="Self.Sedes" Multiplicity="1" Role="Sedes" />
+          <End Type="Self.Aulas" Multiplicity="*" Role="Aulas" />
           <ReferentialConstraint>
             <Principal Role="Sedes">
               <PropertyRef Name="ID" />
@@ -262,8 +276,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
-          <End Role="BloqueAcademico" Type="Self.BloqueAcademico" Multiplicity="1" />
-          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
+          <End Type="Self.BloqueAcademico" Multiplicity="1" Role="BloqueAcademico" />
+          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" Role="BloqueAcademicoXPlanDeEstudio" />
           <ReferentialConstraint>
             <Principal Role="BloqueAcademico">
               <PropertyRef Name="ID" />
@@ -274,8 +288,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
-          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" />
+          <End Type="Self.PlanesDeEstudio" Multiplicity="1" Role="PlanesDeEstudio" />
+          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="*" Role="BloqueAcademicoXPlanDeEstudio" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -286,8 +300,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
-          <End Role="BloqueAcademicoXPlanDeEstudio" Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="1" />
-          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
+          <End Type="Self.BloqueAcademicoXPlanDeEstudio" Multiplicity="1" Role="BloqueAcademicoXPlanDeEstudio" />
+          <End Type="Self.BloqueXPlanXCurso" Multiplicity="*" Role="BloqueXPlanXCurso" />
           <ReferentialConstraint>
             <Principal Role="BloqueAcademicoXPlanDeEstudio">
               <PropertyRef Name="ID" />
@@ -298,8 +312,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BloqueXPlanXCurso_Cursos">
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
-          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="*" />
+          <End Type="Self.Cursos" Multiplicity="1" Role="Cursos" />
+          <End Type="Self.BloqueXPlanXCurso" Multiplicity="*" Role="BloqueXPlanXCurso" />
           <ReferentialConstraint>
             <Principal Role="Cursos">
               <PropertyRef Name="ID" />
@@ -310,8 +324,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comisiones_Estado_Estado_Id">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="*" />
+          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
+          <End Type="Self.Comisiones" Multiplicity="*" Role="Comisiones" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -322,8 +336,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Comision_Comisiones_ID">
-          <End Role="Comisiones" Type="Self.Comisiones" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
+          <End Type="Self.Comisiones" Multiplicity="1" Role="Comisiones" />
+          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Comisiones">
               <PropertyRef Name="ID" />
@@ -334,8 +348,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Horario_Horario_Id">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
-          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
+          <End Type="Self.Horario" Multiplicity="0..1" Role="Horario" />
+          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -346,8 +360,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
+          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
+          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -358,8 +372,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComisionesXProfesor_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="ComisionesXProfesor" Type="Self.ComisionesXProfesor" Multiplicity="*" />
+          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
+          <End Type="Self.ComisionesXProfesor" Multiplicity="*" Role="ComisionesXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -370,8 +384,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CursosXGrupo_Curso_Cursos_ID">
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
-          <End Role="CursosXGrupo" Type="Self.CursosXGrupo" Multiplicity="*" />
+          <End Type="Self.Cursos" Multiplicity="1" Role="Cursos" />
+          <End Type="Self.CursosXGrupo" Multiplicity="*" Role="CursosXGrupo" />
           <ReferentialConstraint>
             <Principal Role="Cursos">
               <PropertyRef Name="ID" />
@@ -382,8 +396,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CursosXGrupo_Grupo_Grupo_ID">
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="1" />
-          <End Role="CursosXGrupo" Type="Self.CursosXGrupo" Multiplicity="*" />
+          <End Type="Self.Grupo" Multiplicity="1" Role="Grupo" />
+          <End Type="Self.CursosXGrupo" Multiplicity="*" Role="CursosXGrupo" />
           <ReferentialConstraint>
             <Principal Role="Grupo">
               <PropertyRef Name="ID" />
@@ -394,8 +408,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Horario_Horario_Id">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
-          <End Role="Detalle_Grupo" Type="Self.Detalle_Grupo" Multiplicity="*" />
+          <End Type="Self.Horario" Multiplicity="1" Role="Horario" />
+          <End Type="Self.Detalle_Grupo" Multiplicity="*" Role="Detalle_Grupo" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -406,8 +420,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="1" />
-          <End Role="Detalle_Grupo" Type="Self.Detalle_Grupo" Multiplicity="*" />
+          <End Type="Self.ProfesoresXCurso" Multiplicity="1" Role="ProfesoresXCurso" />
+          <End Type="Self.Detalle_Grupo" Multiplicity="*" Role="Detalle_Grupo" />
           <ReferentialConstraint>
             <Principal Role="ProfesoresXCurso">
               <PropertyRef Name="Id" />
@@ -418,8 +432,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dia_Horario_Horario_Id">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
-          <End Role="Dia" Type="Self.Dia" Multiplicity="*" />
+          <End Type="Self.Horario" Multiplicity="1" Role="Horario" />
+          <End Type="Self.Dia" Multiplicity="*" Role="Dia" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -430,8 +444,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_BloqueXPlanXCurso">
-          <End Role="BloqueXPlanXCurso" Type="Self.BloqueXPlanXCurso" Multiplicity="1" />
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <End Type="Self.BloqueXPlanXCurso" Multiplicity="1" Role="BloqueXPlanXCurso" />
+          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
           <ReferentialConstraint>
             <Principal Role="BloqueXPlanXCurso">
               <PropertyRef Name="ID" />
@@ -442,8 +456,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
+          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -454,8 +468,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="1" />
-          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="1" Role="PlanesDeEstudioXSede" />
+          <End Type="Self.Grupo" Multiplicity="*" Role="Grupo" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudioXSede">
               <PropertyRef Name="ID" />
@@ -466,8 +480,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-          <End Role="Modalidades" Type="Self.Modalidades" Multiplicity="1" />
-          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="*" />
+          <End Type="Self.Modalidades" Multiplicity="1" Role="Modalidades" />
+          <End Type="Self.PlanesDeEstudio" Multiplicity="*" Role="PlanesDeEstudio" />
           <ReferentialConstraint>
             <Principal Role="Modalidades">
               <PropertyRef Name="ID" />
@@ -478,8 +492,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-          <End Role="PlanesDeEstudio" Type="Self.PlanesDeEstudio" Multiplicity="1" />
-          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
+          <End Type="Self.PlanesDeEstudio" Multiplicity="1" Role="PlanesDeEstudio" />
+          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="*" Role="PlanesDeEstudioXSede" />
           <ReferentialConstraint>
             <Principal Role="PlanesDeEstudio">
               <PropertyRef Name="ID" />
@@ -490,8 +504,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-          <End Role="Sedes" Type="Self.Sedes" Multiplicity="1" />
-          <End Role="PlanesDeEstudioXSede" Type="Self.PlanesDeEstudioXSede" Multiplicity="*" />
+          <End Type="Self.Sedes" Multiplicity="1" Role="Sedes" />
+          <End Type="Self.PlanesDeEstudioXSede" Multiplicity="*" Role="PlanesDeEstudioXSede" />
           <ReferentialConstraint>
             <Principal Role="Sedes">
               <PropertyRef Name="ID" />
@@ -501,33 +515,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PlazaXProfesor_Plazas">
-          <End Role="Plazas" Type="Self.Plazas" Multiplicity="1" />
-          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Plazas">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PlazaXProfesor">
-              <PropertyRef Name="Plaza" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlazaXProfesor_Profesores">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="PlazaXProfesor" Type="Self.PlazaXProfesor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesores">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PlazaXProfesor">
-              <PropertyRef Name="Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Profesores_Estado_Estado_Id">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="*" />
+          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
+          <End Type="Self.Profesores" Multiplicity="*" Role="Profesores" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -538,8 +528,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProfesoresXCurso_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="ProfesoresXCurso" Type="Self.ProfesoresXCurso" Multiplicity="*" />
+          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
+          <End Type="Self.ProfesoresXCurso" Multiplicity="*" Role="ProfesoresXCurso" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -550,8 +540,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Proyectos_Estado_Estado_Id">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <End Type="Self.Estado" Multiplicity="1" Role="Estado" />
+          <End Type="Self.Proyectos" Multiplicity="*" Role="Proyectos" />
           <ReferentialConstraint>
             <Principal Role="Estado">
               <PropertyRef Name="Id" />
@@ -562,8 +552,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Horario_Horario_Id">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
-          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
+          <End Type="Self.Horario" Multiplicity="0..1" Role="Horario" />
+          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Horario">
               <PropertyRef Name="Id" />
@@ -574,8 +564,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Periodo_Periodos_ID">
-          <End Role="Periodos" Type="Self.Periodos" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
+          <End Type="Self.Periodos" Multiplicity="1" Role="Periodos" />
+          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Periodos">
               <PropertyRef Name="ID" />
@@ -586,8 +576,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Profesor_Profesores_ID">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
+          <End Type="Self.Profesores" Multiplicity="1" Role="Profesores" />
+          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="ID" />
@@ -598,8 +588,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
-          <End Role="ProyectosXProfesor" Type="Self.ProyectosXProfesor" Multiplicity="*" />
+          <End Type="Self.Proyectos" Multiplicity="1" Role="Proyectos" />
+          <End Type="Self.ProyectosXProfesor" Multiplicity="*" Role="ProyectosXProfesor" />
           <ReferentialConstraint>
             <Principal Role="Proyectos">
               <PropertyRef Name="ID" />
@@ -629,136 +619,142 @@
           <EntitySet Name="PlanesDeEstudio" EntityType="Self.PlanesDeEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanesDeEstudioXSede" EntityType="Self.PlanesDeEstudioXSede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plazas" EntityType="Self.Plazas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PlazaXProfesor" EntityType="Self.PlazaXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfesoresXCurso" EntityType="Self.ProfesoresXCurso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProyectosXProfesor" EntityType="Self.ProyectosXProfesor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sedes" EntityType="Self.Sedes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlazaXProfesor" EntityType="Self.PlazaXProfesor" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PlazaXProfesor].[ID] AS [ID], 
+    [PlazaXProfesor].[Plaza] AS [Plaza], 
+    [PlazaXProfesor].[Profesor] AS [Profesor], 
+    [PlazaXProfesor].[Horas_Asignadas] AS [Horas_Asignadas]
+    FROM [dbo].[PlazaXProfesor] AS [PlazaXProfesor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PlazasAsignadas" EntityType="Self.PlazasAsignadas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PlazasAsignadas].[Codigo_Plaza] AS [Codigo_Plaza], 
+    [PlazasAsignadas].[Nombre] AS [Nombre], 
+    [PlazasAsignadas].[Horas_Asignadas] AS [Horas_Asignadas]
+    FROM [dbo].[PlazasAsignadas] AS [PlazasAsignadas]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Ajustes_Periodo" Association="Self.FK_Ajustes_Periodo">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="Ajustes" EntitySet="Ajustes" />
+            <End EntitySet="Periodos" Role="Periodos" />
+            <End EntitySet="Ajustes" Role="Ajustes" />
           </AssociationSet>
           <AssociationSet Name="FK_Aulas_Sedes" Association="Self.FK_Aulas_Sedes">
-            <End Role="Sedes" EntitySet="Sedes" />
-            <End Role="Aulas" EntitySet="Aulas" />
+            <End EntitySet="Sedes" Role="Sedes" />
+            <End EntitySet="Aulas" Role="Aulas" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico" Association="Self.FK_BloqueAcademicoXPlanDeEstudio_BloqueAcademico">
-            <End Role="BloqueAcademico" EntitySet="BloqueAcademico" />
-            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
+            <End EntitySet="BloqueAcademico" Role="BloqueAcademico" />
+            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio" Association="Self.FK_BloqueAcademicoXPlanDeEstudio_PlanesDeEstudio">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
+            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
+            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio" Association="Self.FK_BloqueXPlanXCurso_BloqueAcademicoXPlanDeEstudio">
-            <End Role="BloqueAcademicoXPlanDeEstudio" EntitySet="BloqueAcademicoXPlanDeEstudio" />
-            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
+            <End EntitySet="BloqueAcademicoXPlanDeEstudio" Role="BloqueAcademicoXPlanDeEstudio" />
+            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_BloqueXPlanXCurso_Cursos" Association="Self.FK_BloqueXPlanXCurso_Cursos">
-            <End Role="Cursos" EntitySet="Cursos" />
-            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
+            <End EntitySet="Cursos" Role="Cursos" />
+            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_Comisiones_Estado_Estado_Id" Association="Self.FK_Comisiones_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Comisiones" EntitySet="Comisiones" />
+            <End EntitySet="Estado" Role="Estado" />
+            <End EntitySet="Comisiones" Role="Comisiones" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Comision_Comisiones_ID" Association="Self.FK_ComisionesXProfesor_Comision_Comisiones_ID">
-            <End Role="Comisiones" EntitySet="Comisiones" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+            <End EntitySet="Comisiones" Role="Comisiones" />
+            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Horario_Horario_Id" Association="Self.FK_ComisionesXProfesor_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+            <End EntitySet="Horario" Role="Horario" />
+            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Periodo_Periodos_ID" Association="Self.FK_ComisionesXProfesor_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+            <End EntitySet="Periodos" Role="Periodos" />
+            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ComisionesXProfesor_Profesor_Profesores_ID" Association="Self.FK_ComisionesXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ComisionesXProfesor" EntitySet="ComisionesXProfesor" />
+            <End EntitySet="Profesores" Role="Profesores" />
+            <End EntitySet="ComisionesXProfesor" Role="ComisionesXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_CursosXGrupo_Curso_Cursos_ID" Association="Self.FK_CursosXGrupo_Curso_Cursos_ID">
-            <End Role="Cursos" EntitySet="Cursos" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
+            <End EntitySet="Cursos" Role="Cursos" />
+            <End EntitySet="CursosXGrupo" Role="CursosXGrupo" />
           </AssociationSet>
           <AssociationSet Name="FK_CursosXGrupo_Grupo_Grupo_ID" Association="Self.FK_CursosXGrupo_Grupo_Grupo_ID">
-            <End Role="Grupo" EntitySet="Grupo" />
-            <End Role="CursosXGrupo" EntitySet="CursosXGrupo" />
+            <End EntitySet="Grupo" Role="Grupo" />
+            <End EntitySet="CursosXGrupo" Role="CursosXGrupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Detalle Curso_Horario_Horario_Id" Association="Self.FK_Detalle Curso_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Detalle_Grupo" EntitySet="Detalle_Grupo" />
+            <End EntitySet="Horario" Role="Horario" />
+            <End EntitySet="Detalle_Grupo" Role="Detalle_Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Detalle Curso_Profesor_ProfesoresXCurso_Id" Association="Self.FK_Detalle Curso_Profesor_ProfesoresXCurso_Id">
-            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
-            <End Role="Detalle_Grupo" EntitySet="Detalle_Grupo" />
+            <End EntitySet="ProfesoresXCurso" Role="ProfesoresXCurso" />
+            <End EntitySet="Detalle_Grupo" Role="Detalle_Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Dia_Horario_Horario_Id" Association="Self.FK_Dia_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Dia" EntitySet="Dia" />
+            <End EntitySet="Horario" Role="Horario" />
+            <End EntitySet="Dia" Role="Dia" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_BloqueXPlanXCurso" Association="Self.FK_Grupo_BloqueXPlanXCurso">
-            <End Role="BloqueXPlanXCurso" EntitySet="BloqueXPlanXCurso" />
-            <End Role="Grupo" EntitySet="Grupo" />
+            <End EntitySet="BloqueXPlanXCurso" Role="BloqueXPlanXCurso" />
+            <End EntitySet="Grupo" Role="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_Periodo_Periodos_ID" Association="Self.FK_Grupo_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="Grupo" EntitySet="Grupo" />
+            <End EntitySet="Periodos" Role="Periodos" />
+            <End EntitySet="Grupo" Role="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID" Association="Self.FK_Grupo_PlanDeEstudio_PlanesDeEstudioXSede_ID">
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
-            <End Role="Grupo" EntitySet="Grupo" />
+            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
+            <End EntitySet="Grupo" Role="Grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudio_Modalidad_Modalidades_ID" Association="Self.FK_PlanesDeEstudio_Modalidad_Modalidades_ID">
-            <End Role="Modalidades" EntitySet="Modalidades" />
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
+            <End EntitySet="Modalidades" Role="Modalidades" />
+            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID" Association="Self.FK_PlanesDeEstudioXSede_PlanDeEstudio_PlanesDeEstudio_ID">
-            <End Role="PlanesDeEstudio" EntitySet="PlanesDeEstudio" />
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
+            <End EntitySet="PlanesDeEstudio" Role="PlanesDeEstudio" />
+            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
           </AssociationSet>
           <AssociationSet Name="FK_PlanesDeEstudioXSede_Sede_Sedes_ID" Association="Self.FK_PlanesDeEstudioXSede_Sede_Sedes_ID">
-            <End Role="Sedes" EntitySet="Sedes" />
-            <End Role="PlanesDeEstudioXSede" EntitySet="PlanesDeEstudioXSede" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlazaXProfesor_Plazas" Association="Self.FK_PlazaXProfesor_Plazas">
-            <End Role="Plazas" EntitySet="Plazas" />
-            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlazaXProfesor_Profesores" Association="Self.FK_PlazaXProfesor_Profesores">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="PlazaXProfesor" EntitySet="PlazaXProfesor" />
+            <End EntitySet="Sedes" Role="Sedes" />
+            <End EntitySet="PlanesDeEstudioXSede" Role="PlanesDeEstudioXSede" />
           </AssociationSet>
           <AssociationSet Name="FK_Profesores_Estado_Estado_Id" Association="Self.FK_Profesores_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Profesores" EntitySet="Profesores" />
+            <End EntitySet="Estado" Role="Estado" />
+            <End EntitySet="Profesores" Role="Profesores" />
           </AssociationSet>
           <AssociationSet Name="FK_ProfesoresXCurso_Profesor_Profesores_ID" Association="Self.FK_ProfesoresXCurso_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ProfesoresXCurso" EntitySet="ProfesoresXCurso" />
+            <End EntitySet="Profesores" Role="Profesores" />
+            <End EntitySet="ProfesoresXCurso" Role="ProfesoresXCurso" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Estado_Estado_Id" Association="Self.FK_Proyectos_Estado_Estado_Id">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End EntitySet="Estado" Role="Estado" />
+            <End EntitySet="Proyectos" Role="Proyectos" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Horario_Horario_Id" Association="Self.FK_ProyectosXProfesor_Horario_Horario_Id">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+            <End EntitySet="Horario" Role="Horario" />
+            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Periodo_Periodos_ID" Association="Self.FK_ProyectosXProfesor_Periodo_Periodos_ID">
-            <End Role="Periodos" EntitySet="Periodos" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+            <End EntitySet="Periodos" Role="Periodos" />
+            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Profesor_Profesores_ID" Association="Self.FK_ProyectosXProfesor_Profesor_Profesores_ID">
-            <End Role="Profesores" EntitySet="Profesores" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+            <End EntitySet="Profesores" Role="Profesores" />
+            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
           </AssociationSet>
           <AssociationSet Name="FK_ProyectosXProfesor_Proyecto_Proyectos_ID" Association="Self.FK_ProyectosXProfesor_Proyecto_Proyectos_ID">
-            <End Role="Proyectos" EntitySet="Proyectos" />
-            <End Role="ProyectosXProfesor" EntitySet="ProyectosXProfesor" />
+            <End EntitySet="Proyectos" Role="Proyectos" />
+            <End EntitySet="ProyectosXProfesor" Role="ProyectosXProfesor" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -916,6 +912,7 @@
             <End Role="Profesore" EntitySet="Profesores" />
             <End Role="PlazaXProfesor" EntitySet="PlazaXProfesors" />
           </AssociationSet>
+          <EntitySet Name="PlazasAsignadas" EntityType="SACAAEModel.PlazasAsignada" />
           </EntityContainer>
         <EntityType Name="Ajuste">
           <Key>
@@ -1122,7 +1119,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Plaza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="HorasEnPropiedad" Type="Int32" Nullable="false" />
           <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
@@ -1583,6 +1579,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PlazasAsignada">
+          <Key>
+            <PropertyRef Name="Codigo_Plaza" />
+            <PropertyRef Name="Nombre" />
+          </Key>
+          <Property Name="Codigo_Plaza" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Horas_Asignadas" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1768,7 +1773,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="HorasEnPropiedad" ColumnName="HorasEnPropiedad" />
-                <ScalarProperty Name="Plaza" ColumnName="Plaza" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1844,6 +1848,15 @@
                 <ScalarProperty Name="Profesor" ColumnName="Profesor" />
                 <ScalarProperty Name="Plaza" ColumnName="Plaza" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlazasAsignadas">
+            <EntityTypeMapping TypeName="SACAAEModel.PlazasAsignada">
+              <MappingFragment StoreEntitySet="PlazasAsignadas">
+                <ScalarProperty Name="Horas_Asignadas" ColumnName="Horas_Asignadas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo_Plaza" ColumnName="Codigo_Plaza" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

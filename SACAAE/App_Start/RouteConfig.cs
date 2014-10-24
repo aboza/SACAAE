@@ -21,7 +21,7 @@ namespace SACAAE
 
             routes.MapRoute(
              "ObtenerGrupos",
-             "CursoProfesor/Grupos/List/{curso}/{plan}/{bloque}",
+             "CursoProfesor/Grupos/List/{curso}/{plan}/{bloque}/{periodo}",
              new { Controller = "CursoProfesor", action = "ObtenerGrupos" });
 
             routes.MapRoute(

@@ -42,7 +42,7 @@ namespace SACAAE.Models
             if (vGrupos.Any())
                 return vGrupos.First().Numero;
             else
-                return 1;
+                return 0;
         }
 
         public void eliminarGrupo(Grupo pGrupo)

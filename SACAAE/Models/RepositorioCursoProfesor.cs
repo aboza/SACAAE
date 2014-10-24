@@ -134,7 +134,7 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="curso">El id del curso.</param>
         /// <returns>Lista de grupos abiertos de ese curso.</returns>
-        public IQueryable obtenerGrupos(int curso,int plan, int bloque)
+        public IQueryable obtenerGrupos(int curso,int plan, int bloque, int periodo)
         {
             var idBloqueXPlan = (from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
                                  where bloqueXPlan.BloqueID == bloque && bloqueXPlan.PlanID == plan
@@ -144,7 +144,7 @@ namespace SACAAE.Models
                                       select bloqueXPlanXCurso.ID).FirstOrDefault();
 
             return from grupos in entidades.Grupoes
-                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && grupos.Periodo==periodo
                    select new { grupos.ID, grupos.Numero };
         }
 

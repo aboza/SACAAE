@@ -7,7 +7,8 @@
 
 @section Scripts {
 
-    <script src="@Url.Content("~/Scripts/ajaxCrear.js")"></script> <!--de necesitar revisar los select en cascada, la funcionalidad se encuentra-->
+    <script src="@Url.Content("~/Scripts/ajaxCrear.js")"></script>
+    <script src="@Url.Content("~/Scripts/validaciones.js")"></script> <!--de necesitar revisar los select en cascada, la funcionalidad se encuentra-->
     <!-- en el archivo referenciado. Carpeta Scripts-->
 }
 
@@ -40,7 +41,7 @@
 
         <label>Sede</label>
         <br />
-        <select id="selectSede" name="selectSede">
+        <select id="sltSede" name="selectSede">
             @if (ViewBag.Sedes != null)
                         {
                             <option value=" " selected="selected">-- Seleccionar Sede --</option>
@@ -61,7 +62,7 @@
         <input name="capacidad" id="capacidad" type="number" min="1" value="1" />
         </div> <br />
     <p>
-        <input type="submit" value="Crear" class="btn" />
+        <input type="submit" onclick="return Validar()" value="Crear" class="btn" />
         |@Html.ActionLink("Regresar", "Index")
     </p>
     }

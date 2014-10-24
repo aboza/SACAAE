@@ -6,42 +6,8 @@
 }
 
 @section Scripts {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            /* Deshabilitar componentes que no tienen datos cargados */
-            $("#sltPlan").prop("disabled", "disabled");
-            /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
-            $("#sltModalidad, #sltSede").change(function () {
-
-                var route = "/Plans/Planes/List/" + $('select[name="sltSede"]').val() + "/" + $('select[name="sltModalidad"]').val();
-                $.getJSON(route, function (data) {
-                    var items = "";
-                    $.each(data, function (i, plan) {
-                        items += "<option value= " + plan.ID + ">" + plan.Nombre + "</option>";
-                    });
-
-                    if (items != "") {
-                        $("#sltPlan").prop("disabled", false);
-                        $("#sltPlan").html(items);
-                        $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan de Estudio --</option>");
-                    }
-                });
-            });
-        });
-
-        function setCookie(cname, cvalue, exdays) {
-
-            document.cookie = cname + "=" + cvalue + ";path=/";
-        }
-
-        function Enviar() {
-            setCookie("Periodo", $('#sltPeriodo :selected').val(), 1);
-            setCookie("SelPlanDeEstudio", $('#sltPlan :selected').val(), 1);
-            setCookie("SelModalidad", $('#sltModalidad :selected').val(), 1);
-            setCookie("SelSede", $('#sltSede :selected').val(), 1);
-        }
-        
-    </script>
+    <script src="@Url.Content("~/Scripts/validaciones.js")"></script>
+    <script src="@Url.Content("~/Scripts/indexHorario.js")"></script>
 
 }
     <h2>Seleccionar Plan de Estudio</h2>
@@ -127,7 +93,7 @@
                 <select id="sltPlan" name="sltPlan" class="form-control"></select>
             <br />
     <br />
-            <input name="button" onclick="Enviar()" type="submit" value="Crear Horario" class="btn btn-default" />
+            <input name="button" onclick="return Enviar()" type="submit" value="Crear Horario" class="btn btn-default" />
     <br />
             </div>
     </div>

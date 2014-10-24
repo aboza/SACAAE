@@ -128,9 +128,9 @@ namespace SACAAE.Controllers
             return View(listaCursos);
         }
 
-        public ActionResult ObtenerGrupos(int curso, int plan, int bloque)
+        public ActionResult ObtenerGrupos(int curso, int plan, int bloque, int periodo)
         {
-            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso,plan,bloque);
+            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso,plan,bloque, periodo);
             if (HttpContext.Request.IsAjaxRequest())
             {
                 return Json(new SelectList(

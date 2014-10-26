@@ -1,4 +1,4 @@
-﻿@model SACAAE.Models.Profesores
+﻿@model SACAAE.Models.Profesore
 
 @{
     ViewBag.Title = "Agregar Profesor";
@@ -31,18 +31,7 @@
 
             
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.HorasEnPropiedad)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.HorasEnPropiedad, new
-               {
-                   @class = "form-control",
-                   @placeholder = "Cantidad de Horas Propiedad",
-                   @required = "true"
-               })
-                @Html.ValidationMessageFor(model => model.HorasEnPropiedad)
-            </div>
+            
             <div class="editor-label">
                 @Html.LabelFor(model => model.Link)
             </div>

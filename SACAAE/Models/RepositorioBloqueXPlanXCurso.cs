@@ -29,6 +29,14 @@ namespace SACAAE.Models
                    select cursos;
         }
 
+        public Curso ListarCursoXID(int ID)
+        {
+            return (from cursos in entidades.Cursos
+                   join BPC in entidades.BloqueXPlanXCursoes on cursos.ID equals BPC.CursoID
+                   where BPC.ID == ID
+                   select cursos).FirstOrDefault();
+        }
+
         public bool existeRelacionBloqueXPlanXCurso(int pBloqueXPlanID, int pCursoID)
         {
             return (entidades.BloqueXPlanXCursoes.SingleOrDefault(relacion => relacion.BloqueXPlanID == pBloqueXPlanID && relacion.CursoID == pCursoID) != null);

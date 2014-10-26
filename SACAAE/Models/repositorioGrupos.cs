@@ -63,6 +63,15 @@ namespace SACAAE.Models
                    orderby Grupo.Numero
                    select Grupo;
         }
+
+        public IQueryable<Grupo> ObtenerTodosGrupos(int periodo)
+        {
+            return from Grupo in entidades.Grupoes
+                   where Grupo.Periodo==periodo
+                   orderby Grupo.Numero
+                   select Grupo;
+        }
+
         public IQueryable<Grupo> ListaGrupos(int PlanDeEstudio, int Periodo, int Bloque)
         {
             var idBloque = from bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes

@@ -429,6 +429,7 @@
     <None Include="Properties\PublishProfiles\ftpSACAAE.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\ajaxCrear.js" />
+    <Content Include="Scripts\AsignarPlaza.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CursoProfesor.js" />

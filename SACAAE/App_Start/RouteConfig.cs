@@ -13,6 +13,8 @@ namespace SACAAE
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            
+
             /*Rutas Cortés*/
             routes.MapRoute(
              "ObtenerPlanesEstudio",
@@ -147,6 +149,12 @@ namespace SACAAE
              "ObtenerHorariosPeriodo",
              "getHorarios/List/{plan}/{periodo}",
              new { Controller = "Horarios", action = "ObtenerHorarios" });
+
+            routes.MapRoute(
+             "ObtenerPlaza",
+             "getPlaza/HorasTotales/Una/{idPlaza}",
+             new { Controller = "Plazas", action = "getPlaza" });
+            
 
             /*Fin rutas Jack 2014 S2*/
         }

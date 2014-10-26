@@ -118,5 +118,10 @@ namespace SACAAE.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult getPlaza(int idPlaza)
+        {
+            var Plaza = repositorio.ObtenerHorasTotalesPlaza(idPlaza);
+            return Json(Plaza, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -27,19 +27,26 @@ namespace SACAAE.Models
                 Profesor = Int16.Parse(IDProfesor.ID.ToString()),
                 Horas_Asignadas = horasAsignadas
             };
-
-            try
+            if (!ExistePlaza(asignarPlaza))
             {
-                AgregarPlazaProfesor(asignarPlaza);
+                try
+                {
+                    AgregarPlazaProfesor(asignarPlaza);
+                }
+                catch (ArgumentException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+                        "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+                }
             }
-            catch (ArgumentException e)
+            else
             {
-                throw e;
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
-                    "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+                asignarPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                Actualizar(asignarPlaza);
             }
 
             Save();
@@ -50,6 +57,26 @@ namespace SACAAE.Models
             entidades.PlazaXProfesors.Add(asignarPlaza);
         }
 
+        public bool ExistePlaza(PlazaXProfesor plazaXProfesor)
+        {
+            if (plazaXProfesor == null)
+                return false;
+            return (entidades.PlazaXProfesors.SingleOrDefault(p => p.Plaza == plazaXProfesor.Plaza && p.Profesor==plazaXProfesor.Profesor) != null);
+        }
+
+        public void Actualizar(PlazaXProfesor plaza)
+        {            
+
+            var temp = entidades.PlazaXProfesors.Find(plaza.ID);
+
+            if (temp != null)
+            {
+                entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue += plaza.Horas_Asignadas;
+            }
+
+            Save();
+
+        }
         public void Save()
         {
             entidades.SaveChanges();

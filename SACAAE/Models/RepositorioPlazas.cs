@@ -71,6 +71,13 @@ namespace SACAAE.Models
                    select PlazaXProfesor;
         }
 
+        public PlazaXProfesor ObtenerPlazaXProfesor(int Plaza, int profe)
+        {
+            return (from PlazaXProfesor in entidades.PlazaXProfesors
+                   where PlazaXProfesor.Plaza == Plaza && PlazaXProfesor.Profesor==profe
+                   select PlazaXProfesor).FirstOrDefault();
+        }
+
         public IQueryable<Profesore> ObtenerProfesoresPlaza()
         {
             return from profesor in entidades.Profesores

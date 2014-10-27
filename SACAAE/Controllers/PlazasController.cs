@@ -144,5 +144,11 @@ namespace SACAAE.Controllers
             var Plaza = repositorio.ObtenerHorasTotalesPlaza(idPlaza);
             return Json(Plaza, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult getPlazaXProfesor(int idPlaza, int idProfesor)
+        {
+            var Plaza = repositorio.ObtenerHorasTotalesPlazaXProfesor(idPlaza,idProfesor);
+            return Json(Plaza, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -8,7 +8,7 @@
 });
 
 function CargarTextoHorasXLiberar() {
-    var route = "/getPlaza/HorasTotales/Una/" + $('select[name="sltPlaza"]').val();
+    var route = "/getPlazaXProfesor/HorasTotales/Una/" + $('select[name="sltPlaza"]').val() + "/" + $('select[name="sltProfesor"]').val();
     $.getJSON(route, function (data) {
         $("#HT").val(data[0]);
         $("#HA").val(data[1]);

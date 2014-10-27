@@ -58,6 +58,20 @@ namespace SACAAE.Models
             return res.AsQueryable();
         }
 
+        public IQueryable ObtenerHorasTotalesPlazaXProfesor(int id, int profesor)
+        {
+            String[] res = new String[2];
+            var HorasTotales = (from plaza in entidades.Plazas
+                                where plaza.ID == id
+                                select plaza.Horas_Totales).First();
+            var sum = (from plazaXProfe in entidades.PlazaXProfesors
+                       where plazaXProfe.Plaza == id && plazaXProfe.Profesor==profesor
+                       select new { plazaXProfe.Horas_Asignadas });
+            res[0] = HorasTotales.ToString();
+            res[1] = sum.Sum(plaza => plaza.Horas_Asignadas).ToString();
+            return res.AsQueryable();
+        }
+
         /// <summary>
         /// Se obtiene una plaza de acuerdo a su nombre.
         /// </summary>

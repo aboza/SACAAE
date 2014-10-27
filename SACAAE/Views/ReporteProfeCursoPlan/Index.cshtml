@@ -46,6 +46,9 @@
 
                             }
                             var valorExterno = "No";
+                            var Creditos = info.Creditos;
+                            if (info.Creditos == null)
+                                Creditos=0;
                             if (info.Externo)
                                 valorExterno = "Si";
                             items += "<tr><td>" + info.Codigo + "</td><td>" + info.Nombre + "</td><td>" + info.Numero + "</td><td>" + valorExterno + "</td><td>" + horarioItems + "</td><td>" + info.Aula + "</td><td>" + info.Cupo + "</td><td>" + info.profe + "</td><td>" + info.Creditos + "</td></tr>";

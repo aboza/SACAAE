@@ -141,7 +141,7 @@ namespace SACAAE.Models
                    join profesorxCurso in entidades.ProfesoresXCursoes on detalleGrupo.Profesor equals profesorxCurso.Id
                    join profesor in entidades.Profesores on profesorxCurso.Profesor equals profesor.ID
                    where BloquesXPlan.PlanID == plan && grupo.Periodo == periodo
-                   select new { Curso.Codigo, Curso.Nombre, Curso.Externo,grupo.Numero,grupo.ID,detalleGrupo.Aula,detalleGrupo.Cupo,profe=profesor.Nombre};
+                   select new { Curso.Codigo, Curso.Nombre, Curso.Externo,grupo.Numero,grupo.ID,detalleGrupo.Aula,detalleGrupo.Cupo,profe=profesor.Nombre,Curso.Creditos};
 
         }
         public void Save()

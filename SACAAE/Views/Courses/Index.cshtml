@@ -38,6 +38,9 @@
         <th>
             @Html.DisplayNameFor(model => model.HorasPracticas)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creditos)
+        </th>
         <th></th>
     </tr>
 
@@ -61,6 +64,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HorasPracticas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creditos)
             </td>
             <td>
                 @Html.ActionLink("Editar", "ModificarCurso", new { id = item.ID })

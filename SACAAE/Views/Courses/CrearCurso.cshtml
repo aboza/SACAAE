@@ -65,7 +65,7 @@
             </div>
 
             <div class="editor-field">
-                <input name="HorasPracticas" id="HorasPracticas" type="number" min="0" value="0" />
+                <input name="HorasPracticas" class="form-control" id="HorasPracticas" type="number" min="0" value="0" />
                 @Html.ValidationMessageFor(model => model.HorasPracticas)
             </div>
 
@@ -74,17 +74,32 @@
             </div>
 
             <div class="editor-field">
-                <input name="HorasTeoricas" id="HorasTeoricas" type="number" min="0" value="0" />
+                <input name="HorasTeoricas" class="form-control" id="HorasTeoricas" type="number" min="0" value="0" />
                 @Html.ValidationMessageFor(model => model.HorasTeoricas)
             </div>
             <br />
 
             <div class="editor-label">
+                <label> Creditos </label>
+            </div>
+
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Creditos, new
+               {
+                   @class = "form-control",
+                   @placeholder = "Creditos del Curso",
+                   @required = "true"
+               })
+                @Html.ValidationMessageFor(model => model.Creditos)
+
+
+            </div>
+            <div class="editor-label">
                 <label> Bloque</label>
             </div>
 
             <div class="editor-field">
-                <input name="Bloque" id="Bloque" type="number" min="1" max="6" value="1" />
+                <input name="Bloque" class="form-control" id="Bloque" type="number" min="1" max="6" value="1" />
             </div>
 
             <div class="editor-label">

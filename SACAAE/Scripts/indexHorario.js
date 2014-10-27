@@ -46,7 +46,8 @@ function Enviar() {
                     alert("ERROR: Seleccione un plan");
                     return false;
                 }
-    setCookie("Periodo", $('#sltPeriodo :selected').val(), 1);
+
+    setCookie("PeriodoHorario", $('#sltPeriodo :selected').val(), 1);
     setCookie("SelPlanDeEstudio", $('#sltPlan :selected').val(), 1);
     setCookie("SelModalidad", $('#sltModalidad :selected').val(), 1);
     setCookie("SelSede", $('#sltSede :selected').val(), 1);

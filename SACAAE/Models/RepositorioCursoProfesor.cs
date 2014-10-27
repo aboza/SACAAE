@@ -159,7 +159,7 @@ namespace SACAAE.Models
 
             return from grupos in entidades.Grupoes
                    join DetalleGrupo in entidades.Detalle_Grupo on grupos.ID equals DetalleGrupo.Grupo
-                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.Profesor == 1
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.Profesor == 5
                    select new { grupos.ID, grupos.Numero };
         }
 

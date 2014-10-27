@@ -45,7 +45,7 @@ namespace SACAAE.Models
             {
                 PlanDeEstudio = Request.Cookies["SelPlanDeEstudio"].Value;
                 Modalidad = Request.Cookies["SelModalidad"].Value;
-                Periodo = Request.Cookies["Periodo"].Value;
+                Periodo = Request.Cookies["PeriodoHorario"].Value;
             }
             catch (Exception e)
             {

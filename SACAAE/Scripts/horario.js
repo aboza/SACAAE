@@ -23,7 +23,7 @@
     });
     $("#sltCurso").change(function () {
         var plan = getCookie("SelPlanDeEstudio");
-        var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + $('select[name="sltBloque"]').val() + "/" + getCookie("Periodo");
+        var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + $('select[name="sltBloque"]').val() + "/" + getCookie("PeriodoHorario");
 
         $.getJSON(route, function (data) {
             var items = "";
@@ -97,7 +97,7 @@
 function Cargar() {
     setCookie("i", 0, 1);
     setCookie("Cantidad", 0, 1);
-    var route = "/getHorarios/List/" + getCookie("SelPlanDeEstudio") + "/" + getCookie("Periodo");
+    var route = "/getHorarios/List/" + getCookie("SelPlanDeEstudio") + "/" + getCookie("PeriodoHorario");
     $.getJSON(route, function (data) {
         $.each(data, function (i, Horario) {
             var Curso = Horario.Nombre;

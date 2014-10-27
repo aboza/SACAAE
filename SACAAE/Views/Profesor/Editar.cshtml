@@ -1,4 +1,4 @@
-﻿@model SACAAE.Models.Profesores
+﻿@model SACAAE.Models.Profesore
 
 @{
     ViewBag.Title = "Editar";
@@ -30,29 +30,7 @@
                 @Html.ValidationMessageFor(model => model.Nombre)
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Plaza)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.Plaza, new
-               {
-                   @class = "form-control",                   
-                   @required = "true"
-               })
-                @Html.ValidationMessageFor(model => model.Plaza)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.HorasEnPropiedad)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.HorasEnPropiedad, new
-               {
-                   @class = "form-control",                   
-                   @required = "true"
-               })
-                @Html.ValidationMessageFor(model => model.HorasEnPropiedad)
-            </div>
+           
             <div class="editor-label">
                 @Html.LabelFor(model => model.Link)
             </div>

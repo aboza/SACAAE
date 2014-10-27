@@ -77,6 +77,55 @@ namespace SACAAE.Models
             Save();
 
         }
+
+        public void ActualizarXLiberacion(PlazaXProfesor plaza)
+        {
+
+            var temp = entidades.PlazaXProfesors.Find(plaza.ID);
+
+            if (temp != null)
+            {
+                entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue -= plaza.Horas_Asignadas;
+            }
+
+            Save();
+
+        }
+
+        public void LiberarHoras(string codigoPlaza, string codigoProfesor, int? horasAsignadas)
+        {
+            RepositorioProfesor repoProfesor = new RepositorioProfesor();
+            RepositorioPlazas repoPlaza = new RepositorioPlazas();
+
+            var IDProfesor = repoProfesor.ObtenerProfesor(Int16.Parse(codigoProfesor));
+            var IDPlaza = repoPlaza.ObtenerPlaza(Int16.Parse(codigoPlaza));
+
+            PlazaXProfesor asignarPlaza = new PlazaXProfesor()
+            {
+                Plaza = Int16.Parse(IDPlaza.ID.ToString()),
+                Profesor = Int16.Parse(IDProfesor.ID.ToString()),
+                Horas_Asignadas = horasAsignadas
+            };
+            if (ExistePlaza(asignarPlaza))
+            {
+                try
+                {
+                    asignarPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                    ActualizarXLiberacion(asignarPlaza);
+                }
+                catch (ArgumentException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+                        "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+                }
+            }            
+            Save();
+        }
+
         public void Save()
         {
             entidades.SaveChanges();

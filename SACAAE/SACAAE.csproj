@@ -450,6 +450,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\liberarHorasPlaza.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\RevocarComisionProfesor.js" />
     <Content Include="Scripts\RevocarCursoProfesor.js" />
@@ -552,6 +553,7 @@
     <Content Include="Views\Plazas\Editar.cshtml" />
     <Content Include="Views\Plazas\Eliminar.cshtml" />
     <Content Include="Views\Plazas\Index.cshtml" />
+    <Content Include="Views\Plazas\Liberar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

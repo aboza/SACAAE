@@ -24,7 +24,7 @@ function validarHorasXLiberar() {
         alert("ERROR: No puede liberar horas, la cantidad es mayor a la disponible");
         return false;
     }
-    if (HorasPorAsignadas > (HorasTotales - HorasAsignadas)) {
+    else if (HorasPorAsignadas > (HorasTotales - HorasAsignadas)) {
         alert("ERROR: Debe liberar menos horas, la cantidad es mayor a la disponible");
         return false;
     }

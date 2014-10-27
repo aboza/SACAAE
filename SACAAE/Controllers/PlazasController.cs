@@ -133,7 +133,7 @@ namespace SACAAE.Controllers
         public ActionResult Liberar(String sltPlaza, String sltProfesor, PlazaXProfesor plaza)
         {
             repositorioPlazaXProfesor.LiberarHoras(sltPlaza, sltProfesor, plaza.Horas_Asignadas);
-            TempData[TempDataMessageKey] = "Plaza creada correctamente.";
+            TempData[TempDataMessageKey] = "Horas de Plaza liberada correctamente.";
             return RedirectToAction("Index");
         }
 

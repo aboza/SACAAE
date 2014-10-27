@@ -64,14 +64,14 @@
                 @Html.Label("Hora Inicio")
             </div>
             <div class="editor-field">
-                @Html.TextBox("HoraInicio", null, new { @class = "form-control", @required = "true", @placeholder = "9:00" })
+                @Html.TextBox("HoraInicio", null, new { type="number", @class = "form-control", @required = "true", @placeholder = "9:00" })
             </div>
             <br />
             <div class="editor-label">
                 @Html.Label("Hora Fin")
             </div>
             <div class="editor-field">
-                @Html.TextBox("HoraFin", null, new { @class = "form-control", @required = "true", @placeholder = "12:00" })
+                @Html.TextBox("HoraFin", null, new { type="number", @class = "form-control", @required = "true", @placeholder = "12:00" })
 
             </div>
             <br />

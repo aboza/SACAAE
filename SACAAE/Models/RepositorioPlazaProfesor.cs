@@ -46,6 +46,7 @@ namespace SACAAE.Models
             else
             {
                 asignarPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                asignarPlaza.Horas_Asignadas = horasAsignadas;
                 Actualizar(asignarPlaza);
             }
 
@@ -111,6 +112,7 @@ namespace SACAAE.Models
                 try
                 {
                     liberarHorasPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                    liberarHorasPlaza.Horas_Asignadas = horasAsignadas;
                     ActualizarXLiberacion(liberarHorasPlaza);
                 }
                 catch (ArgumentException e)

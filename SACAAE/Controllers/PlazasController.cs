@@ -118,6 +118,28 @@ namespace SACAAE.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
+        public ActionResult Nombrar()
+        {
+
+            ViewBag.Plaza = repositorio.ObtenerTodasPlazas();
+            ViewBag.Profesores = repositorio.ObtenerProfesoresPlaza();
+            ViewBag.PlazasAsignadas = repositorio.ObtenerPlazasAsignadas();
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Nombrar(String sltPlaza, String sltProfesor, PlazaXProfesor plaza)
+        {
+            bool res=repositorioPlazaXProfesor.NombrarPlaza(sltPlaza, sltProfesor);
+            if (res) { TempData[TempDataMessageKey] = "Plaza nombrada correctamente."; }
+            else
+            { TempData[TempDataMessageKey] = "Debe liberar las horas de la plaza"; }
+            
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Liberar()
         {
 

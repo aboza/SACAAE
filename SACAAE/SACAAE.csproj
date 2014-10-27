@@ -554,6 +554,7 @@
     <Content Include="Views\Plazas\Eliminar.cshtml" />
     <Content Include="Views\Plazas\Index.cshtml" />
     <Content Include="Views\Plazas\Liberar.cshtml" />
+    <Content Include="Views\Plazas\Nombrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

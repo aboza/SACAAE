@@ -53,6 +53,59 @@ namespace SACAAE.Models
             Save();
         }
 
+        public bool NombrarPlaza(string codigoPlaza, string codigoProfesor)
+        {
+            // if (string.IsNullOrEmpty(codigoPlaza.Trim()))
+            //   throw new ArgumentException("El codigo de la plaza no es válido. Por favor, intente de nuevo.");
+
+
+            RepositorioProfesor repoProfesor = new RepositorioProfesor();
+            RepositorioPlazas repoPlaza = new RepositorioPlazas();
+
+            bool res = true;
+            var IDProfesor = repoProfesor.ObtenerProfesor(Int16.Parse(codigoProfesor));
+            var IDPlaza = repoPlaza.ObtenerPlaza(Int16.Parse(codigoPlaza));
+
+            PlazaXProfesor nombrarPlaza = new PlazaXProfesor()
+            {
+                Plaza = Int16.Parse(IDPlaza.ID.ToString()),
+                Profesor = Int16.Parse(IDProfesor.ID.ToString()),
+                Horas_Asignadas = IDPlaza.Horas_Totales,
+                HorasEnPropiedad = (int)IDPlaza.Horas_Totales
+            };
+            if (!ExistePlazaXProfesor(nombrarPlaza))
+            {
+                if (!ExistePlaza(nombrarPlaza))
+                {
+                    try
+                    {
+                        AgregarPlazaProfesor(nombrarPlaza);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        throw e;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ArgumentException("El proveedor de autenticación retornó un error. Por favor, intente de nuevo. " +
+                            "Si el problema persiste, por favor contacte un administrador.\n" + e.Message);
+                    }
+                }
+                else
+                {
+                    nombrarPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                    nombrarPlaza.Horas_Asignadas = IDPlaza.Horas_Totales;
+                    Actualizar(nombrarPlaza);
+                }
+
+            }
+            else
+            { res = false; }
+            
+
+            Save();
+            return res;
+        }
         private void AgregarPlazaProfesor(PlazaXProfesor asignarPlaza)
         {
             entidades.PlazaXProfesors.Add(asignarPlaza);
@@ -64,7 +117,12 @@ namespace SACAAE.Models
                 return false;
             return (entidades.PlazaXProfesors.SingleOrDefault(p => p.Plaza == plazaXProfesor.Plaza && p.Profesor==plazaXProfesor.Profesor) != null);
         }
-
+        public bool ExistePlazaXProfesor(PlazaXProfesor plazaXProfesor)
+        {
+            if (plazaXProfesor == null)
+                return false;
+            return (entidades.PlazaXProfesors.SingleOrDefault(p => p.Plaza == plazaXProfesor.Plaza && (p.HorasEnPropiedad>0 || p.Horas_Asignadas>0)) != null);
+        }
         public void Actualizar(PlazaXProfesor plaza)
         {            
 
@@ -73,6 +131,7 @@ namespace SACAAE.Models
             if (temp != null)
             {
                 entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue += plaza.Horas_Asignadas;
+                entidades.Entry(temp).Property(p => p.HorasEnPropiedad).CurrentValue += (int)plaza.Horas_Asignadas;
             }
 
             Save();

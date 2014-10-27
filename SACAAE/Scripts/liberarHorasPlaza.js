@@ -20,6 +20,10 @@ function validarHorasXLiberar() {
     var HorasTotales = $("#HT").val();
     var HorasAsignadas = $("#HA").val();
     var HorasPorAsignadas = $("#HPA").val();
+    if (HorasAsignadas = 0) {
+        alert("ERROR: No puede liberar horas, la cantidad es mayor a la disponible");
+        return false;
+    }
     if (HorasPorAsignadas > (HorasTotales - HorasAsignadas)) {
         alert("ERROR: Debe liberar menos horas, la cantidad es mayor a la disponible");
         return false;

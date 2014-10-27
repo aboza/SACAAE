@@ -100,18 +100,18 @@ namespace SACAAE.Models
             var IDProfesor = repoProfesor.ObtenerProfesor(Int16.Parse(codigoProfesor));
             var IDPlaza = repoPlaza.ObtenerPlaza(Int16.Parse(codigoPlaza));
 
-            PlazaXProfesor asignarPlaza = new PlazaXProfesor()
+            PlazaXProfesor liberarHorasPlaza = new PlazaXProfesor()
             {
                 Plaza = Int16.Parse(IDPlaza.ID.ToString()),
                 Profesor = Int16.Parse(IDProfesor.ID.ToString()),
                 Horas_Asignadas = horasAsignadas
             };
-            if (ExistePlaza(asignarPlaza))
+            if (ExistePlaza(liberarHorasPlaza))
             {
                 try
                 {
-                    asignarPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
-                    ActualizarXLiberacion(asignarPlaza);
+                    liberarHorasPlaza = repoPlaza.ObtenerPlazaXProfesor(IDPlaza.ID, IDProfesor.ID);
+                    ActualizarXLiberacion(liberarHorasPlaza);
                 }
                 catch (ArgumentException e)
                 {

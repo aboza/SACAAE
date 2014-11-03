@@ -129,6 +129,16 @@ namespace SACAAE.Controllers
         }
 
         [Authorize]
+        public ActionResult QuitarNombramiento()
+        {
+
+            ViewBag.Plaza = repositorio.ObtenerTodasPlazas();
+            ViewBag.Profesores = repositorio.ObtenerProfesoresPlaza();
+            ViewBag.PlazasAsignadas = repositorio.ObtenerPlazasAsignadas();
+            return View();
+        }
+
+        [Authorize]
         [HttpPost]
         public ActionResult Nombrar(String sltPlaza, String sltProfesor, PlazaXProfesor plaza)
         {
@@ -140,6 +150,15 @@ namespace SACAAE.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult QuitarNombramiento(String sltPlaza, String sltProfesor, PlazaXProfesor plaza)
+        {
+            repositorioPlazaXProfesor.QuitarNombramiento(sltPlaza, sltProfesor);
+            TempData[TempDataMessageKey] = "Nombramiento removido satisfactoriamente";
+
+            return RedirectToAction("Index");
+        }
         public ActionResult Liberar()
         {
 
@@ -171,6 +190,12 @@ namespace SACAAE.Controllers
         {
             var Plaza = repositorio.ObtenerHorasTotalesPlazaXProfesor(idPlaza,idProfesor);
             return Json(Plaza, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getPlazaXProfesorNombrado(int idPlaza)
+        {
+            var Profesor = repositorioPlazaXProfesor.obtenerProfeNombradoPorPlaza(idPlaza);
+            return Json(Profesor, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿@model SACAAE.Models.PlazaXProfesor
 @{
-    ViewBag.Title = "Asignar";
+    ViewBag.Title = "Quitar Nombramiento";
     Layout = "~/Views/Shared/Privado.cshtml";
 }
 
-<h2>Asignar Plaza a Profesor</h2>
+<h2>Quitar nombramiento a Profesor</h2>
 <hr />
-<body onload="CargarTextoHoras()">
+<body onload="CargarProfe()">
 <div class="col-lg-4">
     <div class="span12">
         @if (TempData.ContainsKey("Message"))
@@ -39,45 +39,13 @@
                 Profesores
             </div>
             <div class="editor-field">
-                <select id="sltProfesor" name="sltProfesor" class="form-control">
-                    @foreach (var item in ViewBag.Profesores)
-                    {
-                        <option value="@item.ID">@item.Nombre</option>
-                    }
+                <select id="sltProfesor" name="sltProfesor" class="form-control" required>
                 </select>
+                <span class="field-validation-valid" data-valmsg-for="sltProfesor" data-valmsg-replace="true"></span>
             </div>
-            <br />
-            
-            <br />
-            <div class="editor-label">
-                Horas Totales
-            </div>
-
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { @class = "form-control" , @id = "HT"} })
-            </div>
-
-            <br />
-        <div class="editor-label">
-                Horas Asignadas
-            </div>
-
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { @class = "form-control" , @id = "HA"} })
-            </div>
-
-            <br />
-        <div class="editor-label">
-                Horas Por Asignar
-            </div>
-
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Horas_Asignadas, new { htmlAttributes = new { type="number", @required = "true", @class = "form-control" , @id = "HPA"} })
-            </div>
-
             <br />
             <p>
-                <input type="submit" onclick="return validarHoras()"value="Asignar" class="btn" />
+                <input type="submit" value="QuitarNombramiento" class="btn" />
 
             </p>
         }
@@ -129,5 +97,5 @@
     </body>
 @section Scripts {
   @Scripts.Render("~/bundles/jqueryval")
-<script src="@Url.Content("~/Scripts/AsignarPlaza.js")"></script>
+<script src="@Url.Content("~/Scripts/QuitarNombramiento.js")"></script>
 }

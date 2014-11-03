@@ -113,7 +113,7 @@ $(document).ready(function() {
         var id = "";
 
         /*Horas calculadas de acuerdo al horario*/
-        var horas = 0;
+        var horas = 0.0;
 
         $.getJSON(route1, function (data) {
             //alert(data.toSource());
@@ -142,16 +142,16 @@ $(document).ready(function() {
                     var horafin = parseInt(data[i]["Hora_Fin"]);
                     var horainicio = parseInt(data[i]["Hora_Inicio"]);
 
-                    horas += parseInt(horafin - horainicio);
+                    horas += horafin - horainicio;
                 }
 
                 //alert(horas);
-                horas = parseInt(horas / 100, 10);
+                horas = horas / 100;
 
                 if (items != "") {
                     $("#txtHorario").val(items);
                     $("#Asignar").prop("disabled", false);
-                    $("#txtHoras").val(horas);
+                    $("#txtHoras").val(Math.ceil(horas));
                 }
                 else {
                     $("#txtHorario").val("No hay horarios para ese curso.")

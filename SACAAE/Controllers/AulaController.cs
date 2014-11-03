@@ -93,15 +93,19 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ModificarAula(Aula pAula, string selectSede)
+        public ActionResult ModificarAula(Aula pAula, string selectSede,string Codigo)
         {
             int vSedeID = Int16.Parse(selectSede);
             pAula.SedeID = vSedeID;
-            if (vRepoAulas.existeAula(pAula.SedeID, pAula.Codigo))
+            if (Codigo != pAula.Codigo)
             {
-                TempData[TempDataMessageKey] = "Esta sede ya cuenta con un aula con el código provisto. Por Favor intente de nuevo.";
-                return RedirectToAction("ModificarAula");
+                if (vRepoAulas.existeAula(pAula.SedeID, pAula.Codigo))
+                {
+                    TempData[TempDataMessageKey] = "Esta sede ya cuenta con un aula con el código provisto. Por Favor intente de nuevo." + Codigo;
+                    return RedirectToAction("ModificarAula");
+                }
             }
+            
 
             if (ModelState.IsValid)
             {

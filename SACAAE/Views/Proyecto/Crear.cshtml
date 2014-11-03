@@ -33,7 +33,7 @@
                 @Html.LabelFor(model => model.Inicio)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.Inicio, new { @class = "form-control", placeholder = "Fecha de Inicio" })
+                @Html.TextBoxFor(model => model.Inicio, new { @type="date", @class = "form-control", placeholder = "Fecha de Inicio" })
                 @Html.ValidationMessageFor(model => model.Inicio)
             </div>
 
@@ -41,7 +41,7 @@
                 @Html.LabelFor(model => model.Fin)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(model => model.Fin, new { @class = "form-control", placeholder = "Fecha de Fin" })
+                @Html.TextBoxFor(model => model.Fin, new { @type="date", @class = "form-control", placeholder = "Fecha de Fin" })
                 @Html.ValidationMessageFor(model => model.Fin)
             </div>
             

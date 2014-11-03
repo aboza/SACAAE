@@ -182,6 +182,12 @@
                     <textarea id="txtHorario" name="txtHorario" disabled="disabled" class="form-control"></textarea>
                 </div>
                 
+            <div class="editor-label">
+                    @Html.Label("Horas Estimadas")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBox("txtHorasEstimadas", null, new { @class = "form-control" , @type="number", @required="true"})
+                    </div>
                 <hr />
                 <p>
 

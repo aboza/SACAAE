@@ -159,6 +159,11 @@ namespace SACAAE
              "ObtenerPlazaXProfesor",
              "getPlazaXProfesor/HorasTotales/Una/{idPlaza}/{idProfesor}",
              new { Controller = "Plazas", action = "getPlazaXProfesor" });
+
+            routes.MapRoute(
+             "ObtenerPlazaXProfesorNombrado",
+             "getPlazaXProfesorNombrado/List/Profes/{idPlaza}",
+             new { Controller = "Plazas", action = "getPlazaXProfesorNombrado" });
             
 
             /*Fin rutas Jack 2014 S2*/

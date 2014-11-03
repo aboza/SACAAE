@@ -63,12 +63,12 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras)
+        public ActionResult Asignar(int sltProfesor, int sltGrupo, int txtHoras, int txtHorasEstimadas)
         {
             var creado = 0 ;
             var idProfesorXCurso = 0; 
             var idDetalleGrupo = vRepositorioGrupos.obtenerUnDetalleGrupo(sltGrupo);
-            idProfesorXCurso = repositorioCursoProfesor.asignarProfesor(sltProfesor, txtHoras);
+            idProfesorXCurso = repositorioCursoProfesor.asignarProfesor(sltProfesor, txtHoras+txtHorasEstimadas);
             if (idProfesorXCurso != 0)
             {
                 creado = repositorioCursoProfesor.actualizarDetalleGrupo(idProfesorXCurso, idDetalleGrupo.Id);
@@ -235,16 +235,16 @@ namespace SACAAE.Controllers
         }
 
 
-        //public ActionResult ObtenerCursosPorProfesor(int idProfesor)
-        //{
-        //    IQueryable listaCursos = repositorioCursoProfesor.obtenerCursosPorProfesor(idProfesor);
-        //    if (HttpContext.Request.IsAjaxRequest())
-        //    {
-        //        var json = JsonConvert.SerializeObject(listaCursos);
+        public ActionResult ObtenerCursosPorProfesor(int idProfesor)
+        {
+            IQueryable listaCursos = repositorioCursoProfesor.obtenerCursosPorProfesor(idProfesor);
+            if (HttpContext.Request.IsAjaxRequest())
+            {
+                var json = JsonConvert.SerializeObject(listaCursos);
 
-        //        return Content(json);
-        //    }
-        //    return View(listaCursos);
-        //}
+                return Content(json);
+            }
+            return View(listaCursos);
+        }
     }
 }

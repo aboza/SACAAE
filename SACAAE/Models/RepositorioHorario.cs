@@ -109,7 +109,7 @@ namespace SACAAE.Models
         {
             var vDetalleGrupo=from Dia in entidades.Dias
                    join DetalleGrupo in entidades.Detalle_Grupo on Dia.Horario equals DetalleGrupo.Horario
-                   where Dia.Dia1==dia && (Dia.Hora_Inicio <= HoraInicio || Dia.Hora_Fin >= HoraFin) && (DetalleGrupo.Aula == aula || DetalleGrupo.Grupo == grupo)
+                   where Dia.Dia1==dia && (Dia.Hora_Inicio <= HoraInicio && Dia.Hora_Fin >= HoraFin) && DetalleGrupo.Aula == aula
                    select DetalleGrupo;
             if (vDetalleGrupo.Any())
                 return 1;

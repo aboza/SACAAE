@@ -92,13 +92,27 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ModificarCurso(Curso pCurso)
+        public ActionResult ModificarCurso(Curso pCurso,string Nombre,string Codigo)
         {
-            if (repoCursos.existeCurso(pCurso.Codigo))
+            
+            if(pCurso.Nombre!=Nombre)
             {
-                TempData[TempDataMessageKey] = "Es posible que exista un curso con el mismo código. Por Favor intente de nuevo.";
-                return RedirectToAction("ModificarCurso");
+                if (repoCursos.existeCurso(pCurso.Nombre))
+                {
+                    TempData[TempDataMessageKey] = "Es posible que exista un curso con el mismo nombre. Por Favor intente de nuevo.";
+                    return RedirectToAction("ModificarCurso");
+                }
             }
+            if(pCurso.Codigo!=Codigo)
+            {
+                if (repoCursos.existeCurso(pCurso.Codigo))
+                {
+                    TempData[TempDataMessageKey] = "Es posible que exista un curso con el mismo codigo. Por Favor intente de nuevo.";
+                    return RedirectToAction("ModificarCurso");
+                }
+            }               
+            
+            
 
             if (ModelState.IsValid)
             {

@@ -20,7 +20,7 @@
                         var newLink = '<a href="@Url.Action("ModificarAula")/' + aula.ID + '">Editar</a> | <a href="@Url.Action("EliminarAula")/' + aula.ID + '">Eliminar</a>';
                         items += "<tr><td>" + aula.Codigo + "</td>";
                         items += "<td>" + aula.Espacio + "</td>";
-                        items += '<td><input type="checkbox" value="'+aula.Activa+'" disabled></td><td>' + newLink + "</td></tr>";
+                        items += '<td><input type="checkbox" checked="'+aula.Activa+'" disabled></td><td>' + newLink + "</td></tr>";
                     });
 
                         if (items != "") {

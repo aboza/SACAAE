@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $("#HA").prop("disabled", "disabled");
     $("#HT").prop("disabled", "disabled");
-    $("#sltPlaza").change(function () {
+    $("#sltPlaza, #sltProfesor").change(function () {
         CargarTextoHorasXLiberar();
 
     });

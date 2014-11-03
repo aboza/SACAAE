@@ -46,13 +46,14 @@ namespace SACAAE.Models
 
                             string HoraInicio = (Dia.Hora_Inicio / 100).ToString() + ":" + (Dia.Hora_Inicio % 100).ToString();
                             string HoraFin = (Dia.Hora_Fin / 100).ToString() + ":" + (Dia.Hora_Fin % 100).ToString();
-                            double Carga = 0;
+                            int Carga = 0;
                             Curso CursoInfo = repoBloqueXPlanXCurso.ListarCursoXID(item.BloqueXPlanXCursoID);
                             if (!CursoInfo.Externo)
                             {
-                                Carga = ((CursoInfo.HorasTeoricas * 2) + ((int)CursoInfo.HorasPracticas * 1.75));
+                                Carga=(int)Detalle.ProfesoresXCurso.Horas;  
+                                /*Carga = ((CursoInfo.HorasTeoricas * 2) + ((int)CursoInfo.HorasPracticas * 1.75));
                                 double CargaCupo = this.CalculoCupo(Convert.ToInt32(Detalle.Cupo), Convert.ToInt32(CursoInfo.HorasTeoricas), Convert.ToInt32(CursoInfo.HorasPracticas));
-                                Carga = Carga + CargaCupo;
+                                Carga = Carga + CargaCupo;*/
                             }
                             sw.WriteLine("Curso;" +
                                         item.Numero + ";" +
@@ -90,14 +91,14 @@ namespace SACAAE.Models
                         {
                             string HoraInicio = (Dia.Hora_Inicio / 100).ToString() + ":" + (Dia.Hora_Inicio % 100).ToString();
                             string HoraFin = (Dia.Hora_Fin / 100).ToString() + ":" + (Dia.Hora_Fin % 100).ToString();
-
+                            double CargaC = (double)(Dia.Hora_Fin - Dia.Hora_Inicio) / 100;
                             sw.WriteLine("Proyecto;N/A;" +
                                         Proyecto.Nombre + ";" +
                                         Profe.Profesore.Nombre + ";" +
                                         Dia.Dia1 + ";" +
                                         HoraInicio + ";" +
                                         HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +
-                                        (((Dia.Hora_Fin - Dia.Hora_Inicio) / 100) * 3)
+                                        Math.Ceiling(CargaC)
                                         );
                         }
                     }
@@ -117,6 +118,7 @@ namespace SACAAE.Models
                         {
                             string HoraInicio = (Dia.Hora_Inicio / 100).ToString() + ":" + (Dia.Hora_Inicio % 100).ToString();
                             string HoraFin = (Dia.Hora_Fin / 100).ToString() + ":" + (Dia.Hora_Fin % 100).ToString();
+                            double CargaC=(double)(Dia.Hora_Fin-Dia.Hora_Inicio)/100;
 
                             sw.WriteLine("Comision;N/A;" +
                                         Comision.Nombre + ";" +
@@ -124,7 +126,7 @@ namespace SACAAE.Models
                                         Dia.Dia1 + ";" +
                                         HoraInicio + ";" +
                                         HoraFin + ";N/A;N/A;N/A;N/A;N/A;N/A;N/A;" +
-                                        ((Dia.Hora_Fin - Dia.Hora_Inicio) / 100)
+                                        Math.Ceiling(CargaC)
                                         );
                         }
                     }

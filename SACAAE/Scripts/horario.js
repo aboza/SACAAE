@@ -39,8 +39,11 @@
         });
     });
 
-    /*$("#sltGrupo").change(function () {
-        var route = "/CursoProfesor/Horarios/Info/" + $('select[name="sltGrupo"]').val();
+    $("#sltGrupo").change(function () {
+        borrarTabla();
+        Cargar();
+    });
+        /*var route = "/CursoProfesor/Horarios/Info/" + $('select[name="sltGrupo"]').val();
         var horas = 0;
         $.getJSON(route, function (data) {
             //alert(data.toSource());
@@ -105,41 +108,44 @@ function Cargar() {
             var Dia = Horario.Dia1;
             var HoraInicioCookie = Horario.Hora_Inicio;
             var HoraFinCookie = Horario.Hora_Fin;
+            if (GrupoText == $('#sltGrupo option:selected').text())
+            {
+                var Inicio = parseInt(HoraInicioCookie);
+                var Fin = parseInt(HoraFinCookie);
+                var i = Inicio;
+                //Actualizo la tabla con el nuevo curso
+                var CantCeldas = 0;
+                var items = "";
+                while (i < Fin) {
 
-            var Inicio = parseInt(HoraInicioCookie)
-            var Fin = parseInt(HoraFinCookie)
-            var i = Inicio
-            //Actualizo la tabla con el nuevo curso
-            var CantCeldas = 0;
-            var items = "";
-            while (i < Fin + 60) {
-
-                var IdCelda = Dia + " " + i;
-                if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
-                if (i == 0) { IdCelda = Dia + " 000"; }
-                var celda = document.getElementById(IdCelda);
-                if (i == Inicio) {
-                    var primera = document.getElementById(IdCelda);
+                    var IdCelda = Dia + " " + i;
+                    if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
+                    if (i == 0) { IdCelda = Dia + " 000"; }
+                    var celda = document.getElementById(IdCelda);
+                    if (i == Inicio) {
+                        var primera = document.getElementById(IdCelda);
+                    }
+                    else if (celda != null) {
+                        items += celda.innerHTML;
+                        celda.parentNode.removeChild(celda);
+                    }
+                    i += 10;
+                    if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100
+                    CantCeldas++;
                 }
-                else if (celda != null) {
-                    items += celda.innerHTML;
-                    celda.parentNode.removeChild(celda);
+                primera.innerHTML += items + "<p id=" + Dia + ">" + Curso + " " + GrupoText + "</p>";
+                primera.style.backgroundColor = "#3276b1";
+                primera.rowSpan = CantCeldas.toString();
+                var cookie = getCookie("i");//i es el nombre de la cookie, es un contador de cursos pero en toda la sesion no local
+                var cantidad = 0;
+                if (cookie != "" && cookie != null && !isNaN(cookie)) {
+                    cantidad = parseInt(cookie);
                 }
-                i += 10;
-                if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100
-                CantCeldas++;
+                cantidad++;
+                setCookie("i", cantidad.toString(), 1);
+                setCookie("Cookie" + cantidad.toString(), Curso + "|" + Dia + "|" + HoraInicioCookie + "|" + HoraFinCookie + "|" + "-" + "|" + Horario.ID + "|" + Horario.Aula, 1);
             }
-            primera.innerHTML += items + "<p id=" + Dia + ">" + Curso + " " + GrupoText + "</p>";
-            primera.style.backgroundColor = "#3276b1";
-            primera.rowSpan = CantCeldas.toString();
-            var cookie = getCookie("i");//i es el nombre de la cookie, es un contador de cursos pero en toda la sesion no local
-            var cantidad = 0;
-            if (cookie != "" && cookie != null && !isNaN(cookie)) {
-                cantidad = parseInt(cookie);
-            }
-            cantidad++;
-            setCookie("i", cantidad.toString(), 1);
-            setCookie("Cookie" + cantidad.toString(), Curso + "|" + Dia + "|" + HoraInicioCookie + "|" + HoraFinCookie + "|" + "-" + "|" + Horario.ID + "|" + Horario.Aula, 1);
+            
         });
     });
 }
@@ -218,7 +224,7 @@ function AgregarCurso() {
         i = Inicio;
         var CantCeldas = 0;
         var items = "";
-        while (i < Fin + 60) {
+        while (i < Fin ) {
 
             var IdCelda = Dia + " " + i;
             if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
@@ -301,22 +307,66 @@ function EliminarCurso() {
         }
     }
     
-    /*
+    
+}
 
-    var Fin = parseInt(HoraFinCookie)
-    //Actualizo la tabla
-    var i = Inicio
-    while (i < Fin) {
-        var IdCelda = Dia + " " + i;
-        if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
-        if (i == 0) { IdCelda = Dia + " 000"; }
+function setCookie(cname, cvalue, exdays) {
 
-        if (i == Inicio) {
-            var objetivo = document.getElementById(IdCelda);
-            objetivo.innerHTML = "";
-            objetivo.style.backgroundColor = "";
+    document.cookie = cname + "=" + cvalue;
+}
+
+function ActualizarContadores() {
+    setCookie("Cantidad", getCookie("i"), 1);
+    setCookie("i", "0", 1);
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+function borrarTabla() {
+    
+
+    var Dia = "";
+    for (var k = 0; k < 7; k++)
+    {
+        switch (k) {
+            case 0:
+                Dia = "Lunes";
+                break;
+            case 1:
+                Dia = "Martes";
+                break;
+            case 2:
+                Dia = "Miercoles";
+                break;
+            case 3:
+                Dia = "Jueves";
+                break;
+            case 4:
+                Dia = "Viernes";
+                break;
+            case 5:
+                Dia = "Sabado";
+                break;
+            case 6:
+                Dia = "Domingo";
+                break;
         }
-        else {
+        var Fin = 2300;
+        //Actualizo la tabla
+        var i = 000;
+        while (i < Fin) {
+            var IdCelda = Dia + " " + i;
+            if (i < 100) { IdCelda = Dia + " 0" + i; } //repara el string en caso de que la hora fuera 0010 ya que el parse la deja como 10
+            if (i == 0) { IdCelda = Dia + " 000"; }
+            var objetivo = document.getElementById(IdCelda);
             var columna;
             switch (Dia) {
                 case "Lunes":
@@ -341,32 +391,58 @@ function EliminarCurso() {
                     columna = 7;
                     break;
             }
-            var fila = document.getElementById("Guia " + i).parentNode;
-            var CeldaNueva = fila.insertCell(columna);
-            CeldaNueva.id = IdCelda;
+            if (objetivo != null && objetivo.innerHTML != "") {
+                objetivo.parentNode.removeChild(objetivo);
+                objetivo.innerHTML = "";
+                objetivo.style.backgroundColor = "";
+                objetivo.rowSpan = "1";                
+                var fila = document.getElementById("Guia " + i).parentNode;
+                var CeldaNueva = fila.insertCell(columna);
+                CeldaNueva.id = IdCelda;
+            }
+            else if (Dia != "Lunes" && objetivo==null) {
+                var DiaAnterior = DiaAnt(Dia);
+                IdCelda = DiaAnterior + " " + i
+                objetivo = document.getElementById(IdCelda);
+                if (objetivo != null) {
+                    objetivo.outerHTML+= '<td id="' + Dia + ' ' + i + '"></td>'
+                }
+            }
+            else if (Dia == "Lunes" && objetivo == null) {
+                IdCelda = "Martes " + i;
+                objetivo = document.getElementById(IdCelda);
+                if (objetivo != null)
+                    objetivo.outerHTML = '<td id="' + Dia + ' ' + i + '"></td>' + objetivo.outerHTML;
+            }
+            i += 10;
+            if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100
         }
-        i += 10;
-        if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100
     }
-    objetivo.rowSpan = "1";*/
+    
 }
 
-function setCookie(cname, cvalue, exdays) {
-
-    document.cookie = cname + "=" + cvalue;
-}
-
-function ActualizarContadores() {
-    setCookie("Cantidad", getCookie("i"), 1);
-    setCookie("i", "0", 1);
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i].trim();
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+function DiaAnt(Dia){
+    switch (Dia) {
+        case "Lunes":
+            return "Domingo";
+            break;
+        case "Martes":
+            return "Lunes";
+            break;
+        case "Miercoles":
+            return "Martes";
+            break;
+        case "Jueves":
+            return "Miercoles";
+            break;
+        case "Viernes":
+            return "Jueves";
+            break;
+        case "Sabado":
+            return "Viernes";
+            break;
+        case "Domingo":
+            return "Sabado";
+            break;
     }
-    return "";
 }

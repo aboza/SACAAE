@@ -27,6 +27,5 @@ function validarHoras()
         alert("ERROR: Debe asignar menos horas, la cantidad es mayor a la disponible de la plaza");
         return false;
     }
-    else
         return true;
 }

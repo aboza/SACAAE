@@ -159,7 +159,7 @@ namespace SACAAE.Models
 
             return from grupos in entidades.Grupoes
                    join DetalleGrupo in entidades.Detalle_Grupo on grupos.ID equals DetalleGrupo.Grupo
-                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.Profesor == 5
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.ProfesoresXCurso.Profesor == 3
                    select new { grupos.ID, grupos.Numero };
         }
 
@@ -278,17 +278,17 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="idProfesor">El id del profesor.</param>
         /// <returns>La lista de cursos.</returns>
-        //public IQueryable obtenerCursosPorProfesor(int idProfesor)
-        //{
+        public IQueryable obtenerCursosPorProfesor(int idProfesor)
+        {
 
-        //    return from profesores in entidades.Profesores
-        //           join profesoresxcurso in entidades.ProfesoresXCursoes on profesores.ID equals profesoresxcurso.Profesor
-        //           join detallecurso in entidades.Detalle_Curso on profesoresxcurso.Id equals detallecurso.Profesor
-        //           join cursosxgrupo in entidades.CursosXGrupoes on detallecurso.Curso equals cursosxgrupo.ID
-        //           join cursos in entidades.Cursos on cursosxgrupo.Curso equals cursos.ID
-        //           where profesores.ID == idProfesor
-        //           select new { profesoresxcurso.Id, cursos.Nombre, cursos.Codigo };
-        //}
+            return from profesores in entidades.Profesores
+                   join profesoresxcurso in entidades.ProfesoresXCursoes on profesores.ID equals profesoresxcurso.Profesor
+                   join detallecurso in entidades.Detalle_Grupo on profesoresxcurso.Id equals detallecurso.Profesor
+                   join grupo in entidades.Grupoes on detallecurso.Grupo equals grupo.ID
+                   join bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes on grupo.BloqueXPlanXCursoID equals bloqueXPlanXCurso.ID
+                   where profesores.ID == idProfesor
+                   select new { profesoresxcurso.Id, bloqueXPlanXCurso.Curso.Nombre, bloqueXPlanXCurso.Curso.Codigo };
+        }
 
         /// <summary>
         /// Revoca la asignación de un profesor a un curso.
@@ -302,7 +302,7 @@ namespace SACAAE.Models
 
             if (temp != null)
             {
-                entidades.Entry(temp).Property(p => p.Profesor).CurrentValue = 1;
+                entidades.Entry(temp).Property(p => p.Profesor).CurrentValue = 3;
                 entidades.Entry(temp).Property(p => p.Horas).CurrentValue = 0;
                 retorno = true;
             }

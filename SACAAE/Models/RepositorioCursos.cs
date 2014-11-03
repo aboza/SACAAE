@@ -170,11 +170,15 @@ namespace SACAAE.Models
         //           select Detalle_Curso;
         //}
 
-        public bool existeCurso(string Curso)
+        public bool existeCurso(string Codigo)
         {
-          
-            return (entidades.Cursos.SingleOrDefault(c => c.Nombre == Curso) != null); 
+            return (entidades.Cursos.SingleOrDefault(c => c.Codigo == Codigo) != null);
            
+        }
+
+        public bool existeCursoPorNombre(string Curso)
+        {
+            return (entidades.Cursos.SingleOrDefault(c => c.Nombre == Curso) != null);
         }
 
         public bool existeCurso(int Curso)
@@ -206,6 +210,7 @@ namespace SACAAE.Models
                 entidades.Entry(vCurso).Property(curso => curso.HorasPracticas).CurrentValue = pCurso.HorasPracticas;
                 entidades.Entry(vCurso).Property(curso => curso.HorasTeoricas).CurrentValue = pCurso.HorasTeoricas;
                 entidades.Entry(vCurso).Property(curso => curso.Nombre).CurrentValue = pCurso.Nombre;
+                entidades.Entry(vCurso).Property(curso => curso.Bloque).CurrentValue = pCurso.Bloque;
                 entidades.Entry(vCurso).Property(curso => curso.Externo).CurrentValue = pCurso.Externo;
                 Save();
             }

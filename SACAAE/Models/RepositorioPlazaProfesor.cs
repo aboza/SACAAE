@@ -53,6 +53,25 @@ namespace SACAAE.Models
             Save();
         }
 
+        public void QuitarNombramiento(string codigoPlaza, string codigoProfesor)
+        {
+            RepositorioProfesor repoProfesor = new RepositorioProfesor();
+            RepositorioPlazas repoPlaza = new RepositorioPlazas();
+            var IDProfesor = repoProfesor.ObtenerProfesor(Int16.Parse(codigoProfesor));
+            var IDPlaza = repoPlaza.ObtenerPlaza(Int16.Parse(codigoPlaza));
+            Console.Write(IDPlaza);
+            var temp = entidades.PlazaXProfesors.FirstOrDefault(pp=>pp.Plaza==IDPlaza.ID);
+            Console.Write(temp);
+            if (temp != null)
+            {
+                entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue = 0;
+                entidades.Entry(temp).Property(p => p.HorasEnPropiedad).CurrentValue = 0;
+            }
+
+
+            Save();
+
+        }
         public bool NombrarPlaza(string codigoPlaza, string codigoProfesor)
         {
             // if (string.IsNullOrEmpty(codigoPlaza.Trim()))
@@ -187,6 +206,12 @@ namespace SACAAE.Models
             Save();
         }
 
+        public IQueryable obtenerProfeNombradoPorPlaza(int idPlaza)
+        {
+            return (from plazaProfesor in entidades.PlazaXProfesors
+                    where plazaProfesor.Plaza==idPlaza && plazaProfesor.HorasEnPropiedad>0
+                    select new { plazaProfesor.Profesore.ID, plazaProfesor.Profesore.Nombre });
+        }
         public void Save()
         {
             entidades.SaveChanges();

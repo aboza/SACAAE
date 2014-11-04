@@ -212,6 +212,13 @@ namespace SACAAE.Models
                     where plazaProfesor.Plaza==idPlaza && plazaProfesor.HorasEnPropiedad>0
                     select new { plazaProfesor.Profesore.ID, plazaProfesor.Profesore.Nombre });
         }
+
+        public IQueryable obtenerProfePorPlaza(int idPlaza)
+        {
+            return (from plazaProfesor in entidades.PlazaXProfesors
+                    where plazaProfesor.Plaza == idPlaza && plazaProfesor.Horas_Asignadas >= 0
+                    select new { plazaProfesor.Profesore.ID, plazaProfesor.Profesore.Nombre });
+        }
         public void Save()
         {
             entidades.SaveChanges();

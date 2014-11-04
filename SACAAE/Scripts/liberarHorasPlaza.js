@@ -1,7 +1,11 @@
 ﻿$(document).ready(function () {
     $("#HA").prop("disabled", "disabled");
     $("#HT").prop("disabled", "disabled");
-    $("#sltPlaza, #sltProfesor").change(function () {
+    $("#sltPlaza").change(function () {        
+        CargarProfe();
+
+    });
+    $("#sltProfesor").change(function () {
         CargarTextoHorasXLiberar();
 
     });
@@ -30,4 +34,22 @@ function validarHorasXLiberar() {
     }
     else
         return true;
+}
+
+function CargarProfe() {
+
+    var route = "/getPlazaXProfesor/List/Profes/" + $("#sltPlaza").val();
+    $.getJSON(route, function (data) {
+        var items = "";
+        if (data != "")
+            $.each(data, function (i, profesor) {
+                items = "<option value='" + profesor.ID + "'>" + profesor.Nombre + "</option>";
+            });       
+            
+        $("#sltProfesor").html(items);
+        CargarTextoHorasXLiberar();
+
+    });
+
+
 }

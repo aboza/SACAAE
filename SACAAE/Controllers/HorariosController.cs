@@ -114,7 +114,7 @@ namespace SACAAE.Models
             }
 
 
-            if (Cantidad == 0) {return RedirectToAction("Resultado");}//En caso de que el horario este vacio se asume que se desea borrar por lo que se limpian los dias y se termina, este return evita que falle el programa cuando no hay cookies
+            if (Cantidad == 0) { return RedirectToAction("Horarios"); }//En caso de que el horario este vacio se asume que se desea borrar por lo que se limpian los dias y se termina, este return evita que falle el programa cuando no hay cookies
             //Eliminar Horarios Viejos
             for (int i = 1; i <= Cantidad; i++)
             {
@@ -159,7 +159,8 @@ namespace SACAAE.Models
                 
             }
             Response.Cookies.Clear();
-            return RedirectToAction("Resultado");
+            TempData["Message"] = "Cambios guardados satisfactoriamente";
+            return RedirectToAction("Horarios");
         }
 
         public ActionResult ObtenerHorarios(int plan, int periodo)
@@ -172,9 +173,9 @@ namespace SACAAE.Models
                 return Content(json);
         }
 
-        public ActionResult ExisteHorario(string dia,int HoraInicio, int HoraFin, string aula, int grupo)
+        public ActionResult ExisteHorario(string dia,int HoraInicio, int HoraFin, string aula, int grupo, int periodo)
         {
-            int res = Horario.ExisteHorario(dia,HoraInicio, HoraFin, aula, grupo);
+            int res = Horario.ExisteHorario(dia,HoraInicio, HoraFin, aula, grupo, periodo);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
         

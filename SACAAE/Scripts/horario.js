@@ -205,9 +205,9 @@ function AgregarCurso() {
         i += 10;
         if (i % 100 == 60) { i += 40; }
     }*/
-    var route = "/ExisteHorario/" + Dia + "/" + Inicio + "/" + Fin + "/" + Aula + "/" + Grupo;
+    //var route = "/ExisteHorario/" + Dia + "/" + Inicio + "/" + Fin + "/" + Aula + "/" + Grupo + "/" + getCookie("PeriodoHorario");
     var choque = 0;
-    $.ajax({
+    /*$.ajax({
         url: route,
         datatype: 'json',
         async: false,
@@ -219,7 +219,17 @@ function AgregarCurso() {
             }
         }
 
-    });
+    });*/
+    for (k = 1; k <= getCookie("i") ; k++)
+    {
+        var Detalles = getCookie("Cookie" + k);
+        var Partes = Detalles.split("|");
+        if((Partes[1]==Dia && Partes[2]==Inicio && Partes[3]==Fin) && (Partes[6]==Aula || Partes[5]==Grupo))
+        {
+            alert("Error: Ya hay un curso impartido en esa aula a ese horario");
+            choque = 1;
+        }
+    }
     if (choque == 0) {
         i = Inicio;
         var CantCeldas = 0;
@@ -392,13 +402,9 @@ function borrarTabla() {
                     break;
             }
             if (objetivo != null && objetivo.innerHTML != "") {
-                objetivo.parentNode.removeChild(objetivo);
                 objetivo.innerHTML = "";
                 objetivo.style.backgroundColor = "";
-                objetivo.rowSpan = "1";                
-                var fila = document.getElementById("Guia " + i).parentNode;
-                var CeldaNueva = fila.insertCell(columna);
-                CeldaNueva.id = IdCelda;
+                objetivo.rowSpan = "1";  
             }
             else if (Dia != "Lunes" && objetivo==null) {
                 var DiaAnterior = DiaAnt(Dia);

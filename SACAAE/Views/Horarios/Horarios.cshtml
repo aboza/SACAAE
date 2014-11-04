@@ -46,6 +46,10 @@
     <h2>Gestionar Horarios</h2>
     <hr />
         <div class="span12">
+            @if (TempData.ContainsKey("Message"))
+        {
+            <p class="text-success">@TempData["Message"].ToString()</p>
+        }
             <label>
                     Bloque
                 </label>

@@ -142,7 +142,7 @@ namespace SACAAE
 
             routes.MapRoute(
              "ExisteHorario",
-             "ExisteHorario/{dia}/{HoraInicio}/{HoraFin}/{aula}/{grupo}",
+             "ExisteHorario/{dia}/{HoraInicio}/{HoraFin}/{aula}/{grupo}/{periodo}",
              new { Controller = "Horarios", action = "ExisteHorario" });
 
             routes.MapRoute(
@@ -156,7 +156,7 @@ namespace SACAAE
              new { Controller = "Plazas", action = "getPlaza" });
 
             routes.MapRoute(
-             "ObtenerPlazaXProfesor",
+             "ObtenerHorasTotalesPlazaXProfesor",
              "getPlazaXProfesor/HorasTotales/Una/{idPlaza}/{idProfesor}",
              new { Controller = "Plazas", action = "getPlazaXProfesor" });
 
@@ -164,6 +164,11 @@ namespace SACAAE
              "ObtenerPlazaXProfesorNombrado",
              "getPlazaXProfesorNombrado/List/Profes/{idPlaza}",
              new { Controller = "Plazas", action = "getPlazaXProfesorNombrado" });
+
+            routes.MapRoute(
+             "ObtenerPlazaXProfesor",
+             "getPlazaXProfesor/List/Profes/{idPlaza}",
+             new { Controller = "Plazas", action = "getListPlazaXProfesor" });
             
 
             /*Fin rutas Jack 2014 S2*/

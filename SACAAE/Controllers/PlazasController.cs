@@ -197,5 +197,11 @@ namespace SACAAE.Controllers
             var Profesor = repositorioPlazaXProfesor.obtenerProfeNombradoPorPlaza(idPlaza);
             return Json(Profesor, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult getListPlazaXProfesor(int idPlaza)
+        {
+            var Profesor = repositorioPlazaXProfesor.obtenerProfePorPlaza(idPlaza);
+            return Json(Profesor, JsonRequestBehavior.AllowGet);
+        }
     }
 }

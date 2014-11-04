@@ -6,7 +6,7 @@
 
 <h2>Liberar Horas de Plaza </h2>
 <hr />
-<body onload="CargarTextoHorasXLiberar()">
+<body onload="CargarProfe()">
     <div class="col-lg-4">
         <div class="span12">
             @if (TempData.ContainsKey("Message"))
@@ -40,10 +40,6 @@
                 </div>
                 <div class="editor-field">
                     <select id="sltProfesor" name="sltProfesor" class="form-control">
-                        @foreach (var item in ViewBag.Profesores)
-                        {
-                            <option value="@item.ID">@item.Nombre</option>
-                        }
                     </select>
                 </div>
                 <br />

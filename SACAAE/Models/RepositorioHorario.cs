@@ -105,11 +105,12 @@ namespace SACAAE.Models
                    select new {Dias.Dia1, Dias.Hora_Inicio,Dias.Hora_Fin,cursos.Nombre, grupos.Numero, grupos.ID, detallesGrupo.Aula };
         }
 
-        public int ExisteHorario(string dia, int HoraInicio, int HoraFin, string aula, int grupo)
+        public int ExisteHorario(string dia, int HoraInicio, int HoraFin, string aula, int grupo, int periodo)
         {
             var vDetalleGrupo=from Dia in entidades.Dias
                    join DetalleGrupo in entidades.Detalle_Grupo on Dia.Horario equals DetalleGrupo.Horario
-                   where Dia.Dia1==dia && (Dia.Hora_Inicio <= HoraInicio && Dia.Hora_Fin >= HoraFin) && DetalleGrupo.Aula == aula
+                   join Grupos in entidades.Grupoes on DetalleGrupo.Grupo equals Grupos.ID
+                              where Dia.Dia1 == dia && (Dia.Hora_Inicio <= HoraInicio && Dia.Hora_Fin >= HoraFin) && Grupos.Periodo == periodo && DetalleGrupo.Aula == aula || DetalleGrupo.Grupo == grupo
                    select DetalleGrupo;
             if (vDetalleGrupo.Any())
                 return 1;

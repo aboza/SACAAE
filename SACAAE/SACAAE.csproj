@@ -403,6 +403,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\themes\blue\asc.gif" />
+    <Content Include="Content\themes\blue\bg.gif" />
+    <Content Include="Content\themes\blue\desc.gif" />
+    <Content Include="Content\themes\blue\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -426,6 +430,7 @@
       <DependentUpon>SACAAEDataModel.edmx</DependentUpon>
       <LastGenOutput>SACAAEDataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\themes\blue\blue.zip" />
     <None Include="Properties\PublishProfiles\ftpSACAAE.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\ajaxCrear.js" />
@@ -436,12 +441,16 @@
     <Content Include="Scripts\eliminarAjax.js" />
     <Content Include="Scripts\horario.js" />
     <Content Include="Scripts\indexHorario.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Scripts\jquery-latest.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.tablesorter.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -456,6 +465,7 @@
     <Content Include="Scripts\RevocarComisionProfesor.js" />
     <Content Include="Scripts\RevocarCursoProfesor.js" />
     <Content Include="Scripts\RevocarProyectoProfesor.js" />
+    <Content Include="Scripts\TableSort.js" />
     <Content Include="Scripts\validaciones.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

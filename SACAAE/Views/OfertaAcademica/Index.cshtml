@@ -25,6 +25,12 @@
                         $("#sltPlan").html(items);
                         $("#sltPlan").prepend("<option value='' selected='selected'>-- Seleccionar Plan de Estudio --</option>");
                     }
+                    else
+                    {
+                        $("#sltPlan").prop("disabled", true);
+
+                    }
+                    $("#datosOferta").html("");
                 });
             });
             $("#sltPlan").change(function () {

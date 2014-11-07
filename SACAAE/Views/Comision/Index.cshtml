@@ -38,10 +38,10 @@
                         @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Inicio)
+                        @item.Inicio.ToString("dd/MM/yyyy")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Fin)
+                        @item.Fin.ToString("dd/MM/yyyy")
                     </td>
                     <td>
                         @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |

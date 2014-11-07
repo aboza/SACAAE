@@ -40,8 +40,12 @@
     });
 
     $("#sltGrupo").change(function () {
-        borrarTabla();
-        Cargar();
+        if ($('#sltGrupo option:selected').text() != getCookie("Grupo"))
+        {
+            setCookie("Grupo", $('#sltGrupo option:selected').text())
+            borrarTabla();
+            Cargar();
+        }
     });
         /*var route = "/CursoProfesor/Horarios/Info/" + $('select[name="sltGrupo"]').val();
         var horas = 0;
@@ -97,6 +101,9 @@
     });*/
 });
 
+function Load() {
+    setCookie("Grupo", "");
+}
 function Cargar() {
     setCookie("i", 0, 1);
     setCookie("Cantidad", 0, 1);
@@ -251,7 +258,7 @@ function AgregarCurso() {
             if (i % 100 == 60) { i += 40; }//cuando se llega al minuto 60 se le suman 40 al numero para que pase por ejemplo de 1060 a 1100
             CantCeldas++;
         }
-        primera.innerHTML += items + "<p>" + Curso + " " + GrupoText + "</p>";
+        primera.innerHTML += items + "<p id=" + Dia + ">" + Curso + " " + GrupoText + "</p>";
         primera.style.backgroundColor = "#3276b1";
         primera.rowSpan = CantCeldas;
 
@@ -307,10 +314,16 @@ function EliminarCurso() {
         var HoraInicioCookie = ArrayCookie[2];
         var HoraFinCookie = ArrayCookie[3];
         var CursoCookieGrupo = ArrayCookie[5];
+        if (HoraInicioCookie.charAt(0) == 0)
+        {
+            HoraInicioCookie = HoraInicioCookie.substr(1, 3);
+        }
         if (CursoCookie == Curso && DiaCookie == Dia && CursoCookieGrupo==Grupo) {
             objetivo = j;
             //Elimino la cookie
             ArrayCookie[0] = "d";
+            var celda = document.getElementById(Dia + " " + HoraInicioCookie);
+            celda.style.backgroundColor = "";
             setCookie("Cookie" + j.toString(), ArrayCookie.join("|"), 1);
             $("p[id=" + Dia + "]").remove(":contains('" + Curso + " " + GrupoText + "')");
             break;

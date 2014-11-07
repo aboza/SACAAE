@@ -40,6 +40,7 @@ namespace SACAAE.Controllers
         public ActionResult modificarBloqueAcademico(int id)
         {
             var model = vRepoBloqueAcademico.obtenerBloqueAcademico(id);
+            ViewBag.Bloque = model;
             return View(model);
         }
 
@@ -75,13 +76,17 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult modificarBloqueAcademico(BloqueAcademico pBloqueAcademico)
+        public ActionResult modificarBloqueAcademico(BloqueAcademico pBloqueAcademico, string oDescripcion)
         {
-            if (vRepoBloqueAcademico.existeBloque(pBloqueAcademico.Descripcion))
+            if (pBloqueAcademico.Descripcion != oDescripcion)
             {
-                TempData[TempDataMessageKey] = "El sistema ya cuenta con un Bloque Académico bajo esa descripción. Por Favor intente de nuevo.";
-                return RedirectToAction("ModificarBloqueAcademico");
+                if (vRepoBloqueAcademico.existeBloque(pBloqueAcademico.Descripcion))
+                {
+                    TempData[TempDataMessageKey] = "El sistema ya cuenta con un Bloque Académico bajo esa descripción. Por Favor intente de nuevo." ;
+                    return RedirectToAction("ModificarBloqueAcademico");
+                }
             }
+            
 
             if (ModelState.IsValid)
             {

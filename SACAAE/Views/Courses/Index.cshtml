@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<SACAAE.Models.Curso>
 
+
+
 @{
     ViewBag.Title = "Cursos";
     Layout = "~/Views/Shared/Privado.cshtml";
 }
-
+<link rel="stylesheet" href="../Content/themes/blue/style.css" type="text/css" media="print, projection, screen">
+ 
+  
+<body>
 <h2>Cursos</h2>
 @if (TempData.ContainsKey("MessageError"))
 {
@@ -18,7 +23,8 @@
 <p>
     @Html.ActionLink("Crear Nuevo Curso", "CrearCurso")
 </p>
-<table class="table">
+<table id="myTable" class="table">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -43,7 +49,8 @@
         </th>
         <th></th>
     </tr>
-
+        </thead>
+    <tbody> 
     @foreach (var item in Model)
     {
         <tr>
@@ -73,6 +80,19 @@
             </td>
         </tr>
     }
-
+</tbody> 
 </table>
 
+    </body>
+
+    @section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#myTable").tablesorter();
+        }
+);
+    </script>
+<script type="text/javascript" src="../Scripts/jquery.tablesorter.js"></script>
+    
+    
+      } 

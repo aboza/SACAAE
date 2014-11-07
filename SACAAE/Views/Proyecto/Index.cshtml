@@ -46,10 +46,10 @@
                         @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Inicio)
+                        @item.Inicio.Value.ToString("dd/MM/yyyy")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Fin)
+                        @item.Fin.Value.ToString("dd/MM/yyyy")
                     </td>
 
                     <td>

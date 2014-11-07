@@ -91,8 +91,16 @@ namespace SACAAE.Controllers
         [HttpPost]
         public ActionResult Eliminar(Plaza plaza)
         {
-            repositorio.BorrarPlaza(plaza);
-            TempData[TempDataMessageKey] = "Plaza eliminada correctamente";
+            bool res=repositorio.BorrarPlaza(plaza);
+            if(res)
+            {
+                TempData[TempDataMessageKey] = "Plaza eliminada correctamente";
+            }
+            else
+            {
+
+                TempData[TempDataMessageKey] = "Debe liberar las horas de la plaza";
+            }
             return RedirectToAction("Index");
         }
 

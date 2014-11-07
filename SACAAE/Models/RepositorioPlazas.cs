@@ -170,23 +170,28 @@ namespace SACAAE.Models
             entidades.SaveChanges();
         }
 
-        public void BorrarPlaza(Plaza plaza)
+        public bool BorrarPlaza(Plaza plaza)
         {
             if (!ExistePlaza(plaza))
                 throw new ArgumentException(FaltaPlaza);
-
-            var temp = entidades.Plazas.Find(plaza.ID);
-            if (temp != null)
+            if(entidades.PlazaXProfesors.SingleOrDefault(p => p.Plaza == plaza.ID)==null)
             {
-                entidades.Plazas.Remove(temp);
-                Save();
+                var temp = entidades.Plazas.Find(plaza.ID);
+                if (temp != null)
+                {
+                    entidades.Plazas.Remove(temp);
+                    Save();
+                    return true;
+                }
             }
+            return false;
+            
             // Save();
         }
 
-        public void BorrarPlaza(String codigo)
+        public bool BorrarPlaza(String codigo)
         {
-            BorrarPlaza(ObtenerPlaza(codigo));
+            return BorrarPlaza(ObtenerPlaza(codigo));
         }
 
         public void Actualizar(Plaza plaza)

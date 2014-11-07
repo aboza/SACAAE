@@ -64,8 +64,7 @@ namespace SACAAE.Models
             Console.Write(temp);
             if (temp != null)
             {
-                entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue = 0;
-                entidades.Entry(temp).Property(p => p.HorasEnPropiedad).CurrentValue = 0;
+                entidades.PlazaXProfesors.Remove(temp);
             }
 
 
@@ -165,6 +164,10 @@ namespace SACAAE.Models
             if (temp != null)
             {
                 entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue -= plaza.Horas_Asignadas;
+                if(entidades.Entry(temp).Property(p => p.Horas_Asignadas).CurrentValue==0)
+                {
+                    entidades.PlazaXProfesors.Remove(temp);
+                }
             }
 
             Save();

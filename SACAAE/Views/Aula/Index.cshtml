@@ -4,10 +4,12 @@
     ViewBag.Title = "Aulas";
     Layout = "~/Views/Shared/Privado.cshtml";
 }
-
+   
 @section Scripts {
+    
     <script type="text/javascript">
         $(document).ready(function () {
+            
             /* Funcion llamada cuando se cambien los valores de las sedes o las modalidades */
             $("#selectSede").change(function () {
 
@@ -15,7 +17,7 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Código</th><th>Capacidad</th><th>Activa</th><th>Acciones</th></tr>";
+                    var items = "<thead><tr><th>Código</th><th>Capacidad</th><th>Activa</th><th>Acciones</th></tr></thead><tbody>";
                     $.each(data, function (i, aula) {
                         var newLink = '<a href="@Url.Action("ModificarAula")/' + aula.ID + '">Editar</a> | <a href="@Url.Action("EliminarAula")/' + aula.ID + '">Eliminar</a>';
                         items += "<tr><td>" + aula.Codigo + "</td>";
@@ -23,14 +25,16 @@
                         items += '<td><input type="checkbox" checked="'+aula.Activa+'" disabled></td><td>' + newLink + "</td></tr>";
                     });
 
-                        if (items != "") {
-                            $("#datosAula").html(items);
+                    if (items != "") {
+                        items += "</tbody>";
+                        $("#datosAula").html(items);
+                        $("#datosAula").tablesorter();
                         }
                     });
                 });
             });
     </script>
-
+    <script type="text/javascript" src="../Scripts/jquery.tablesorter.js"></script>
 }
 
 

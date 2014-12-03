@@ -24,7 +24,7 @@
                     Plazas
                 </div>
                 <div class="editor-field">
-                    <select id="sltPlaza" name="sltPlaza" class="form-control">
+                    <select id="sltPlaza" name="sltPlaza" class="form-control" required>
                         @foreach (var item in ViewBag.Plaza)
                         {
                             <option value="@item.ID">@item.Codigo_Plaza</option>
@@ -39,7 +39,7 @@
                     Profesores
                 </div>
                 <div class="editor-field">
-                    <select id="sltProfesor" name="sltProfesor" class="form-control">
+                    <select id="sltProfesor" name="sltProfesor" class="form-control" required>
                     </select>
                 </div>
                 <br />

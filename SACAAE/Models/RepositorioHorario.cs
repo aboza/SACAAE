@@ -102,7 +102,7 @@ namespace SACAAE.Models
                    join bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes on grupos.BloqueXPlanXCursoID equals bloqueXPlanXCurso.ID
                    join cursos in entidades.Cursos on bloqueXPlanXCurso.CursoID equals cursos.ID
                    where grupos.PlanDeEstudio == plan && grupos.Periodo == periodo
-                   select new {Dias.Dia1, Dias.Hora_Inicio,Dias.Hora_Fin,cursos.Nombre, grupos.Numero, grupos.ID, detallesGrupo.Aula };
+                   select new {Dias.Dia1, Dias.Hora_Inicio,Dias.Hora_Fin,cursos.Nombre, grupos.Numero, grupos.ID, detallesGrupo.Aula, bloqueXPlanXCurso.BloqueAcademicoXPlanDeEstudio.BloqueAcademico.Descripcion};
         }
 
         public int ExisteHorario(string dia, int HoraInicio, int HoraFin, string aula, int grupo, int periodo)

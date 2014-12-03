@@ -166,7 +166,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnExport").click(function (e) {
-            window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+            window.open('data:application/vnd.ms-excel;charset=utf-8,' + escape($('#dvData').html()));
             e.preventDefault();
         });
     });

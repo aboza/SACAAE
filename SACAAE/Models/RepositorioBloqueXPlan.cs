@@ -46,7 +46,7 @@ namespace SACAAE.Models
             }
         }
 
-        public void eliminarBloquePlan(int pBloqueXPlanID)
+        public string eliminarBloquePlan(int pBloqueXPlanID)
         {
 
             var vBloques = (from BloquesXPlanXCursos in entidades.BloqueXPlanXCursoes
@@ -55,6 +55,11 @@ namespace SACAAE.Models
             if (vBloques != null)
             {
                 foreach (var vBloque in vBloques){
+                    var CursosAsignados = from Grupos in entidades.Grupoes
+                                          where Grupos.BloqueXPlanXCursoID == vBloque.ID
+                                          select Grupos;
+                    if (CursosAsignados.Any())
+                        return "Debe eliminar los grupos de este curso";
                     entidades.BloqueXPlanXCursoes.Remove(vBloque);
                 }
                 var vBloquePlan = entidades.BloqueAcademicoXPlanDeEstudios.SingleOrDefault(bloquePlan => bloquePlan.ID == pBloqueXPlanID);
@@ -62,7 +67,8 @@ namespace SACAAE.Models
                 Save();
             }
             else
-                return;
+                return "El registro ha sido borrado correctamente.";
+            return "El registro no ha sido borrado.";
             //throw new Exception("Se ha producido un error, no se ha encontrado referencia del registro seleccionado. Por Favor comuniquese con un administrador.");
         }
 

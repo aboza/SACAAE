@@ -20,7 +20,8 @@
 
 <div class="row">
     <div class="span12">
-        <table class="table">
+        <table id="myTable" class="table">
+            <thead>
             <tr>
                 <th>
                     Codigo
@@ -39,7 +40,8 @@
                 </th>
                 <th>Acciones</th>
             </tr>
-
+                </thead>
+    <tbody>
             @foreach (var item in Model)
             {
                 <tr>
@@ -65,9 +67,20 @@
                     </td>
                 </tr>
             }
-
+        </tbody> 
         </table>
     </div>
 
 </div>
 
+    @section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#myTable").tablesorter();
+        }
+);
+    </script>
+<script type="text/javascript" src="../Scripts/jquery.tablesorter.js"></script>
+    
+    
+      }

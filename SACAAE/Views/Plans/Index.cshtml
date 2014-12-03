@@ -15,12 +15,13 @@
                 //alert(route);
 
                 $.getJSON(route, function (data) {
-                    var items = "<tr><th>Plan de Estudio</th><th> </th></tr>  ";
+                    var items = "<tr><th>Plan de Estudio</th><th> </th><th> </th></tr>  ";
                     $.each(data, function (i, plan) {
                         var newLink = '<a href="@Url.Action("BloqueXPlan")/' + plan.ID + '">Ver Bloques</a>';
+                        var newLinkDelete = '<a href="@Url.Action("EliminarPlan")/' + plan.ID + '">Eliminar</a>';
                         var $newLinkTarget = $('@Html.ActionLink("Ver Bloque", "BloqueXPlan")');
                         var href = $newLinkTarget.attr('href') + '?plan=' + plan.Value;
-                        items += "<tr><td>" + plan.Nombre + "</td><td><td>" + newLink + "</td></tr>";
+                        items += "<tr><td>" + plan.Nombre + "</td><td><td>" + newLink + "</td><td>" + newLinkDelete + "</tr>";
                     });
 
                     if (items != "") {

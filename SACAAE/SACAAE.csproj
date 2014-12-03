@@ -567,6 +567,8 @@
     <Content Include="Views\Plazas\Liberar.cshtml" />
     <Content Include="Views\Plazas\Nombrar.cshtml" />
     <Content Include="Views\Plazas\QuitarNombramiento.cshtml" />
+    <Content Include="Views\Courses\EliminarCurso.cshtml" />
+    <Content Include="Views\Plans\EliminarPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

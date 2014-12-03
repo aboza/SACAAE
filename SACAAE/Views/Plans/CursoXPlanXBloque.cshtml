@@ -23,6 +23,8 @@
         <div class="span12">
             <p>@Html.ActionLink("Agregar Curso", "CrearBloqueXPlanXCurso","BloqueXPlanXCurso", new { plan = @ViewBag.Plan.ID},null)</p>
             <table id="tablaCurso" class="table">
+                
+        <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
@@ -44,6 +46,9 @@
         </th>
         <th></th>
     </tr>
+        </thead>
+                
+        <tbody>
                 @foreach (var item in ViewBag.Cursos)
     {
                 <tr>
@@ -68,6 +73,7 @@
                     <td>@Html.ActionLink("Editar", "ModificarCurso", new { curso = @item.ID, plan = @ViewBag.Plan.ID, bloque = @ViewBag.Bloque.ID},null)</td>
         </tr>
     }
+                </tbody> 
 
     
 
@@ -79,3 +85,15 @@
         </div>
 <br />
     }
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#tablaCurso").tablesorter();
+        }
+);
+    </script>
+<script type="text/javascript" src="../Scripts/jquery.tablesorter.js"></script>
+    
+    
+      } 

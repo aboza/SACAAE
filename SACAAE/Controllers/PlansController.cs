@@ -155,9 +155,25 @@ namespace SACAAE.Controllers
         public ActionResult EliminarBloque(int plan, int bloque,string button)
         {
             int bloqueXPlanID = repoBloquesXPlan.obtenerIdBloqueXPlan(plan, bloque);
-            repoBloquesXPlan.eliminarBloquePlan(bloqueXPlanID);
-            TempData[TempDataMessageKey] = "El registro ha sido borrado correctamente.";
+
+            TempData[TempDataMessageKey] = repoBloquesXPlan.eliminarBloquePlan(bloqueXPlanID);
             return RedirectToAction("BloqueXPlan/"+plan);
+        }
+
+        [Authorize]
+        public ActionResult EliminarPlan(int id)
+        {
+            var model = repoPlanes.ObtenerUnPlanDeEstudio(id);
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EliminarPlan(PlanesDeEstudio plan, string button)
+        {
+
+            TempData[TempDataMessageKey] = repoPlanes.EliminarPlan(plan.ID);
+            return RedirectToAction("Index");
         }
 
         

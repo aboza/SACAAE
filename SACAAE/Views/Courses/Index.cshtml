@@ -48,6 +48,7 @@
             @Html.DisplayNameFor(model => model.Creditos)
         </th>
         <th></th>
+        <th></th>
     </tr>
         </thead>
     <tbody> 
@@ -77,6 +78,9 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "ModificarCurso", new { id = item.ID })
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "EliminarCurso", new { id = item.ID })
             </td>
         </tr>
     }

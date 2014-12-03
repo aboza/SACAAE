@@ -75,6 +75,33 @@ namespace SACAAE.Models
             }
         }
 
+        public string EliminarPlan(int plan)
+        {
+            var bloques = from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
+                          where bloqueXPlan.PlanID == plan
+                          select bloqueXPlan;
+            if (bloques.Any())
+                return "Debe eliminar los bloques asignados al plan";
+            else
+            {
+                var vSedes = from SedesXPlan in entidades.PlanesDeEstudioXSedes
+                             where SedesXPlan.PlanDeEstudio == plan
+                             select SedesXPlan;
+                if(vSedes!=null)
+                {
+                    foreach (var vSede in vSedes)
+                    {
+                        entidades.PlanesDeEstudioXSedes.Remove(vSede);
+                    }
+                    var vPlan = entidades.PlanesDeEstudios.SingleOrDefault(Plan => Plan.ID == plan);
+                    entidades.PlanesDeEstudios.Remove(vPlan);
+                    Save();
+                    return "Registro borrado satisfactoriamente";
+                }
+            }
+            return "Hubo problemas al eliminar el registro del plan";
+
+        }
         public int IdPlanDeEstudioXSede(int sede, int plan)
         {
             return (from planXSede in entidades.PlanesDeEstudioXSedes

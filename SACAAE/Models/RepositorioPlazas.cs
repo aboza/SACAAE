@@ -174,7 +174,10 @@ namespace SACAAE.Models
         {
             if (!ExistePlaza(plaza))
                 throw new ArgumentException(FaltaPlaza);
-            if(entidades.PlazaXProfesors.SingleOrDefault(p => p.Plaza == plaza.ID)==null)
+            IQueryable<PlazaXProfesor> vExisteAsignacion = from ePlazaProfe in entidades.PlazaXProfesors
+                                                           where ePlazaProfe.Plaza == plaza.ID
+                                                           select ePlazaProfe;
+            if (!vExisteAsignacion.Any())
             {
                 var temp = entidades.Plazas.Find(plaza.ID);
                 if (temp != null)

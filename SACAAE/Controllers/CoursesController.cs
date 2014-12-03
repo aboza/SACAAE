@@ -57,10 +57,10 @@ namespace SACAAE.Controllers
         }
 
         [Authorize]
-        public ActionResult Eliminar()
+        public ActionResult EliminarCurso(int id)
         {
-           
-            return View();
+            var model = repoCursos.ObtenerCurso(id);
+            return View(model);
         }
 
         [Authorize]
@@ -72,20 +72,12 @@ namespace SACAAE.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Eliminar(string planesDeEstudio, string cursosPlan)
+        public ActionResult EliminarCurso(Curso curso)
         {
-
-            if (cursosPlan != null && planesDeEstudio != null)
-            {
-                repoCursos.borrarCurso(Int32.Parse(cursosPlan));
-                ViewBag.message = "Curso Eliminado";
-                
-            }
-            else
-                ViewBag.message = "Campos inválidos en formulario";
+            TempData[TempDataMessageKey]  = repoCursos.borrarCurso(curso.ID);
                  
           
-            return RedirectToAction("Eliminar");
+            return RedirectToAction("Index");
        
 
         }

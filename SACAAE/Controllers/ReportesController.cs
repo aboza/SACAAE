@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Text;
 namespace SACAAE.Models
 {
     public class ReportesController : Controller
@@ -30,7 +30,7 @@ namespace SACAAE.Models
             { }
             using (Stream fs = new MemoryStream())
             {
-                StreamWriter sw = new StreamWriter(fs);
+                StreamWriter sw = new StreamWriter(fs,Encoding.UTF8);
                 sw.WriteLine("Tipo;Grupo;Nombre;Profesor;Dia;Hora Inicio;Hora Fin;Cupo;Plan de Estudio;Modalidad;Sede; Horas Teoricas; Horas Practicas; Externo;Carga Estimada");
                 String Periodo = Request.Cookies["Periodo"].Value;
                 int IdPeriodo = repoPeriodos.IdPeriodo(Periodo);

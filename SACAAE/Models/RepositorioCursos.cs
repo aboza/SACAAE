@@ -149,18 +149,32 @@ namespace SACAAE.Models
                    select curso; 
         }
 
-        public void borrarCurso(int Curso)
+        public String borrarCurso(int Curso)
         {
             if (existeCurso(Curso))
             {
-                var curso = entidades.Cursos.SingleOrDefault(c => c.ID == Curso);
-                if (curso != null)
+                var existeEnPlan = from bloqueXPlanXCurso in entidades.BloqueXPlanXCursoes
+                                   where bloqueXPlanXCurso.CursoID == Curso
+                                   select bloqueXPlanXCurso;
+                if (!existeEnPlan.Any())
                 {
-                    entidades.Cursos.Remove(curso);
-                    Save(); 
+                    var curso = entidades.Cursos.SingleOrDefault(c => c.ID == Curso);
+                    if (curso != null)
+                    {
+                        entidades.Cursos.Remove(curso);
+                        Save();
+                        return "Curso removido satisfactoriamente";
+                    }
+                    else
+                        return "El curso no existe";
                 }
+                else
+                    return "Debe remover el curso de los planes a los que esta asignado";
+
 
             }
+                return "El curso no existe";
+
         }
 
         //public IQueryable<Detalle_Grupo> ObtenerDetalleCursos(int CursoXGrupo)
@@ -212,6 +226,7 @@ namespace SACAAE.Models
                 entidades.Entry(vCurso).Property(curso => curso.Nombre).CurrentValue = pCurso.Nombre;
                 entidades.Entry(vCurso).Property(curso => curso.Bloque).CurrentValue = pCurso.Bloque;
                 entidades.Entry(vCurso).Property(curso => curso.Externo).CurrentValue = pCurso.Externo;
+                entidades.Entry(vCurso).Property(curso => curso.Creditos).CurrentValue = pCurso.Creditos;
                 Save();
             }
             else

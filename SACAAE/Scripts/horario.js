@@ -6,6 +6,7 @@
     $("#sltBloque").change(function () {
         var plan = getCookie("SelPlanDeEstudio");
         var route = "/BloqueXPlanXCurso/Cursos/List/" + plan + "/" + $('select[name="sltBloque"]').val();
+        setCookie("Grupo", "");
         $.getJSON(route, function (data) {
             var items = "";
             $.each(data, function (i, curso) {
@@ -24,7 +25,6 @@
     $("#sltCurso").change(function () {
         var plan = getCookie("SelPlanDeEstudio");
         var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + $('select[name="sltBloque"]').val() + "/" + getCookie("PeriodoHorario");
-
         $.getJSON(route, function (data) {
             var items = "";
             $.each(data, function (i, grupo) {
@@ -112,10 +112,11 @@ function Cargar() {
         $.each(data, function (i, Horario) {
             var Curso = Horario.Nombre;
             var GrupoText = Horario.Numero;
+            var BloqueText = Horario.Descripcion;
             var Dia = Horario.Dia1;
             var HoraInicioCookie = Horario.Hora_Inicio;
             var HoraFinCookie = Horario.Hora_Fin;
-            if (GrupoText == $('#sltGrupo option:selected').text())
+            if (GrupoText == $('#sltGrupo option:selected').text() && BloqueText == $('#sltBloque option:selected').text())
             {
                 var Inicio = parseInt(HoraInicioCookie);
                 var Fin = parseInt(HoraFinCookie);
@@ -231,11 +232,14 @@ function AgregarCurso() {
     {
         var Detalles = getCookie("Cookie" + k);
         var Partes = Detalles.split("|");
-        if((Partes[1]==Dia && Partes[2]==Inicio && Partes[3]==Fin) && (Partes[6]==Aula || Partes[5]==Grupo))
+        if (Partes[0] != "d")
         {
-            alert("Error: Ya hay un curso impartido en esa aula a ese horario");
-            choque = 1;
+            if ((Partes[1] == Dia && ((Partes[2] <= Inicio && Partes[3] >= Inicio) || (Partes[2] <= Fin && Partes[3] >= Fin))) && (Partes[6] == Aula || Partes[5] == Grupo)) {
+                alert("Error: Ya hay un curso impartido en esa aula a ese horario");
+                choque = 1;
+            }
         }
+        
     }
     if (choque == 0) {
         i = Inicio;
@@ -359,29 +363,7 @@ function borrarTabla() {
     var Dia = "";
     for (var k = 0; k < 7; k++)
     {
-        switch (k) {
-            case 0:
-                Dia = "Lunes";
-                break;
-            case 1:
-                Dia = "Martes";
-                break;
-            case 2:
-                Dia = "Miercoles";
-                break;
-            case 3:
-                Dia = "Jueves";
-                break;
-            case 4:
-                Dia = "Viernes";
-                break;
-            case 5:
-                Dia = "Sabado";
-                break;
-            case 6:
-                Dia = "Domingo";
-                break;
-        }
+        Dia = Dias(k);
         var Fin = 2300;
         //Actualizo la tabla
         var i = 000;
@@ -428,8 +410,7 @@ function borrarTabla() {
                 }
             }
             else if (Dia == "Lunes" && objetivo == null) {
-                IdCelda = "Martes " + i;
-                objetivo = document.getElementById(IdCelda);
+                objetivo = DiaAntNull(i);
                 if (objetivo != null)
                     objetivo.outerHTML = '<td id="' + Dia + ' ' + i + '"></td>' + objetivo.outerHTML;
             }
@@ -464,4 +445,36 @@ function DiaAnt(Dia){
             return "Sabado";
             break;
     }
+}
+
+function DiaAntNull(i) {
+    for (var k = 0; k < 7; k++) {
+        var Dia = Dias(k);
+        var IdCelda = Dia + " " + i;
+        var objetivo = document.getElementById(IdCelda);
+        if (objetivo != null)
+            return objetivo;
+    }
+    
+}
+
+function Dias(k) {
+
+    switch (k) {
+        case 0:
+            return "Lunes";
+        case 1:
+            return "Martes";
+        case 2:
+            return "Miercoles";
+        case 3:
+            return "Jueves";
+        case 4:
+            return "Viernes";
+        case 5:
+            return "Sabado";
+        case 6:
+            return "Domingo";
+    }
+
 }

@@ -62,6 +62,12 @@
                     @Html.EditorFor(model => model.Externo)
                     @Html.ValidationMessageFor(model => model.Externo, "", new { @class = "text-danger" })
             </div>
+        <div class="editor-field">
+                @Html.LabelFor(model => model.Creditos, htmlAttributes: new { @class = "control-label col-md-2" })
+                <br />
+                    @Html.EditorFor(model => model.Creditos, new { htmlAttributes = new { @class = "form-control" }})
+                    @Html.ValidationMessageFor(model => model.Creditos, "", new { @class = "text-danger" })
+            </div>
             <br />
             <p>
                 <input type="submit" value="Guardar" class="btn" />

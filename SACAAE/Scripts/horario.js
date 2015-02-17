@@ -24,7 +24,8 @@
     });
     $("#sltCurso").change(function () {
         var plan = getCookie("SelPlanDeEstudio");
-        var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + $('select[name="sltBloque"]').val() + "/" + getCookie("PeriodoHorario");
+        var sede = getCookie("SelSede");
+        var route = "/CursoProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + plan + "/" + sede + "/" + $('select[name="sltBloque"]').val() + "/" + getCookie("PeriodoHorario");
         $.getJSON(route, function (data) {
             var items = "";
             $.each(data, function (i, grupo) {

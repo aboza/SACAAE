@@ -128,9 +128,9 @@ namespace SACAAE.Controllers
             return View(listaCursos);
         }
 
-        public ActionResult ObtenerGrupos(int curso, int plan, int bloque, int periodo)
+        public ActionResult ObtenerGrupos(int curso, int plan, int sede, int bloque, int periodo)
         {
-            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso,plan,bloque, periodo);
+            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGrupos(curso,plan,sede,bloque, periodo);
             if (HttpContext.Request.IsAjaxRequest())
             {
                 return Json(new SelectList(
@@ -144,9 +144,9 @@ namespace SACAAE.Controllers
             return View(listaGrupos);
         }
 
-        public ActionResult ObtenerGruposSinProfe(int curso, int plan, int bloque)
+        public ActionResult ObtenerGruposSinProfe(int curso, int plan, int bloque,int sede)
         {
-            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGruposSinProfe(curso, plan, bloque);
+            IQueryable listaGrupos = repositorioCursoProfesor.obtenerGruposSinProfe(curso, plan, bloque,sede);
             if (HttpContext.Request.IsAjaxRequest())
             {
                 return Json(new SelectList(

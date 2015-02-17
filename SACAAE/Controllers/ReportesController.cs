@@ -48,13 +48,13 @@ namespace SACAAE.Models
                             string HoraFin = (Dia.Hora_Fin / 100).ToString() + ":" + (Dia.Hora_Fin % 100).ToString();
                             int Carga = 0;
                             Curso CursoInfo = repoBloqueXPlanXCurso.ListarCursoXID(item.BloqueXPlanXCursoID);
-                            if (!CursoInfo.Externo)
-                            {
+                            //if (!CursoInfo.Externo)
+                            //{
                                 Carga=(int)Detalle.ProfesoresXCurso.Horas;  
                                 /*Carga = ((CursoInfo.HorasTeoricas * 2) + ((int)CursoInfo.HorasPracticas * 1.75));
                                 double CargaCupo = this.CalculoCupo(Convert.ToInt32(Detalle.Cupo), Convert.ToInt32(CursoInfo.HorasTeoricas), Convert.ToInt32(CursoInfo.HorasPracticas));
                                 Carga = Carga + CargaCupo;*/
-                            }
+                            //}
                             sw.WriteLine("Curso;" +
                                         item.Numero + ";" +
                                         CursoInfo.Nombre + ";" +
@@ -65,7 +65,7 @@ namespace SACAAE.Models
                                         Detalle.Cupo + ";" +
                                         item.BloqueXPlanXCurso.BloqueAcademicoXPlanDeEstudio.PlanesDeEstudio.Nombre + ";" +
                                         item.BloqueXPlanXCurso.BloqueAcademicoXPlanDeEstudio.PlanesDeEstudio.Modalidade.Nombre + ";" +
-                                        item.BloqueXPlanXCurso.BloqueAcademicoXPlanDeEstudio.PlanesDeEstudio.PlanesDeEstudioXSedes.First().Sede1.Nombre + ";" +
+                                        item.PlanesDeEstudioXSede.Sede1.Nombre + ";" +
                                         item.BloqueXPlanXCurso.Curso.HorasTeoricas + ";" +
                                         item.BloqueXPlanXCurso.Curso.HorasPracticas + ";" +
                                         item.BloqueXPlanXCurso.Curso.Externo.ToString() + ";" +

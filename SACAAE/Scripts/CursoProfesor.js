@@ -74,7 +74,7 @@ $(document).ready(function() {
     });
 
     $("#sltCurso").change(function () {
-        var route = "/CursoSinProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + $('select[name="sltPlan"]').val() + "/" + $('select[name="sltBloque"]').val();
+        var route = "/CursoSinProfesor/Grupos/List/" + $('select[name="sltCurso"]').val() + "/" + $('select[name="sltPlan"]').val() + "/" + $('select[name="sltBloque"]').val() + "/" + $('select[name="sltSede"]').val();
         $.getJSON(route, function (data) {
             var items = "";
             //alert(data.toSource());

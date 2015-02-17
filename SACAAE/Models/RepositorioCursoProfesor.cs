@@ -134,7 +134,7 @@ namespace SACAAE.Models
         /// </summary>
         /// <param name="curso">El id del curso.</param>
         /// <returns>Lista de grupos abiertos de ese curso.</returns>
-        public IQueryable obtenerGrupos(int curso,int plan, int bloque, int periodo)
+        public IQueryable obtenerGrupos(int curso,int plan, int sede, int bloque, int periodo)
         {
             var idBloqueXPlan = (from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
                                  where bloqueXPlan.BloqueID == bloque && bloqueXPlan.PlanID == plan
@@ -144,12 +144,15 @@ namespace SACAAE.Models
                                       select bloqueXPlanXCurso.ID).FirstOrDefault();
 
             return from grupos in entidades.Grupoes
-                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && grupos.Periodo==periodo
+                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && grupos.Periodo == periodo && grupos.PlanesDeEstudioXSede.Sede == sede
                    select new { grupos.ID, grupos.Numero };
         }
 
-        public IQueryable obtenerGruposSinProfe(int curso, int plan, int bloque)
+        public IQueryable obtenerGruposSinProfe(int curso, int plan, int bloque, int sede)
         {
+            var idplanXSede = (from planXSede in entidades.PlanesDeEstudioXSedes
+                               where planXSede.PlanDeEstudio == plan && planXSede.Sede == sede
+                               select planXSede.ID).FirstOrDefault();
             var idBloqueXPlan = (from bloqueXPlan in entidades.BloqueAcademicoXPlanDeEstudios
                                  where bloqueXPlan.BloqueID == bloque && bloqueXPlan.PlanID == plan
                                  select bloqueXPlan.ID).FirstOrDefault();
@@ -159,7 +162,7 @@ namespace SACAAE.Models
 
             return from grupos in entidades.Grupoes
                    join DetalleGrupo in entidades.Detalle_Grupo on grupos.ID equals DetalleGrupo.Grupo
-                   where grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.ProfesoresXCurso.Profesor == 3
+                   where grupos.PlanDeEstudio==idplanXSede && grupos.BloqueXPlanXCursoID == idBloqueXPlanXCurso && DetalleGrupo.ProfesoresXCurso.Profesor == 3
                    select new { grupos.ID, grupos.Numero };
         }
 

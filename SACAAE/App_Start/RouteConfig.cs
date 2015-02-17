@@ -23,7 +23,7 @@ namespace SACAAE
 
             routes.MapRoute(
              "ObtenerGrupos",
-             "CursoProfesor/Grupos/List/{curso}/{plan}/{bloque}/{periodo}",
+             "CursoProfesor/Grupos/List/{curso}/{plan}/{sede}/{bloque}/{periodo}",
              new { Controller = "CursoProfesor", action = "ObtenerGrupos" });
 
             routes.MapRoute(
@@ -132,7 +132,7 @@ namespace SACAAE
 
             routes.MapRoute(
              "ObtenerGruposSinProfe",
-             "CursoSinProfesor/Grupos/List/{curso}/{plan}/{bloque}",
+             "CursoSinProfesor/Grupos/List/{curso}/{plan}/{bloque}/{sede}",
              new { Controller = "CursoProfesor", action = "ObtenerGruposSinProfe" });
 
             routes.MapRoute(
